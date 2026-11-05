@@ -108,31 +108,24 @@
 // INVITATION CODE URL CONFIGURATION
 // ===================================
 
-const invitationParams = new URLSearchParams(
-    window.location.hash.slice(1)
-);
+function getInvitationCodeFromURL() {
+  const params = new URLSearchParams(window.location.search);
 
-const qrInviteCode =
-    invitationParams.get("invite-code");
+  const code = params.get("invite-code") || params.get("invite");
 
-const invitationInput =
-    document.getElementById("invitation-code");
-
-if (
-    qrInviteCode &&
-    /^[a-f0-9]{32}$/i.test(qrInviteCode)
-) {
-
-    invitationInput.value = qrInviteCode.toLowerCase();
-
-    // Remove the code from the visible browser URL.
-    history.replaceState(
-        null,
-        "",
-        window.location.pathname + window.location.search
-    );
-
+  return code && /^[a-fA-F0-9]{32}$/.test(code)
+    ? code.toLowerCase()
+    : "";
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const codeInput = document.querySelector("#invitation-code");
+  const code = getInvitationCodeFromURL();
+
+  if (codeInput && code) {
+    codeInput.value = code;
+  }
+});
 
   $('main-status').addEventListener('change', syncMain);
   lookupForm.addEventListener('submit', async (event) => {
