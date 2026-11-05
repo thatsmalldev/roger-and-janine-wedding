@@ -1,19 +1,13 @@
 'use strict';
 (() => {
   const $ = (id) => document.getElementById(id);
-  // Automatically read invitation codes from the URL
+  // Accept invitation codes ONLY from #invite=
 function getInvitationCodeFromURL() {
-  const searchParams = new URLSearchParams(window.location.search);
+  const hashParams = new URLSearchParams(
+    window.location.hash.substring(1)
+  );
 
-  const hash = window.location.hash.replace(/^#\/?/, "");
-  const hashParams = new URLSearchParams(hash);
-
-  const code =
-    hashParams.get("invite") ||
-    hashParams.get("invite-code") ||
-    searchParams.get("invite") ||
-    searchParams.get("invite-code") ||
-    "";
+  const code = hashParams.get("invite") || "";
 
   return /^[a-fA-F0-9]{32}$/.test(code)
     ? code.toLowerCase()
@@ -24,15 +18,24 @@ function populateInvitationCode() {
   const codeInput = $("invitation-code");
   const code = getInvitationCodeFromURL();
 
-  if (!codeInput || !code) return;
+  if (codeInput && code) {
+    codeInput.value = code;
 
-  codeInput.value = code;
-  codeInput.dispatchEvent(new Event("input", { bubbles: true }));
-  codeInput.dispatchEvent(new Event("change", { bubbles: true }));
+    codeInput.dispatchEvent(
+      new Event("input", { bubbles: true })
+    );
+
+    codeInput.dispatchEvent(
+      new Event("change", { bubbles: true })
+    );
+  }
 }
 
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", populateInvitationCode);
+  document.addEventListener(
+    "DOMContentLoaded",
+    populateInvitationCode
+  );
 } else {
   populateInvitationCode();
 }
