@@ -1,20 +1,21 @@
 'use strict';
 (() => {
   const $ = (id) => document.getElementById(id);
+
   // Accept invitation codes ONLY from #invite=
-function getInvitationCodeFromURL() {
-  const hashParams = new URLSearchParams(
-    window.location.hash.substring(1)
-  );
+  function getInvitationCodeFromURL() {
+    const hashParams = new URLSearchParams(
+      window.location.hash.substring(1)
+    );
 
-  const code = hashParams.get("invite") || "";
+    const code = hashParams.get("invite") || "";
 
-  return /^[a-fA-F0-9]{32}$/.test(code)
-    ? code.toLowerCase()
-    : "";
-}
+    return /^[a-fA-F0-9]{32}$/.test(code)
+      ? code.toLowerCase()
+      : "";
+  }
 
-function populateInvitationCode() {
+  function populateInvitationCode() {
   const codeInput = $("invitation-code");
   const code = getInvitationCodeFromURL();
 
@@ -28,16 +29,14 @@ function populateInvitationCode() {
     codeInput.dispatchEvent(
       new Event("change", { bubbles: true })
     );
-  }
-}
 
-if (document.readyState === "loading") {
-  document.addEventListener(
-    "DOMContentLoaded",
-    populateInvitationCode
-  );
-} else {
-  populateInvitationCode();
+    // Hide the invitation code from the address bar
+    history.replaceState(
+      null,
+      "",
+      window.location.pathname + window.location.search
+    );
+  }
 }
 
   const lookupForm = $('lookup-form');
@@ -76,19 +75,19 @@ if (document.readyState === "loading") {
   }
   const statusValid = (value) => value === 'attending' || value === 'declining';
   const dateLabel = (iso) => new Intl.DateTimeFormat('en-PH', {
-    timeZone:'Asia/Manila',dateStyle:'long',timeStyle:'short'
+    timeZone: 'Asia/Manila', dateStyle: 'long', timeStyle: 'short'
   }).format(new Date(iso));
   let client;
   try {
     const config = window.WEDDING_CONFIG;
     if (!config || !/^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(config.supabaseUrl) ||
-        config.supabaseUrl.includes('YOUR_PROJECT') ||
-        !config.supabasePublishableKey || config.supabasePublishableKey.includes('YOUR_') ||
-        config.supabasePublishableKey.startsWith('sb_secret_') || !window.supabase) {
+      config.supabaseUrl.includes('YOUR_PROJECT') ||
+      !config.supabasePublishableKey || config.supabasePublishableKey.includes('YOUR_') ||
+      config.supabasePublishableKey.startsWith('sb_secret_') || !window.supabase) {
       throw new Error('Missing configuration');
     }
     client = window.supabase.createClient(config.supabaseUrl, config.supabasePublishableKey, {
-      auth: {persistSession:false,autoRefreshToken:false,detectSessionInUrl:false}
+      auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false }
     });
   } catch {
     lookupFields.disabled = true;
@@ -102,14 +101,14 @@ if (document.readyState === "loading") {
     const title = document.createElement('h3');
     title.textContent = `Companion ${index + 1}`;
     box.append(title);
-    for (const [key, caption] of [['first_name','First name'],['last_name','Last name'],['status','Will this companion attend?']]) {
+    for (const [key, caption] of [['first_name', 'First name'], ['last_name', 'Last name'], ['status', 'Will this companion attend?']]) {
       const id = `companion-${index}-${key}`;
       const label = document.createElement('label');
       label.htmlFor = id; label.textContent = caption;
       const control = document.createElement(key === 'status' ? 'select' : 'input');
       control.id = id;
       if (key === 'status') {
-        for (const [value, text] of [['','Please select'],['attending','Attending'],['declining','Declining / place unused']]) {
+        for (const [value, text] of [['', 'Please select'], ['attending', 'Attending'], ['declining', 'Declining / place unused']]) {
           const option = document.createElement('option');
           option.value = value; option.textContent = text; control.append(option);
         }
@@ -120,7 +119,7 @@ if (document.readyState === "loading") {
         control.maxLength = 80; control.autocomplete = 'off';
         control.value = typeof saved?.[key] === 'string' ? saved[key] : '';
       }
-      box.append(label,control);
+      box.append(label, control);
     }
     $('companions').append(box);
   }
@@ -147,26 +146,26 @@ if (document.readyState === "loading") {
     event.preventDefault();
     if (busy || !lookupForm.reportValidity()) return;
     current = null; responseForm.hidden = true;
-    message('lookup-message',''); message('save-message','');
+    message('lookup-message', ''); message('save-message', '');
     let identity;
     try {
       identity = {
-        p_first_name:cleanName($('first-name').value),
-        p_last_name:cleanName($('last-name').value),
-        p_code:$('invitation-code').value.trim().toLowerCase()
+        p_first_name: cleanName($('first-name').value),
+        p_last_name: cleanName($('last-name').value),
+        p_code: $('invitation-code').value.trim().toLowerCase()
       };
       if (!/^[a-f0-9]{32}$/.test(identity.p_code)) {
         throw new Error('Please enter the 32-character invitation code exactly as shared.');
       }
-    } catch (error) { message('lookup-message',error.message,'error'); return; }
+    } catch (error) { message('lookup-message', error.message, 'error'); return; }
     busy = true; lookupFields.disabled = true;
     $('lookup-button').textContent = 'Finding your invitation…';
     try {
-      const {data,error} = await client.rpc('lookup_invitation',identity);
+      const { data, error } = await client.rpc('lookup_invitation', identity);
       if (error) throw error;
-      if (!data) { message('lookup-message',NOT_FOUND,'error'); return; }
+      if (!data) { message('lookup-message', NOT_FOUND, 'error'); return; }
       if (!Number.isInteger(data.max_plus_ones) || data.max_plus_ones < 0 || data.max_plus_ones > 10 ||
-          !Number.isInteger(data.revision) || !Array.isArray(data.plus_ones)) throw new Error('Invalid invitation');
+        !Number.isInteger(data.revision) || !Array.isArray(data.plus_ones)) throw new Error('Invalid invitation');
       if (data.rsvp_deadline) {
         // Database cutoff is exclusive. Example: 00:00 Dec 20 means through Dec 19.
         $('deadline-note').textContent = `Please respond before ${dateLabel(data.rsvp_deadline)} (Philippine Time).`;
@@ -177,7 +176,7 @@ if (document.readyState === "loading") {
           'RSVPs will open once the deadline is confirmed. Please contact Roger or Janine if you need help.');
         return;
       }
-      current = {identity,guest:data};
+      current = { identity, guest: data };
       $('guest-heading').textContent = `${data.first_name} ${data.last_name} — your response`;
       const roles = [];
       if (data.is_principal_sponsor) roles.push('Principal Sponsor (Ninong / Ninang)');
@@ -185,16 +184,16 @@ if (document.readyState === "loading") {
       $('guest-role').textContent = `${roles.join(' · ') || 'Wedding guest'} · Additional places reserved: ${data.max_plus_ones}`;
       $('main-status').value = statusValid(data.rsvp_status) ? data.rsvp_status : '';
       $('companions').replaceChildren();
-      for (let i = 0; i < data.max_plus_ones; i++) addCompanion(i,data.plus_ones[i]);
+      for (let i = 0; i < data.max_plus_ones; i++) addCompanion(i, data.plus_ones[i]);
       responseFields.disabled = false;
       responseForm.hidden = false;
       lookupForm.hidden = true;
       $('invitation-code').value = '';
       syncMain();
       $('main-status').focus();
-      message('lookup-message',data.rsvp_status === 'pending' ? 'Your invitation is ready.' : 'Your saved response is shown below. You may update it while RSVPs are open.');
+      message('lookup-message', data.rsvp_status === 'pending' ? 'Your invitation is ready.' : 'Your saved response is shown below. You may update it while RSVPs are open.');
     } catch {
-      message('lookup-message','We couldn’t reach the RSVP service. Please try again later or contact Roger or Janine.','error');
+      message('lookup-message', 'We couldn’t reach the RSVP service. Please try again later or contact Roger or Janine.', 'error');
     } finally {
       busy = false; lookupFields.disabled = false;
       $('lookup-button').textContent = 'Find my invitation';
@@ -203,27 +202,27 @@ if (document.readyState === "loading") {
   responseForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (busy || !current || !responseForm.reportValidity()) return;
-    message('save-message','');
+    message('save-message', '');
     let companions;
     const status = $('main-status').value;
     try {
       if (!statusValid(status)) throw new Error('Choose attending or declining.');
-      companions = Array.from({length:current.guest.max_plus_ones},(_,i) => {
+      companions = Array.from({ length: current.guest.max_plus_ones }, (_, i) => {
         const attendance = $(`companion-${i}-status`).value;
         if (!statusValid(attendance)) throw new Error('Choose attending or declining for each companion.');
         if (status === 'declining' && attendance !== 'declining') throw new Error('Please contact us if a companion will attend without you.');
         return {
-          first_name:cleanName($(`companion-${i}-first_name`).value,attendance === 'attending'),
-          last_name:cleanName($(`companion-${i}-last_name`).value,attendance === 'attending'),
-          status:attendance
+          first_name: cleanName($(`companion-${i}-first_name`).value, attendance === 'attending'),
+          last_name: cleanName($(`companion-${i}-last_name`).value, attendance === 'attending'),
+          status: attendance
         };
       });
-    } catch (error) {message('save-message',error.message,'error');return;}
+    } catch (error) { message('save-message', error.message, 'error'); return; }
     busy = true; responseFields.disabled = true; $('reset-button').disabled = true;
     $('save-button').textContent = 'Saving your response…';
     try {
-      const {data,error} = await client.rpc('submit_rsvp',{
-        ...current.identity,p_status:status,p_plus_ones:companions,p_revision:current.guest.revision
+      const { data, error } = await client.rpc('submit_rsvp', {
+        ...current.identity, p_status: status, p_plus_ones: companions, p_revision: current.guest.revision
       });
       if (error) throw error;
       if (data?.saved !== true || !Number.isInteger(data.revision)) throw new Error('Save not confirmed');
@@ -231,20 +230,20 @@ if (document.readyState === "loading") {
       current.guest.rsvp_status = status; current.guest.plus_ones = companions;
       message('save-message', status === 'attending' ?
         'Your response has been saved. We’re looking forward to celebrating with you! — Roger & Janine' :
-        'Your response has been saved. We’ll miss you, and we’re grateful for your love and prayers. — Roger & Janine','success');
+        'Your response has been saved. We’ll miss you, and we’re grateful for your love and prayers. — Roger & Janine', 'success');
     } catch (error) {
-      message('save-message',FRIENDLY_ERRORS.has(error.message) ? error.message :
-        'We couldn’t confirm that your response was saved. Please find your invitation again to check before retrying.','error');
+      message('save-message', FRIENDLY_ERRORS.has(error.message) ? error.message :
+        'We couldn’t confirm that your response was saved. Please find your invitation again to check before retrying.', 'error');
     } finally {
       busy = false; responseFields.disabled = false; $('reset-button').disabled = false;
       $('save-button').textContent = 'Send our response';
       syncMain();
     }
   });
-  $('reset-button').addEventListener('click',() => {
+  $('reset-button').addEventListener('click', () => {
     if (busy) return;
     current = null; $('companions').replaceChildren(); responseForm.reset();
     responseForm.hidden = true; lookupForm.hidden = false; lookupForm.reset();
-    message('save-message','');message('lookup-message','');$('first-name').focus();
+    message('save-message', ''); message('lookup-message', ''); $('first-name').focus();
   });
 })();
