@@ -208,17 +208,37 @@
     responseForm.hidden = true; lookupForm.hidden = false; lookupForm.reset();
     message('save-message','');message('lookup-message','');$('first-name').focus();
   });
-  // Automatically populate the invitation code from the URL.
-  const params = new URLSearchParams(window.location.search);
+  function getInvitationCodeFromURL() {
+  const searchParams = new URLSearchParams(window.location.search);
+  const hashParams = new URLSearchParams(
+    window.location.hash.replace(/^#/, "")
+  );
 
-  const invitationCode =
-    params.get('invite-code') ||
-    params.get('invite') ||
-    '';
+  const code =
+    searchParams.get("invite-code") ||
+    searchParams.get("invite") ||
+    hashParams.get("invite") ||
+    hashParams.get("invite-code") ||
+    "";
 
-  const codeInput = $('invitation-code');
+  return /^[a-fA-F0-9]{32}$/.test(code)
+    ? code.toLowerCase()
+    : "";
+}
 
-  if (codeInput && /^[a-fA-F0-9]{32}$/.test(invitationCode)) {
-    codeInput.value = invitationCode.toLowerCase();
+function populateInvitationCode() {
+  const codeInput = document.querySelector("#invitation-code");
+  const code = getInvitationCodeFromURL();
+
+  if (codeInput && code) {
+    codeInput.value = code;
+    codeInput.dispatchEvent(new Event("input", { bubbles: true }));
   }
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", populateInvitationCode);
+} else {
+  populateInvitationCode();
+}
 })();
