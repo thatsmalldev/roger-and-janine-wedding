@@ -103,6 +103,37 @@
     }
     syncNames();
   }
+  
+// ===================================
+// INVITATION CODE URL CONFIGURATION
+// ===================================
+
+const invitationParams = new URLSearchParams(
+    window.location.hash.slice(1)
+);
+
+const qrInviteCode =
+    invitationParams.get("invite-code");
+
+const invitationInput =
+    document.getElementById("invitation-code");
+
+if (
+    qrInviteCode &&
+    /^[a-f0-9]{32}$/i.test(qrInviteCode)
+) {
+
+    invitationInput.value = qrInviteCode.toLowerCase();
+
+    // Remove the code from the visible browser URL.
+    history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search
+    );
+
+}
+
   $('main-status').addEventListener('change', syncMain);
   lookupForm.addEventListener('submit', async (event) => {
     event.preventDefault();
