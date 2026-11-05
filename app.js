@@ -1,15 +1,18 @@
 'use strict';
 (() => {
   const $ = (id) => document.getElementById(id);
-  // Read invitation code from the URL fragment (#invite=...)
+  // Automatically read invitation codes from the URL
 function getInvitationCodeFromURL() {
-  const hashParams = new URLSearchParams(
-    window.location.hash.substring(1)
-  );
+  const searchParams = new URLSearchParams(window.location.search);
+
+  const hash = window.location.hash.replace(/^#\/?/, "");
+  const hashParams = new URLSearchParams(hash);
 
   const code =
     hashParams.get("invite") ||
     hashParams.get("invite-code") ||
+    searchParams.get("invite") ||
+    searchParams.get("invite-code") ||
     "";
 
   return /^[a-fA-F0-9]{32}$/.test(code)
@@ -21,11 +24,11 @@ function populateInvitationCode() {
   const codeInput = $("invitation-code");
   const code = getInvitationCodeFromURL();
 
-  if (codeInput && code) {
-    codeInput.value = code;
-    codeInput.dispatchEvent(new Event("input", { bubbles: true }));
-    codeInput.dispatchEvent(new Event("change", { bubbles: true }));
-  }
+  if (!codeInput || !code) return;
+
+  codeInput.value = code;
+  codeInput.dispatchEvent(new Event("input", { bubbles: true }));
+  codeInput.dispatchEvent(new Event("change", { bubbles: true }));
 }
 
 if (document.readyState === "loading") {
