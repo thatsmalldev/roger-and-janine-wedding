@@ -1,6 +1,39 @@
 'use strict';
 (() => {
   const $ = (id) => document.getElementById(id);
+  // Read invitation code from the URL fragment (#invite=...)
+function getInvitationCodeFromURL() {
+  const hashParams = new URLSearchParams(
+    window.location.hash.substring(1)
+  );
+
+  const code =
+    hashParams.get("invite") ||
+    hashParams.get("invite-code") ||
+    "";
+
+  return /^[a-fA-F0-9]{32}$/.test(code)
+    ? code.toLowerCase()
+    : "";
+}
+
+function populateInvitationCode() {
+  const codeInput = $("invitation-code");
+  const code = getInvitationCodeFromURL();
+
+  if (codeInput && code) {
+    codeInput.value = code;
+    codeInput.dispatchEvent(new Event("input", { bubbles: true }));
+    codeInput.dispatchEvent(new Event("change", { bubbles: true }));
+  }
+}
+
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", populateInvitationCode);
+} else {
+  populateInvitationCode();
+}
+
   const lookupForm = $('lookup-form');
   const responseForm = $('rsvp-form');
   const lookupFields = $('lookup-fields');
@@ -208,44 +241,4 @@
     responseForm.hidden = true; lookupForm.hidden = false; lookupForm.reset();
     message('save-message','');message('lookup-message','');$('first-name').focus();
   });
-function getInvitationCodeFromURL() {
-  const hashParams = new URLSearchParams(
-    window.location.hash.substring(1)
-  );
-
-  const code =
-    hashParams.get("invite") ||
-    hashParams.get("invite-code") ||
-    "";
-
-  return /^[a-fA-F0-9]{32}$/.test(code)
-    ? code.toLowerCase()
-    : "";
-}
-
-function populateInvitationCode() {
-  const codeInput = document.querySelector("#invitation-code");
-  const code = getInvitationCodeFromURL();
-
-  if (codeInput && code) {
-    codeInput.value = code;
-
-    codeInput.dispatchEvent(
-      new Event("input", { bubbles: true })
-    );
-
-    codeInput.dispatchEvent(
-      new Event("change", { bubbles: true })
-    );
-  }
-}
-
-if (document.readyState === "loading") {
-  document.addEventListener(
-    "DOMContentLoaded",
-    populateInvitationCode
-  );
-} else {
-  populateInvitationCode();
-}
 })();
