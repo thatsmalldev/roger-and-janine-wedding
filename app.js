@@ -1,7 +1,7 @@
 'use strict';
 (() => {
   const $ = (id) => document.getElementById(id);
-
+  
   // Accept invitation codes ONLY from #invite=
   function getInvitationCodeFromURL() {
     const hashParams = new URLSearchParams(
