@@ -208,15 +208,12 @@
     responseForm.hidden = true; lookupForm.hidden = false; lookupForm.reset();
     message('save-message','');message('lookup-message','');$('first-name').focus();
   });
-  function getInvitationCodeFromURL() {
-  const searchParams = new URLSearchParams(window.location.search);
+function getInvitationCodeFromURL() {
   const hashParams = new URLSearchParams(
-    window.location.hash.replace(/^#/, "")
+    window.location.hash.substring(1)
   );
 
   const code =
-    searchParams.get("invite-code") ||
-    searchParams.get("invite") ||
     hashParams.get("invite") ||
     hashParams.get("invite-code") ||
     "";
@@ -232,12 +229,22 @@ function populateInvitationCode() {
 
   if (codeInput && code) {
     codeInput.value = code;
-    codeInput.dispatchEvent(new Event("input", { bubbles: true }));
+
+    codeInput.dispatchEvent(
+      new Event("input", { bubbles: true })
+    );
+
+    codeInput.dispatchEvent(
+      new Event("change", { bubbles: true })
+    );
   }
 }
 
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", populateInvitationCode);
+  document.addEventListener(
+    "DOMContentLoaded",
+    populateInvitationCode
+  );
 } else {
   populateInvitationCode();
 }
