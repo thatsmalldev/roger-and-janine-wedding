@@ -109,13 +109,11 @@
 // ===================================
 
 function getInvitationCodeFromURL() {
-  const params = new URLSearchParams(window.location.search);
+  const hash = window.location.hash;
 
-  const code = params.get("invite-code") || params.get("invite");
+  const match = hash.match(/^#(?:invite=|invite-code=)([a-fA-F0-9]{32})$/);
 
-  return code && /^[a-fA-F0-9]{32}$/.test(code)
-    ? code.toLowerCase()
-    : "";
+  return match ? match[1].toLowerCase() : "";
 }
 
 document.addEventListener("DOMContentLoaded", () => {
