@@ -112,7 +112,8 @@
 const invitationParams = new URLSearchParams(
     window.location.hash.slice(1)
 );
-
+const invitationInput =
+    document.getElementById("invitation-code");
 
   lookupForm.addEventListener('submit', async (event) => {
     event.preventDefault();
