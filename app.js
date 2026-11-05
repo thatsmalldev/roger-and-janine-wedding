@@ -16,28 +16,33 @@
   }
 
   function populateInvitationCode() {
-  const codeInput = $("invitation-code");
-  const code = getInvitationCodeFromURL();
+    const codeInput = $("invitation-code");
+    const code = getInvitationCodeFromURL();
 
-  if (codeInput && code) {
-    codeInput.value = code;
-
-    codeInput.dispatchEvent(
-      new Event("input", { bubbles: true })
-    );
-
-    codeInput.dispatchEvent(
-      new Event("change", { bubbles: true })
-    );
-
-    // Hide the invitation code from the address bar
-    history.replaceState(
-      null,
-      "",
-      window.location.pathname + window.location.search
-    );
+    if (codeInput && code) {
+      codeInput.value = code;
+      codeInput.dispatchEvent(
+        new Event("input", { bubbles: true })
+      );
+      codeInput.dispatchEvent(
+        new Event("change", { bubbles: true })
+      );
+    }
   }
-}
+  // Hide the invitation code from the address bar
+  history.replaceState(
+    null,
+    "",
+    window.location.pathname + window.location.search
+  );
+  if (document.readyState === "loading") {
+    document.addEventListener(
+      "DOMContentLoaded",
+      populateInvitationCode
+    );
+  } else {
+    populateInvitationCode();
+  }
 
   const lookupForm = $('lookup-form');
   const responseForm = $('rsvp-form');
