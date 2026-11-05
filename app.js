@@ -104,9 +104,6 @@
     syncNames();
   }
   $('main-status').addEventListener('change', syncMain);
-  
-
-
   lookupForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (busy || !lookupForm.reportValidity()) return;
