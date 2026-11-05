@@ -103,25 +103,6 @@
     }
     syncNames();
   }
-  
-// ===================================
-// INVITATION CODE URL CONFIGURATION
-// ===================================
-
-  // Automatically populate the invitation code from the URL.
-  const params = new URLSearchParams(window.location.search);
-
-  const invitationCode =
-    params.get('invite-code') ||
-    params.get('invite') ||
-    '';
-
-  const codeInput = $('invitation-code');
-
-  if (codeInput && /^[a-fA-F0-9]{32}$/.test(invitationCode)) {
-    codeInput.value = invitationCode.toLowerCase();
-  }
-
   $('main-status').addEventListener('change', syncMain);
   lookupForm.addEventListener('submit', async (event) => {
     event.preventDefault();
@@ -227,4 +208,17 @@
     responseForm.hidden = true; lookupForm.hidden = false; lookupForm.reset();
     message('save-message','');message('lookup-message','');$('first-name').focus();
   });
+  // Automatically populate the invitation code from the URL.
+  const params = new URLSearchParams(window.location.search);
+
+  const invitationCode =
+    params.get('invite-code') ||
+    params.get('invite') ||
+    '';
+
+  const codeInput = $('invitation-code');
+
+  if (codeInput && /^[a-fA-F0-9]{32}$/.test(invitationCode)) {
+    codeInput.value = invitationCode.toLowerCase();
+  }
 })();
