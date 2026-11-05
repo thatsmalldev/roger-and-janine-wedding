@@ -208,4 +208,19 @@
     responseForm.hidden = true; lookupForm.hidden = false; lookupForm.reset();
     message('save-message','');message('lookup-message','');$('first-name').focus();
   });
+  const params = new URLSearchParams(
+    window.location.search
+);
+
+let inviteCode = params.get("invite-code");
+
+if (inviteCode) {
+
+    inviteCode = inviteCode.trim();
+
+    sessionStorage.setItem(
+        "wedding_invite_code",
+        inviteCode
+    );
+  }
 })();
