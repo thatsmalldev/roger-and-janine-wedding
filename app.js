@@ -29,12 +29,7 @@
       );
     }
   }
-  // Hide the invitation code from the address bar
-  history.replaceState(
-    null,
-    "",
-    window.location.pathname + window.location.search
-  );
+
   if (document.readyState === "loading") {
     document.addEventListener(
       "DOMContentLoaded",
