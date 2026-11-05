@@ -108,22 +108,19 @@
 // INVITATION CODE URL CONFIGURATION
 // ===================================
 
-function getInvitationCodeFromURL() {
-  const hash = window.location.hash;
+  // Automatically populate the invitation code from the URL.
+  const params = new URLSearchParams(window.location.search);
 
-  const match = hash.match(/^#(?:invite=|invite-code=)([a-fA-F0-9]{32})$/);
+  const invitationCode =
+    params.get('invite-code') ||
+    params.get('invite') ||
+    '';
 
-  return match ? match[1].toLowerCase() : "";
-}
+  const codeInput = $('invitation-code');
 
-document.addEventListener("DOMContentLoaded", () => {
-  const codeInput = document.querySelector("#invitation-code");
-  const code = getInvitationCodeFromURL();
-
-  if (codeInput && code) {
-    codeInput.value = code;
+  if (codeInput && /^[a-fA-F0-9]{32}$/.test(invitationCode)) {
+    codeInput.value = invitationCode.toLowerCase();
   }
-});
 
   $('main-status').addEventListener('change', syncMain);
   lookupForm.addEventListener('submit', async (event) => {
@@ -230,7 +227,4 @@ document.addEventListener("DOMContentLoaded", () => {
     responseForm.hidden = true; lookupForm.hidden = false; lookupForm.reset();
     message('save-message','');message('lookup-message','');$('first-name').focus();
   });
-  const params = new URLSearchParams(
-    window.location.search
-);
 })();
