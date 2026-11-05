@@ -104,6 +104,37 @@
     syncNames();
   }
   $('main-status').addEventListener('change', syncMain);
+  
+// ===================================
+// INVITATION CODE URL CONFIGURATION
+// ===================================
+
+const invitationParams = new URLSearchParams(
+    window.location.hash.slice(1)
+);
+
+const qrInviteCode =
+    invitationParams.get("invite-code");
+
+const invitationInput =
+    document.getElementById("invitation-code");
+
+if (
+    qrInviteCode &&
+    /^[a-f0-9]{32}$/i.test(qrInviteCode)
+) {
+
+    invitationInput.value = qrInviteCode.toLowerCase();
+
+    // Remove the code from the visible browser URL.
+    history.replaceState(
+        null,
+        "",
+        window.location.pathname + window.location.search
+    );
+
+}
+
   lookupForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (busy || !lookupForm.reportValidity()) return;
@@ -211,16 +242,4 @@
   const params = new URLSearchParams(
     window.location.search
 );
-
-let inviteCode = params.get("invite-code");
-
-if (inviteCode) {
-
-    inviteCode = inviteCode.trim();
-
-    sessionStorage.setItem(
-        "wedding_invite_code",
-        inviteCode
-    );
-  }
 })();
