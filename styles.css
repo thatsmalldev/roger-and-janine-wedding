@@ -335,3 +335,12 @@ footer>p:first-child {
         scroll-behavior: auto
     }
 }
+
+// Hide the invitation code field and its label
+#invitation-code {
+  display: none !important;
+}
+
+label[for="invitation-code"] {
+  display: none !important;
+}
