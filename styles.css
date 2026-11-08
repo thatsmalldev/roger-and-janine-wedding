@@ -337,16 +337,13 @@ footer>p:first-child {
 }
 
 #invitation-code {
-  display: unset !important;
-  
+  visibility: visible !important;
 }
 
 label[for="invitation-code"] {
-  display: unset !important;
-  
+  visibility: visible !important;
 }
 
 p[id="code-help"] {
-  display: unset !important;
-  
+  visibility: visible !important;
 }
