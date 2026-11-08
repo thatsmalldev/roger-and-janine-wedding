@@ -336,11 +336,14 @@ footer>p:first-child {
     }
 }
 
-// Hide the invitation code field and its label
 #invitation-code {
   display: none !important;
 }
 
 label[for="invitation-code"] {
+  display: none !important;
+}
+
+p[id="code-help"] {
   display: none !important;
 }
