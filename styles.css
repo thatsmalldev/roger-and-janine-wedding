@@ -336,17 +336,3 @@ footer>p:first-child {
     }
 }
 
-#invitation-code {
-  display: none !important;
-  visibility: hidden !important;
-}
-
-label[for="invitation-code"] {
-  display: none !important;
-  visibility: hidden !important;
-}
-
-p[id="code-help"] {
-  display: none !important;
-  visibility: hidden !important;
-}
