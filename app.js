@@ -53,8 +53,7 @@
     companionsBox.id = 'companions';
     $('guest-role').insertAdjacentElement('afterend', companionsBox);
   }
-
-  companionsBox.className = 'flex flex-col gap-6';
+  
 
   let current = null;
   let busy = false;
@@ -122,10 +121,6 @@
   }
   // No invitation code is stored in localStorage, cookies, URLs or browser logs.
 
-
- 
-
-
   function addCompanion(index, saved) {
     const box = document.createElement('div');
 
@@ -138,6 +133,9 @@
 
     title.textContent = `Companion ${index + 1}`;
     box.append(title);
+
+    const boxCompanion = document.createElement('div');
+    boxCompanion.className = 'grid grid-cols-1 md:grid-cols-2 gap-6';
 
     for (const [key, caption] of [
       ['first_name', 'First name'],
