@@ -133,51 +133,38 @@
     title.textContent = `Companion ${index + 1}`;
     box.append(title);
 
-    
-const boxCompanion = document.createElement('div');
+    for (const [key, caption] of [
+      ['first_name', 'First name'],
+      ['last_name', 'Last name']
+    ]) {
+      const id = `companion-${index}-${key}`;
 
-boxCompanion.className = 'grid grid-cols-1 md:grid-cols-2 gap-6';
+      const label = document.createElement('label');
+      label.htmlFor = id;
+      label.textContent = caption;
+      label.className =
+        'block text-xs uppercase tracking-widest text-slate-400 font-semibold mb-2';
 
-for (const [key, caption] of [
-  ['first_name', 'First name'],
-  ['last_name', 'Last name']
-]) {
-  const id = `companion-${index}-${key}`;
+      const control = document.createElement(
+        key === 'status' ? 'select' : 'input'
+      );
 
-  // Create a wrapper for each field
-  const field = document.createElement('div');
-  field.className = 'flex flex-col';
+      control.id = id;
 
-  const label = document.createElement('label');
-  label.htmlFor = id;
-  label.textContent = caption;
-  label.className =
-    'block text-xs uppercase tracking-widest text-slate-400 font-semibold mb-2';
+      control.className =
+        'w-full px-4 py-3 rounded-xl bg-noir-900/80 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-gold transition-colors';
 
-  const control = document.createElement('input');
-  control.id = id;
-  control.type = 'text';
-  control.maxLength = 80;
-  control.autocomplete = 'off';
+      control.type = 'text';
+      control.maxLength = 80;
+      control.autocomplete = 'off';
 
-  control.className =
-    'w-full px-4 py-3 rounded-xl bg-noir-900/80 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-gold transition-colors';
+      control.value =
+        typeof saved?.[key] === 'string'
+          ? saved[key]
+          : '';
 
-  control.value =
-    typeof saved?.[key] === 'string'
-      ? saved[key]
-      : '';
-
-  // Put label and input together
-  field.append(label, control);
-
-  // Put each field into the grid
-  boxCompanion.append(field);
-}
-
-// Add the completed grid to the companion container
-box.append(boxCompanion);
-
+      box.append(label, control);
+    }
 
     companionsBox.append(box);
   }
