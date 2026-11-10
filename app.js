@@ -726,12 +726,12 @@ function renderGuestbookFeed(notes) {
   lucide.createIcons();
 }
 
-function saveGuestbookEntry(author, location, text) {
+function saveGuestbookEntry(author, location, content) {
   let notes = JSON.parse(localStorage.getItem('wedding_guestbook') || JSON.stringify(defaultNotes));
   notes.unshift({
     author: author,
     location: location || "Dear Friend",
-    text: text,
+    content: content,
     time: "Just now",
     likes: 0
   });
@@ -766,7 +766,7 @@ async function addGuestbookNote() {
     // Insert row into Supabase SQL database
     const { error } = await supabaseClient
       .from('guestbook')
-      .insert([{ author, location: location || 'Friend', text: content, likes: 0 }]);
+      .insert([{ author, location: location || 'Friend', content: content, likes: 0 }]);
 
     if (error) {
       showToast("Error saving note to database!");
