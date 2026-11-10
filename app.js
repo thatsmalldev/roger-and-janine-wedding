@@ -134,8 +134,6 @@
     box.append(title);
 
 
-    let companionsBox = $('companions');
-
     if (!companionsBox) {
       companionsBox = document.createElement('div');
       companionsBox.id = 'companions';
