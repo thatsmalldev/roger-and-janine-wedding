@@ -677,30 +677,71 @@
         </p>
       </div>
 
-      <!-- Add Note Box -->
-      <div class="glass-dark p-6 rounded-2xl border border-white/10 mb-8 space-y-4">
-        <h3 class="font-display text-lg text-white">Write in our Guestbook</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <input type="text" id="gbAuthor" placeholder="Your Name"
-            class="bg-noir-900/80 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-ivory-100 focus:outline-none focus:border-gold">
-          <input type="text" id="gbLocation" placeholder="Your City / Relation (e.g., Manila, Cousin)"
-            class="bg-noir-900/80 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-ivory-100 focus:outline-none focus:border-gold">
+      <!-- Live RSVP LocalStorage Viewer & Management Panel -->
+      <div class="glass-dark p-6 md:p-8 rounded-3xl border border-white/10 space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="font-display text-xl text-white flex items-center gap-2">
+            <i data-lucide="database" class="w-5 h-5 text-gold"></i>
+            <span>Stored RSVPs Inspector</span>
+          </h3>
+          <span id="rsvpCounterBadge"
+            class="bg-gold/20 text-gold border border-gold/30 text-[10px] font-mono px-2.5 py-1 rounded-full">0
+            Entries</span>
         </div>
-        <textarea id="gbContent" rows="3" placeholder="Write your heartfelt note here..."
-          class="w-full bg-noir-900/80 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-ivory-100 focus:outline-none focus:border-gold resize-none"></textarea>
-        <div class="flex justify-end">
-          <button onclick="addGuestbookNote()"
-            class="bg-gold hover:bg-gold-light text-noir-900 font-semibold text-xs uppercase tracking-widest px-6 py-2.5 rounded-full transition-all flex items-center gap-2">
-            <i data-lucide="plus" class="w-4 h-4"></i>
-            <span>Post Note</span>
+
+        <p class="text-xs text-ivory-300 leading-relaxed font-serif">
+          Below is a real-time view of all RSVP submissions currently saved in your browser's <code
+            class="text-gold font-mono">localStorage</code>:
+        </p>
+
+        <!-- Dynamic Output Container -->
+        <div id="localStorageViewer"
+          class="bg-noir-900/90 border border-white/10 rounded-2xl p-4 max-h-60 overflow-y-auto space-y-3">
+          <!-- Dynamic rendering from JS -->
+        </div>
+
+        <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
+          <button onclick="refreshRSVPViewer()"
+            class="bg-white/10 hover:bg-white/20 text-white text-xs font-medium px-4 py-2 rounded-xl transition-colors flex items-center gap-1.5">
+            <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-gold"></i>
+            <span>Refresh Data</span>
+          </button>
+
+          <button onclick="exportRSVPToExcel()"
+            class="bg-gold hover:bg-gold-light text-noir-900 text-xs font-semibold px-4 py-2 rounded-xl transition-colors flex items-center gap-1.5 shadow-lg">
+            <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5"></i>
+            <span>Export to Excel (CSV)</span>
           </button>
         </div>
       </div>
 
-      <!-- Notes List Feed -->
-      <div id="guestbookFeed" class="space-y-4">
-        <!-- Dynamic Javascript render here -->
       </div>
+    </section>
+
+    <!-- Add Note Box -->
+    <div class="glass-dark p-6 rounded-2xl border border-white/10 mb-8 space-y-4">
+      <h3 class="font-display text-lg text-white">Write in our Guestbook</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <input type="text" id="gbAuthor" placeholder="Your Name"
+          class="bg-noir-900/80 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-ivory-100 focus:outline-none focus:border-gold">
+        <input type="text" id="gbLocation" placeholder="Your City / Relation (e.g., Manila, Cousin)"
+          class="bg-noir-900/80 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-ivory-100 focus:outline-none focus:border-gold">
+      </div>
+      <textarea id="gbContent" rows="3" placeholder="Write your heartfelt note here..."
+        class="w-full bg-noir-900/80 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-ivory-100 focus:outline-none focus:border-gold resize-none"></textarea>
+      <div class="flex justify-end">
+        <button onclick="addGuestbookNote()"
+          class="bg-gold hover:bg-gold-light text-noir-900 font-semibold text-xs uppercase tracking-widest px-6 py-2.5 rounded-full transition-all flex items-center gap-2">
+          <i data-lucide="plus" class="w-4 h-4"></i>
+          <span>Post Note</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Notes List Feed -->
+    <div id="guestbookFeed" class="space-y-4">
+      <!-- Dynamic Javascript render here -->
+    </div>
     </section>
 
     <!-- Footer -->
