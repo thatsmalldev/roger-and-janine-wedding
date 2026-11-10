@@ -364,7 +364,13 @@
 
 
 // Initialize Lucide Icons
-lucide.createIcons();
+window.addEventListener('DOMContentLoaded', () => {
+  if (window.lucide) {
+    lucide.createIcons();
+  }
+  loadGuestbook();
+  refreshRSVPViewer();
+});
 
 /* ===================================================
    1. LIVE COUNTDOWN TIMER TO FEB 6, 2027 3:00 PM PH TIME
@@ -636,10 +642,36 @@ const defaultNotes = [
   { author: "Mark & Sarah", location: "Quezon City", text: "Can't wait to celebrate on the dance floor! So happy for you two!", time: "1 week ago", likes: 8 }
 ];
 
-function loadGuestbook() {
-  const stored = localStorage.getItem('wedding_guestbook');
-  let notes = stored ? JSON.parse(stored) : defaultNotes;
-  renderGuestbookFeed(notes);
+let supabaseClient = null;
+if (window.supabase && SUPABASE_URL !== 'https://YOUR_SUPABASE_PROJECT_ID.supabase.co') {
+  supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+}
+
+async function loadGuestbook() {
+  const feed = document.getElementById('guestbookFeed');
+  
+  // If Supabase isn't configured yet, fallback to localStorage
+  if (!supabaseClient) {
+    const stored = localStorage.getItem('wedding_guestbook');
+    let notes = stored ? JSON.parse(stored) : defaultNotes;
+    renderGuestbookFeed(notes);
+    return;
+  }
+
+  // Fetch entries from Supabase PostgreSQL Table
+  try {
+    const { data, error } = await supabaseClient
+      .from('guestbook')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+    renderGuestbookFeed(data || []);
+  } catch (err) {
+    console.error('Supabase fetch error:', err.message);
+    const stored = localStorage.getItem('wedding_guestbook');
+    renderGuestbookFeed(stored ? JSON.parse(stored) : defaultNotes);
+  }
 }
 
 function renderGuestbookFeed(notes) {
@@ -651,7 +683,12 @@ function renderGuestbookFeed(notes) {
     return;
   }
 
-  notes.forEach((item, index) => {
+  notes.forEach((item) => {
+    const noteId = item.id;
+    const timeFormatted = item.created_at 
+      ? new Date(item.created_at).toLocaleDateString([], { month: 'short', day: 'numeric' })
+      : (item.time || 'Recently');
+
     const card = document.createElement('div');
     card.className = "glass-dark p-6 rounded-2xl border border-white/10 space-y-3 hover:border-gold/30 transition-all";
     card.innerHTML = `
@@ -660,11 +697,13 @@ function renderGuestbookFeed(notes) {
           <h4 class="font-display text-white font-medium">${escapeHTML(item.author)}</h4>
           <span class="text-[11px] text-gold font-mono uppercase">${escapeHTML(item.location || 'Friend')}</span>
         </div>
-        <span class="text-[10px] text-ivory-300/60 font-mono">${item.time || 'Recently'}</span>
+        <div class="flex items-center gap-3">
+          <span class="text-[10px] text-ivory-300/60 font-mono">${timeFormatted}</span>
+        </div>
       </div>
       <p class="text-ivory-200 text-sm font-serif leading-relaxed">"${escapeHTML(item.text)}"</p>
       <div class="flex items-center justify-end gap-2 pt-2 text-xs text-ivory-300">
-        <button onclick="likeGuestbookNote(${index})" class="hover:text-gold flex items-center gap-1 transition-colors">
+        <button onclick="likeGuestbookNote('${noteId}', ${item.likes || 0})" class="hover:text-gold flex items-center gap-1 transition-colors">
           <i data-lucide="heart" class="w-3.5 h-3.5 text-gold"></i>
           <span>${item.likes || 0}</span>
         </button>
@@ -676,20 +715,7 @@ function renderGuestbookFeed(notes) {
   lucide.createIcons();
 }
 
-function saveGuestbookEntry(author, location, text) {
-  let notes = JSON.parse(localStorage.getItem('wedding_guestbook') || JSON.stringify(defaultNotes));
-  notes.unshift({
-    author: author,
-    location: location || "Dear Friend",
-    text: text,
-    time: "Just now",
-    likes: 1
-  });
-  localStorage.setItem('wedding_guestbook', JSON.stringify(notes));
-  renderGuestbookFeed(notes);
-}
-
-function addGuestbookNote() {
+async function addGuestbookNote() {
   const author = document.getElementById('gbAuthor').value.trim();
   const location = document.getElementById('gbLocation').value.trim();
   const content = document.getElementById('gbContent').value.trim();
@@ -699,32 +725,67 @@ function addGuestbookNote() {
     return;
   }
 
-  saveGuestbookEntry(author, location, content);
+  if (supabaseClient) {
+    // Insert row into Supabase SQL database
+    const { error } = await supabaseClient
+      .from('guestbook')
+      .insert([{ author, location: location || 'Friend', text: content, likes: 0 }]);
+
+    if (error) {
+      showToast("Error saving note to database!");
+      console.error(error);
+      return;
+    }
+  } else {
+    saveGuestbookEntry(author, location, content);
+  }
 
   document.getElementById('gbAuthor').value = '';
   document.getElementById('gbLocation').value = '';
   document.getElementById('gbContent').value = '';
 
   showToast("Thank you for your warm note!");
+  loadGuestbook();
 }
 
-function likeGuestbookNote(index) {
-  let notes = JSON.parse(localStorage.getItem('wedding_guestbook') || JSON.stringify(defaultNotes));
-  notes[index].likes = (notes[index].likes || 0) + 1;
-  localStorage.setItem('wedding_guestbook', JSON.stringify(notes));
-  renderGuestbookFeed(notes);
+async function deleteGuestbookNote(id) {
+  if (!confirm("Delete this note from the database?")) return;
+
+  if (supabaseClient && typeof id === 'string' && id.length > 20) {
+    // Execute SQL DELETE command via Supabase Client
+    const { error } = await supabaseClient
+      .from('guestbook')
+      .delete()
+      .eq('id', id);
+
+    if (error) {
+      showToast("Error deleting note!");
+      console.error(error);
+      return;
+    }
+  } else {
+    // Local fallback deletion
+    let notes = JSON.parse(localStorage.getItem('wedding_guestbook') || JSON.stringify(defaultNotes));
+    notes.splice(id, 1);
+    localStorage.setItem('wedding_guestbook', JSON.stringify(notes));
+  }
+
+  showToast("Message deleted from database!");
+  loadGuestbook();
 }
 
-function escapeHTML(str) {
-  return str.replace(/[&<>'"]/g,
-    tag => ({
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      "'": '&#39;',
-      '"': '&quot;'
-    }[tag] || tag)
-  );
+async function likeGuestbookNote(id, currentLikes) {
+  if (supabaseClient && typeof id === 'string' && id.length > 20) {
+    await supabaseClient
+      .from('guestbook')
+      .update({ likes: currentLikes + 1 })
+      .eq('id', id);
+  } else {
+    let notes = JSON.parse(localStorage.getItem('wedding_guestbook') || JSON.stringify(defaultNotes));
+    if (notes[id]) notes[id].likes = (notes[id].likes || 0) + 1;
+    localStorage.setItem('wedding_guestbook', JSON.stringify(notes));
+  }
+  loadGuestbook();
 }
 
 /* ===================================================
