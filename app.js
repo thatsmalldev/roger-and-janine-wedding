@@ -341,23 +341,23 @@
   });
 
   document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener('click', function (event) {
-    const targetId = this.getAttribute('href');
+    link.addEventListener('click', function (event) {
+      const targetId = this.getAttribute('href');
 
-    if (!targetId || targetId === '#') return;
+      if (!targetId || targetId === '#') return;
 
-    const target = document.querySelector(targetId);
+      const target = document.querySelector(targetId);
 
-    if (!target) return;
+      if (!target) return;
 
-    event.preventDefault();
+      event.preventDefault();
 
-    target.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
     });
   });
-});
 
 
 })();
@@ -669,20 +669,19 @@ if (
   console.warn('Supabase credentials not configured. Guestbook is running in local fallback mode.');
 }
 
-  // Fetch entries from Supabase PostgreSQL Table
-  try {
-    const { data, error } = await supabaseClient
-      .from('guestbook')
-      .select('*')
-      .order('created_at', { ascending: false });
+// Fetch entries from Supabase PostgreSQL Table
+try {
+  const { data, error } = await supabaseClient
+    .from('guestbook')
+    .select('*')
+    .order('created_at', { ascending: false });
 
-    if (error) throw error;
-    renderGuestbookFeed(data || []);
-  } catch (err) {
-    console.error('Supabase fetch error:', err.message);
-    const stored = localStorage.getItem('wedding_guestbook');
-    renderGuestbookFeed(stored ? JSON.parse(stored) : defaultNotes);
-  }
+  if (error) throw error;
+  renderGuestbookFeed(data || []);
+} catch (err) {
+  console.error('Supabase fetch error:', err.message);
+  const stored = localStorage.getItem('wedding_guestbook');
+  renderGuestbookFeed(stored ? JSON.parse(stored) : defaultNotes);
 }
 
 function renderGuestbookFeed(notes) {
@@ -696,7 +695,7 @@ function renderGuestbookFeed(notes) {
 
   notes.forEach((item) => {
     const noteId = item.id;
-    const timeFormatted = item.created_at 
+    const timeFormatted = item.created_at
       ? new Date(item.created_at).toLocaleDateString([], { month: 'short', day: 'numeric' })
       : (item.time || 'Recently');
 
@@ -741,7 +740,7 @@ function saveGuestbookEntry(author, location, content) {
 
 function escapeHTML(str) {
   if (!str) return '';
-  return String(str).replace(/[&<>'"]/g, 
+  return String(str).replace(/[&<>'"]/g,
     tag => ({
       '&': '&amp;',
       '<': '&lt;',
