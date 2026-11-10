@@ -145,6 +145,10 @@
       label.className =
         'block text-xs uppercase tracking-widest text-slate-400 font-semibold mb-2';
 
+      const boxCompanion = document.createElement('div');
+
+      boxCompanion.className = 'grid grid-cols-1 md:grid-cols-2 gap-6';
+
       const control = document.createElement(
         key === 'status' ? 'select' : 'input'
       );
@@ -152,7 +156,7 @@
       control.id = id;
 
       control.className =
-        'w-full px-4 py-3 rounded-xl bg-noir-900/80 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-gold transition-colors grid grid-cols-1 md:grid-cols-2 gap-6';
+        'w-full px-4 py-3 rounded-xl bg-noir-900/80 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-gold transition-colors';
 
       control.type = 'text';
       control.maxLength = 80;
@@ -164,6 +168,7 @@
           : '';
 
       box.append(label, control);
+    
     }
 
     companionsBox.append(box);
