@@ -1,11 +1,7 @@
 'use strict';
 (() => {
   const $ = (id) => document.getElementById(id);
-<<<<<<< HEAD
-  // 
-=======
 
->>>>>>> 53aaa2c (success)
   // Accept invitation codes ONLY from #invite=
   function getInvitationCodeFromURL() {
     const hashParams = new URLSearchParams(
@@ -250,9 +246,7 @@
     responseForm.hidden = true; lookupForm.hidden = false; lookupForm.reset();
     message('save-message', ''); message('lookup-message', ''); $('first-name').focus();
   });
-<<<<<<< HEAD
 })();
-=======
 
   // Initialize Lucide Icons
   lucide.createIcons();
@@ -700,49 +694,3 @@
     loadGuestbook();
     refreshRSVPViewer();
   });
-
-  /* ----------------------------------------------------
-             2. Ambient Dust Particle Canvas
-  ---------------------------------------------------- */
-  const canvas = document.getElementById('ambient-canvas');
-  const ctx = canvas.getContext('2d');
-
-  function resizeCanvas() {
-    canvas.width = canvas.parentElement.clientWidth;
-    canvas.height = canvas.parentElement.clientHeight;
-  }
-  window.addEventListener('resize', resizeCanvas);
-  resizeCanvas();
-
-  const particles = Array.from({ length: 35 }).map(() => ({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    radius: Math.random() * 2 + 1,
-    speedY: Math.random() * 0.8 + 0.3,
-    opacity: Math.random() * 0.5 + 0.2
-  }));
-
-  function animateParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    particles.forEach(p => {
-      p.y -= p.speedY;
-      if (p.y < 0) {
-        p.y = canvas.height;
-        p.x = Math.random() * canvas.width;
-      }
-
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(212, 175, 55, ${p.opacity})`;
-      ctx.fill();
-    });
-
-    requestAnimationFrame(animateParticles);
-  }
-  animateParticles();
-
-})();
-
-
->>>>>>> 53aaa2c (success)
