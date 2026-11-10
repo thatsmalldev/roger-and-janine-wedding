@@ -124,7 +124,7 @@
     const box = document.createElement('div');
 
     box.className =
-      'mt-6 space-y-4 rounded-2xl border border-white/10 bg-white/5 p-5 grid grid-cols-1 md:grid-cols-2 gap-6';
+      'mt-6 space-y-4 rounded-2xl border border-white/10 bg-white/5 p-5';
 
     const title = document.createElement('h3');
     title.className =
@@ -152,7 +152,7 @@
       control.id = id;
 
       control.className =
-        'w-full px-4 py-3 rounded-xl bg-noir-900/80 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-gold transition-colors';
+        'w-full px-4 py-3 rounded-xl bg-noir-900/80 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-gold transition-colors grid grid-cols-1 md:grid-cols-2 gap-6';
 
       control.type = 'text';
       control.maxLength = 80;
