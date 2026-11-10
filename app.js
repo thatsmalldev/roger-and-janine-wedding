@@ -262,12 +262,10 @@
       if (!statusValid(status)) throw new Error('Choose attending or declining.');
       companions = Array.from({ length: current.guest.max_plus_ones }, (_, i) => {
         const attendance = $(`companion-${i}-status`).value;
-        if (!statusValid(attendance)) throw new Error('Choose attending or declining for each companion.');
-        if (status === 'declining' && attendance !== 'declining') throw new Error('Please contact us if a companion will attend without you.');
         return {
-          first_name: cleanName($(`companion-${i}-first_name`).value, attendance === 'attending'),
-          last_name: cleanName($(`companion-${i}-last_name`).value, attendance === 'attending'),
-          status: attendance
+          first_name: cleanName($(`companion-${i}-first_name`).value),
+          last_name: cleanName($(`companion-${i}-last_name`).value),
+          status: status === 'attending' ? 'attending' : 'declining'
         };
       });
     } catch (error) { message('save-message', error.message, 'error'); return; }
