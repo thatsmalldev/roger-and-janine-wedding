@@ -124,6 +124,10 @@
   // No invitation code is stored in localStorage, cookies, URLs or browser logs.
 
   function addCompanion(index, saved) {
+
+    const box = document.createElement('div');
+    box.className = 'rounded-2xl border border-white/10 p-4';
+
     const fields = document.createElement('div');
 
     fields.style.display = 'grid';
@@ -166,6 +170,7 @@
     box.append(fields);
     companionsBox.append(box);
   }
+
   function syncNames() {
     if (!current) return;
     for (let i = 0; i < current.guest.max_plus_ones; i++) {
