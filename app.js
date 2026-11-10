@@ -124,7 +124,7 @@
     const box = document.createElement('div');
 
     box.className =
-      'mt-6 space-y-4 rounded-2xl border border-white/10 bg-white/5 p-5';
+      'space-y-4 rounded-2xl border border-white/10 bg-white/5 p-5';
 
     const title = document.createElement('h3');
     title.className =
@@ -139,11 +139,23 @@
     ]) {
       const id = `companion-${index}-${key}`;
 
+      let companionsBox = $('companions');
+
+      if (!companionsBox) {
+        companionsBox = document.createElement('div');
+        companionsBox.id = 'companions';
+        $('guest-role').insertAdjacentElement('afterend', companionsBox);
+      }
+
+      companionsBox.className = 'flex flex-col gap-6';
+
       const label = document.createElement('label');
       label.htmlFor = id;
       label.textContent = caption;
       label.className =
         'block text-xs uppercase tracking-widest text-slate-400 font-semibold mb-2';
+
+
 
       const control = document.createElement(
         key === 'status' ? 'select' : 'input'
