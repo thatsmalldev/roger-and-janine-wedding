@@ -124,7 +124,7 @@
     const box = document.createElement('div');
 
     box.className =
-      'mt-6 space-y-4 rounded-2xl border border-white/10 bg-white/5 p-5 mb-8';
+      'space-y-4 rounded-2xl border border-white/10 bg-white/5 p-5';
 
     const title = document.createElement('h3');
     title.className =
@@ -134,9 +134,15 @@
     box.append(title);
 
 
-    const boxCompanion = document.createElement('div');
+    let companionsBox = $('companions');
 
-    boxCompanion.className = 'grid grid-cols-1 md:grid-cols-2 gap-6';
+    if (!companionsBox) {
+      companionsBox = document.createElement('div');
+      companionsBox.id = 'companions';
+      $('guest-role').insertAdjacentElement('afterend', companionsBox);
+    }
+
+    companionsBox.className = 'flex flex-col gap-6';
 
     for (const [key, caption] of [
       ['first_name', 'First name'],
