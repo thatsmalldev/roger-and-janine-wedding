@@ -124,7 +124,7 @@
     const box = document.createElement('div');
 
     box.className =
-      'space-y-4 rounded-2xl border border-white/10 bg-white/5 p-5';
+      'mt-6 space-y-4 rounded-2xl border border-white/10 bg-white/5 p-5';
 
     const title = document.createElement('h3');
     title.className =
@@ -133,54 +133,50 @@
     title.textContent = `Companion ${index + 1}`;
     box.append(title);
 
+    
+const boxCompanion = document.createElement('div');
 
-    if (!companionsBox) {
-      companionsBox = document.createElement('div');
-      companionsBox.id = 'companions';
-      $('guest-role').insertAdjacentElement('afterend', companionsBox);
-    }
+boxCompanion.className = 'grid grid-cols-1 md:grid-cols-2 gap-6';
 
-    companionsBox.className = 'flex flex-col gap-6';
+for (const [key, caption] of [
+  ['first_name', 'First name'],
+  ['last_name', 'Last name']
+]) {
+  const id = `companion-${index}-${key}`;
 
-    for (const [key, caption] of [
-      ['first_name', 'First name'],
-      ['last_name', 'Last name']
-    ]) {
-      const id = `companion-${index}-${key}`;
+  // Create a wrapper for each field
+  const field = document.createElement('div');
+  field.className = 'flex flex-col';
 
-      // Create a wrapper for each field
-      const field = document.createElement('div');
-      field.className = 'flex flex-col';
+  const label = document.createElement('label');
+  label.htmlFor = id;
+  label.textContent = caption;
+  label.className =
+    'block text-xs uppercase tracking-widest text-slate-400 font-semibold mb-2';
 
-      const label = document.createElement('label');
-      label.htmlFor = id;
-      label.textContent = caption;
-      label.className =
-        'block text-xs uppercase tracking-widest text-slate-400 font-semibold mb-2';
+  const control = document.createElement('input');
+  control.id = id;
+  control.type = 'text';
+  control.maxLength = 80;
+  control.autocomplete = 'off';
 
-      const control = document.createElement('input');
-      control.id = id;
-      control.type = 'text';
-      control.maxLength = 80;
-      control.autocomplete = 'off';
+  control.className =
+    'w-full px-4 py-3 rounded-xl bg-noir-900/80 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-gold transition-colors';
 
-      control.className =
-        'w-full px-4 py-3 rounded-xl bg-noir-900/80 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-gold transition-colors';
+  control.value =
+    typeof saved?.[key] === 'string'
+      ? saved[key]
+      : '';
 
-      control.value =
-        typeof saved?.[key] === 'string'
-          ? saved[key]
-          : '';
+  // Put label and input together
+  field.append(label, control);
 
-      // Put label and input together
-      field.append(label, control);
+  // Put each field into the grid
+  boxCompanion.append(field);
+}
 
-      // Put each field into the grid
-      boxCompanion.append(field);
-    }
-
-    // Add the completed grid to the companion container
-    box.append(boxCompanion);
+// Add the completed grid to the companion container
+box.append(boxCompanion);
 
 
     companionsBox.append(box);
