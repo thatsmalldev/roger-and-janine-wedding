@@ -171,24 +171,25 @@
     companionsBox.append(box);
   }
 
+
   function syncNames() {
     if (!current) return;
+
+    const attending = getMainStatus() === 'attending';
+
     for (let i = 0; i < current.guest.max_plus_ones; i++) {
-      const attending = $(`companion-${i}-status`).value === 'attending';
-      $(`companion-${i}-first_name`).required = attending;
-      $(`companion-${i}-last_name`).required = attending;
+      const firstName = $(`companion-${i}-first_name`);
+      const lastName = $(`companion-${i}-last_name`);
+
+      if (firstName) firstName.required = attending;
+      if (lastName) lastName.required = attending;
     }
   }
+
   function syncMain() {
-    if (!current) return;
-    const declining = getMainStatus() === 'declining';
-    for (let i = 0; i < current.guest.max_plus_ones; i++) {
-      const status = $(`companion-${i}-status`);
-      if (declining) status.value = 'declining';
-      status.disabled = declining;
-    }
     syncNames();
   }
+
   document.querySelectorAll('input[name="main-status"]').forEach(radio => {
     radio.addEventListener('change', syncMain);
   });
@@ -268,14 +269,21 @@
     const status = getMainStatus();
     try {
       if (!statusValid(status)) throw new Error('Choose attending or declining.');
+
       companions = Array.from({ length: current.guest.max_plus_ones }, (_, i) => {
-        const attendance = $(`companion-${i}-status`).value;
         return {
-          first_name: cleanName($(`companion-${i}-first_name`).value),
-          last_name: cleanName($(`companion-${i}-last_name`).value),
-          status: status === 'attending' ? 'attending' : 'declining'
+          first_name: cleanName(
+            $(`companion-${i}-first_name`).value,
+            status === 'attending'
+          ),
+          last_name: cleanName(
+            $(`companion-${i}-last_name`).value,
+            status === 'attending'
+          ),
+          status: status
         };
       });
+
     } catch (error) { message('save-message', error.message, 'error'); return; }
     busy = true; responseFields.disabled = true; $('reset-button').disabled = true;
     $('save-button').textContent = 'Saving your response…';
