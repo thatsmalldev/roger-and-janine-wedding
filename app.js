@@ -128,7 +128,7 @@
 
     fields.style.display = 'grid';
     fields.style.gridTemplateColumns = 'repeat(2, minmax(0, 1fr))';
-    fields.style.gap = '16px';
+    fields.style.gap = '12px';
 
     for (const [key, caption] of [
       ['first_name', 'First name'],
@@ -166,6 +166,7 @@
     box.append(fields);
     companionsBox.append(box);
   }
+
   function syncNames() {
     if (!current) return;
     for (let i = 0; i < current.guest.max_plus_ones; i++) {
