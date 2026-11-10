@@ -128,6 +128,13 @@
     const box = document.createElement('div');
     box.className = 'rounded-2xl border border-white/10 p-4';
 
+    const title = document.createElement('h3');
+    title.textContent = `Companion ${index + 1}`;
+    title.className =
+      'block font-display text-lg text-white';
+    box.append(title);
+
+
     const fields = document.createElement('div');
 
     fields.style.display = 'grid';
@@ -237,7 +244,13 @@
       const roles = [];
       if (data.is_principal_sponsor) roles.push('Principal Sponsor (Ninong / Ninang)');
       if (data.is_entourage) roles.push('Entourage');
-      $('guest-role').textContent = `${roles.join(' · ') || 'Wedding guest'} · Additional places reserved: ${data.max_plus_ones}`;
+
+      const guestDescription = roles.join(' · ') || 'Wedding guest';
+
+      $('guest-role').textContent = data.max_plus_ones > 0
+        ? `${guestDescription} · Additional places reserved: ${data.max_plus_ones}`
+        : guestDescription;
+
       setMainStatus(statusValid(data.rsvp_status) ? data.rsvp_status : 'attending');
       $('companions').replaceChildren();
       for (let i = 0; i < data.max_plus_ones; i++) addCompanion(i, data.plus_ones[i]);
