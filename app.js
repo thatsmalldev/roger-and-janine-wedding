@@ -124,7 +124,7 @@
     const box = document.createElement('div');
 
     box.className =
-      'mt-6 space-y-4 rounded-2xl border border-white/10 bg-white/5 p-5';
+      'mt-6 space-y-4 rounded-2xl border border-white/10 bg-white/5 p-5 mb-8';
 
     const title = document.createElement('h3');
     title.className =
@@ -136,7 +136,7 @@
 
     const boxCompanion = document.createElement('div');
 
-    boxCompanion.className = 'grid grid-cols-1 md:grid-cols-2 gap-6 mb-6';
+    boxCompanion.className = 'grid grid-cols-1 md:grid-cols-2 gap-6';
 
     for (const [key, caption] of [
       ['first_name', 'First name'],
