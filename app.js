@@ -697,7 +697,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 /* ----------------------------------------------------
          2. Ambient Dust Particle Canvas
-      ---------------------------------------------------- */
+---------------------------------------------------- */
 const canvas = document.getElementById('ambient-canvas');
 const ctx = canvas.getContext('2d');
 

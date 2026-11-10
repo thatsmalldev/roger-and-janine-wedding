@@ -1,8 +1,5 @@
-<<<<<<< HEAD
 :root {
-=======
-/*:root {
->>>>>>> 53aaa2c (success)
+
     color-scheme: dark;
     --bg: #101110;
     --panel: #191b18;
@@ -338,7 +335,6 @@ footer>p:first-child {
     html {
         scroll-behavior: auto
     }
-<<<<<<< HEAD
 }
 
 #invitation-code {
@@ -349,8 +345,7 @@ label[for="invitation-code"] {
   visibility: visible !important;
 }
 
-=======
-}*/
+
 
 #invitation-code {
     visibility: visible !important;
@@ -437,4 +432,14 @@ label[for="invitation-code"] {
 .modal-content {
     transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
->>>>>>> 53aaa2c (success)
+
+/* Ambient Petals Canvas Overlay */
+        .ambient-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+        }
