@@ -645,14 +645,24 @@ function closeRSVPModal() {
    6. LIVE GUESTBOOK (LOCALSTORAGE)
    =================================================== */
 const defaultNotes = [
-  { author: "Auntie Clara", location: "Vancouver, Canada", text: "Wishing you both a lifetime of happiness, endless laughter, and divine blessings!", time: "2 days ago", likes: 5 },
-  { author: "Mark & Sarah", location: "Quezon City", text: "Can't wait to celebrate on the dance floor! So happy for you two!", time: "1 week ago", likes: 8 }
+  { author: "Auntie Clara", location: "Vancouver, Canada", content: "Wishing you both a lifetime of happiness, endless laughter, and divine blessings!", time: "2 days ago", likes: 5 },
+  { author: "Mark & Sarah", location: "Quezon City", content: "Can't wait to celebrate on the dance floor! So happy for you two!", time: "1 week ago", likes: 8 }
 ];
 
 let supabaseClient = null;
 const config = window.WEDDING_CONFIG;
 if (window.supabase && config.supabaseUrl !== config.supabaseUrl) {
-  supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  supabaseClient = supabase.createClient(config.supabaseUrl, config.supabasePublishableKey);
+}
+try {
+    supabaseClient = supabase.createClient(config.supabaseUrl, config.supabasePublishableKey);
+    subscribeToGuestbookChanges();
+    console.log('Supabase client successfully initialized!');
+  } catch (err) {
+    console.error('Failed to initialize Supabase client:', err.message);
+  }
+} else {
+  console.warn('Supabase credentials not configured. Guestbook is running in local fallback mode.');
 }
 
 async function loadGuestbook() {
