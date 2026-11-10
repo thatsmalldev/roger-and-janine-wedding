@@ -654,16 +654,6 @@ const config = window.WEDDING_CONFIG;
 if (window.supabase && config.supabaseUrl !== config.supabaseUrl) {
   supabaseClient = supabase.createClient(config.supabaseUrl, config.supabasePublishableKey);
 }
-try {
-    supabaseClient = supabase.createClient(config.supabaseUrl, config.supabasePublishableKey);
-    subscribeToGuestbookChanges();
-    console.log('Supabase client successfully initialized!');
-  } catch (err) {
-    console.error('Failed to initialize Supabase client:', err.message);
-  }
-} else {
-  console.warn('Supabase credentials not configured. Guestbook is running in local fallback mode.');
-}
 
 async function loadGuestbook() {
   const feed = document.getElementById('guestbookFeed');
