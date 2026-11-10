@@ -54,7 +54,7 @@
     $('guest-role').insertAdjacentElement('afterend', companionsBox);
   }
 
-  companionsBox.className = 'flex flex-col gap-6 mb-8';
+  companionsBox.className = 'flex flex-col gap-6 mb-4';
 
 
   let current = null;
