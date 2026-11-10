@@ -136,7 +136,7 @@
 
     const boxCompanion = document.createElement('div');
 
-    boxCompanion.className = 'grid grid-cols-1 md:grid-cols-2 gap-6 mb-4';
+    boxCompanion.className = 'grid grid-cols-1 md:grid-cols-2 gap-6 mb-6';
 
     for (const [key, caption] of [
       ['first_name', 'First name'],
