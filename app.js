@@ -133,7 +133,35 @@
     title.textContent = `Companion ${index + 1}`;
     box.append(title);
 
-    
+    for (const [key, caption] of [
+      ['first_name', 'First name'],
+      ['last_name', 'Last name']
+    ]) {
+      const id = `companion-${index}-${key}`;
+
+      const label = document.createElement('label');
+      label.htmlFor = id;
+      label.textContent = caption;
+      label.className =
+        'block text-xs uppercase tracking-widest text-slate-400 font-semibold mb-2';
+
+      const control = document.createElement(
+        key === 'status' ? 'select' : 'input'
+      );
+
+      control.id = id;
+
+      control.className =
+        'w-full px-4 py-3 rounded-xl bg-noir-900/80 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-gold transition-colors';
+
+      control.type = 'text';
+      control.maxLength = 80;
+      control.autocomplete = 'off';
+
+      control.value =
+        typeof saved?.[key] === 'string'
+          ? saved[key]
+          : '';
 
       box.append(label, control);
     }
