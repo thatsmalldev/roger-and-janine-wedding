@@ -92,21 +92,20 @@
   <!-- Navigation Header -->
   <nav class="fixed top-0 left-0 w-full z-40 transition-all duration-300 glass-dark border-b border-white/5 py-4 px-6">
     <div class="max-w-7xl mx-auto flex justify-between items-center">
-      <a href="#" class="font-display text-xl tracking-widest font-semibold hover:text-gold transition-colors">
+      <a href="#home" class="font-display text-xl tracking-widest font-semibold hover:text-gold transition-colors">
         R <span class="text-gold font-serif italic text-lg">&amp;</span> J
       </a>
 
       <div class="hidden md:flex items-center space-x-8 text-xs tracking-widest uppercase">
-        <a href="#countdown" class="hover:text-gold transition-colors">Countdown</a>
         <a href="#our-story" class="hover:text-gold transition-colors">Our Story</a>
         <a href="#schedule" class="hover:text-gold transition-colors">Schedule</a>
         <a href="#gallery" class="hover:text-gold transition-colors">Gallery</a>
-        <a href="#gift" class="hover:text-gold transition-colors">Gifts</a>
-        <a href="#rsvp-guide" class="hover:text-gold transition-colors">RSVP Guide</a>
+        <a href="#gift" id="rsvp-nav-button" class="hover:text-gold transition-colors">Gifts</a>
+        <a href="#rsvp" class="hover:text-gold transition-colors">RSVP Guide</a>
         <a href="#guestbook" class="hover:text-gold transition-colors">Guestbook</a>
       </div>
 
-      <a href="#rsvp"
+      <a href="#rsvp" id="rsvp-nav-button"
         class="bg-ivory-100 text-noir-900 hover:bg-gold hover:text-noir-900 transition-all duration-300 text-xs tracking-widest uppercase font-semibold px-5 py-2.5 rounded-full shadow-lg">
         RSVP
       </a>
@@ -115,7 +114,7 @@
 
   <main id="main">
     <!-- Hero Section -->
-    <section
+    <section id="home"
       class="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-4 overflow-hidden border-b border-white/10">
 
       <div
@@ -580,7 +579,7 @@
         <div>
           <form id="lookup-form">
             <fieldset id="lookup-fields" class="glass-dark p-6 sm:p-12 rounded-3xl border border-white/10 shadow-2xl">
-              <legend class="font-display text-lg text-white">Find your invitation</legend>
+              <legend class="font-display text-xl text-white">Find your invitation</legend>
               <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
 
                 <!-- First Name -->
@@ -625,14 +624,14 @@
         <form id="rsvp-form" class="space-y-6">
           <!-- Attendance Selector -->
           <fieldset id="response-fields" class="glass-dark p-8 sm:p-12 rounded-3xl border border-white/10 shadow-2xl">
-            <legend id="guest-heading" class="font-display text-lg text-white">Your response</legend>
-            <p id="guest-role" class="text-sm"></p>
+            <legend id="guest-heading" class="font-display text-xl text-white">Your response</legend>
+            <p id="guest-role" class="text-xs"></p>
 
             <div>
               <label class="block text-xs uppercase tracking-widest text-slate-400 font-semibold mb-3">Will you join
                 us?</label>
 
-              <div class="grid grid-cols-2 gap-4 mb-4">
+              <div class="grid grid-cols-2 gap-4 mb-2">
                 <label
                   class="relative flex items-center justify-center p-4 rounded-2xl border border-white/10 cursor-pointer hover:border-gold transition-all bg-white/5">
                   <input type="radio" name="main-status" value="attending" checked class="sr-only peer">
