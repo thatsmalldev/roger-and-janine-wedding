@@ -641,7 +641,8 @@ const defaultNotes = [
 ];
 
 let supabaseClient = null;
-if (window.supabase && SUPABASE_URL !== supabaseUrl) {
+const config = window.WEDDING_CONFIG;
+if (window.supabase && SUPABASE_URL !== config.supabaseUrl) {
   supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 }
 
