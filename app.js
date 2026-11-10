@@ -790,8 +790,10 @@ async function addGuestbookNote() {
       return;
     }
   } else {
-    saveGuestbookEntry(author, location, content);
-  }
+    console.error('Guestbook Supabase client is not initialized.');
+    showToast('Database connection is unavailable. Please try again later.');
+    return;
+}
 
   document.getElementById('gbAuthor').value = '';
   document.getElementById('gbLocation').value = '';
