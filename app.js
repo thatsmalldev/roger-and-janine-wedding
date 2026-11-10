@@ -37,7 +37,9 @@
     );
   } else {
     populateInvitationCode();
+    window.addEventListener('hashchange', populateInvitationCode);
   }
+
 
   const lookupForm = $('lookup-form');
   const responseForm = $('rsvp-form');
@@ -271,9 +273,22 @@
   });
   $('reset-button').addEventListener('click', () => {
     if (busy) return;
-    current = null; $('companions').replaceChildren(); responseForm.reset();
-    responseForm.hidden = true; lookupForm.hidden = false; lookupForm.reset();
-    message('save-message', ''); message('lookup-message', ''); $('first-name').focus();
+
+    current = null;
+    $('companions').replaceChildren();
+    responseForm.reset();
+
+    responseForm.hidden = true;
+    lookupForm.hidden = false;
+    lookupForm.reset();
+
+    // Restore invitation code from the URL
+    populateInvitationCode();
+
+    message('save-message', '');
+    message('lookup-message', '');
+
+    $('first-name').focus();
   });
 })();
 
