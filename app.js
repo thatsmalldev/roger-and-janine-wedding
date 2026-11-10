@@ -341,23 +341,23 @@
   });
 
   document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', function (event) {
-      const targetId = this.getAttribute('href');
+  link.addEventListener('click', function (event) {
+    const targetId = this.getAttribute('href');
 
-      if (!targetId || targetId === '#') return;
+    if (!targetId || targetId === '#') return;
 
-      const target = document.querySelector(targetId);
+    const target = document.querySelector(targetId);
 
-      if (!target) return;
+    if (!target) return;
 
-      event.preventDefault();
+    event.preventDefault();
 
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
+    target.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
     });
   });
+});
 
 
 })();
@@ -651,37 +651,35 @@ const defaultNotes = [
 
 let supabaseClient = null;
 const config = window.WEDDING_CONFIG;
-if (
-  window.supabase &&
-  config.supabaseUrl !== config.supabaseUrl &&
-  !config.supabaseUrl.includes('YOUR_') &&
-  config.supabasePublishableKey !== config.supabasePublishableKey &&
-  !config.supabasePublishableKey.includes('YOUR_')
-) {
-  try {
-    supabaseClient = supabase.createClient(config.supabaseUrl, config.supabasePublishableKey);
-    subscribeToGuestbookChanges();
-    console.log('Supabase client successfully initialized!');
-  } catch (err) {
-    console.error('Failed to initialize Supabase client:', err.message);
-  }
-} else {
-  console.warn('Supabase credentials not configured. Guestbook is running in local fallback mode.');
+if (window.supabase && config.supabaseUrl !== config.supabaseUrl) {
+  supabaseClient = supabase.createClient(config.supabaseUrl, config.supabasePublishableKey);
 }
 
-// Fetch entries from Supabase PostgreSQL Table
-try {
-  const { data, error } = await supabaseClient
-    .from('guestbook')
-    .select('*')
-    .order('created_at', { ascending: false });
+async function loadGuestbook() {
+  const feed = document.getElementById('guestbookFeed');
+  
+  // If Supabase isn't configured yet, fallback to localStorage
+  if (!supabaseClient) {
+    const stored = localStorage.getItem('wedding_guestbook');
+    let notes = stored ? JSON.parse(stored) : defaultNotes;
+    renderGuestbookFeed(notes);
+    return;
+  }
 
-  if (error) throw error;
-  renderGuestbookFeed(data || []);
-} catch (err) {
-  console.error('Supabase fetch error:', err.message);
-  const stored = localStorage.getItem('wedding_guestbook');
-  renderGuestbookFeed(stored ? JSON.parse(stored) : defaultNotes);
+  // Fetch entries from Supabase PostgreSQL Table
+  try {
+    const { data, error } = await supabaseClient
+      .from('guestbook')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (error) throw error;
+    renderGuestbookFeed(data || []);
+  } catch (err) {
+    console.error('Supabase fetch error:', err.message);
+    const stored = localStorage.getItem('wedding_guestbook');
+    renderGuestbookFeed(stored ? JSON.parse(stored) : defaultNotes);
+  }
 }
 
 function renderGuestbookFeed(notes) {
@@ -695,7 +693,7 @@ function renderGuestbookFeed(notes) {
 
   notes.forEach((item) => {
     const noteId = item.id;
-    const timeFormatted = item.created_at
+    const timeFormatted = item.created_at 
       ? new Date(item.created_at).toLocaleDateString([], { month: 'short', day: 'numeric' })
       : (item.time || 'Recently');
 
@@ -711,7 +709,7 @@ function renderGuestbookFeed(notes) {
           <span class="text-[10px] text-ivory-300/60 font-mono">${timeFormatted}</span>
         </div>
       </div>
-      <p class="text-ivory-200 text-sm font-serif leading-relaxed">"${escapeHTML(item.text)}"</p>
+      <p class="text-ivory-200 text-sm font-serif leading-relaxed">"${escapeHTML(item.content)}"</p>
       <div class="flex items-center justify-end gap-2 pt-2 text-xs text-ivory-300">
         <button onclick="likeGuestbookNote('${noteId}', ${item.likes || 0})" class="hover:text-gold flex items-center gap-1 transition-colors">
           <i data-lucide="heart" class="w-3.5 h-3.5 text-gold"></i>
@@ -740,7 +738,7 @@ function saveGuestbookEntry(author, location, content) {
 
 function escapeHTML(str) {
   if (!str) return '';
-  return String(str).replace(/[&<>'"]/g,
+  return String(str).replace(/[&<>'"]/g, 
     tag => ({
       '&': '&amp;',
       '<': '&lt;',

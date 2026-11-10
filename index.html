@@ -10,18 +10,12 @@
     content="Join Roger and Janine as they begin their marriage in faith and love. February 6, 2027, Pangasinan.">
   <title>Roger & Janine | February 6, 2027</title>
 
-
-  <link rel="stylesheet" href="styles.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script defer src="config.js"></script>
-  <script defer src="app.js"></script>
-
-  <!-- Inline SVG Favicon to eliminate 404 error -->
-  <link rel="icon"
-    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💍</text></svg>">
-
   <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
   <link
     href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Alex+Brush&family=Montserrat:wght@200;300;400;500;600;700&display=swap"
     rel="stylesheet">
@@ -70,7 +64,10 @@
   </script>
 
 
-
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script defer src="config.js"></script>
+  <script defer src="app.js"></script>
 </head>
 
 
@@ -681,7 +678,7 @@
       </div>
 
 
-
+      
       <!-- Add Note Box -->
       <div class="glass-dark p-6 rounded-2xl border border-white/10 mb-8 space-y-4">
         <h3 class="font-display text-lg text-white">Write in our Guestbook</h3>
@@ -704,47 +701,8 @@
 
       <!-- Notes List Feed -->
       <div id="guestbookFeed" class="space-y-4">
-        <!-- Live RSVP LocalStorage Viewer & Management Panel -->
-        <div class="glass-dark p-6 md:p-8 rounded-3xl border border-white/10 space-y-4">
-          <div class="flex items-center justify-between">
-            <h3 class="font-display text-xl text-white flex items-center gap-2">
-              <i data-lucide="database" class="w-5 h-5 text-gold"></i>
-              <span>Stored RSVPs Inspector</span>
-            </h3>
-            <span id="rsvpCounterBadge"
-              class="bg-gold/20 text-gold border border-gold/30 text-[10px] font-mono px-2.5 py-1 rounded-full">0
-              Entries</span>
-          </div>
-
-          <p class="text-xs text-ivory-300 leading-relaxed font-serif">
-            Below is a real-time view of all RSVP submissions currently saved in your browser's <code
-              class="text-gold font-mono">localStorage</code>:
-          </p>
-
-          <!-- Dynamic Output Container -->
-          <div id="localStorageViewer"
-            class="bg-noir-900/90 border border-white/10 rounded-2xl p-4 max-h-60 overflow-y-auto space-y-3">
-            <!-- Dynamic rendering from JS -->
-          </div>
-
-          <div class="flex flex-wrap items-center justify-between gap-3 pt-2">
-            <button onclick="refreshRSVPViewer()"
-              class="bg-white/10 hover:bg-white/20 text-white text-xs font-medium px-4 py-2 rounded-xl transition-colors flex items-center gap-1.5">
-              <i data-lucide="refresh-cw" class="w-3.5 h-3.5 text-gold"></i>
-              <span>Refresh Data</span>
-            </button>
-
-            <button onclick="exportRSVPToExcel()"
-              class="bg-gold hover:bg-gold-light text-noir-900 text-xs font-semibold px-4 py-2 rounded-xl transition-colors flex items-center gap-1.5 shadow-lg">
-              <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5"></i>
-              <span>Export to Excel (CSV)</span>
-            </button>
-          </div>
-        </div>
-
+        <!-- Dynamic Javascript render here -->
       </div>
-    </section>
-    </div>
     </section>
 
     <!-- Footer -->
