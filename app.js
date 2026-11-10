@@ -651,20 +651,23 @@ const defaultNotes = [
 
 let supabaseClient = null;
 const config = window.WEDDING_CONFIG;
-if (window.supabase && config.supabaseUrl !== config.supabaseUrl) {
-  supabaseClient = supabase.createClient(config.supabaseUrl, config.supabasePublishableKey);
-}
-
-async function loadGuestbook() {
-  const feed = document.getElementById('guestbookFeed');
-  
-  // If Supabase isn't configured yet, fallback to localStorage
-  if (!supabaseClient) {
-    const stored = localStorage.getItem('wedding_guestbook');
-    let notes = stored ? JSON.parse(stored) : defaultNotes;
-    renderGuestbookFeed(notes);
-    return;
+if (
+  window.supabase &&
+  config.supabaseUrl !== config.supabaseUrl &&
+  !config.supabaseUrl.includes('YOUR_') &&
+  config.supabasePublishableKey !== config.supabasePublishableKey &&
+  !config.supabasePublishableKey.includes('YOUR_')
+) {
+  try {
+    supabaseClient = supabase.createClient(config.supabaseUrl, config.supabasePublishableKey);
+    subscribeToGuestbookChanges();
+    console.log('Supabase client successfully initialized!');
+  } catch (err) {
+    console.error('Failed to initialize Supabase client:', err.message);
   }
+} else {
+  console.warn('Supabase credentials not configured. Guestbook is running in local fallback mode.');
+}
 
   // Fetch entries from Supabase PostgreSQL Table
   try {
