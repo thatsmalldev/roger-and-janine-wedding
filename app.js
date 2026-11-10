@@ -651,8 +651,27 @@ const defaultNotes = [
 
 let supabaseClient = null;
 const config = window.WEDDING_CONFIG;
-if (window.supabase && config.supabaseUrl !== config.supabaseUrl) {
-  supabaseClient = supabase.createClient(config.supabaseUrl, config.supabasePublishableKey);
+
+if (
+  window.supabase &&
+  config?.supabaseUrl &&
+  config?.supabasePublishableKey &&
+  /^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(config.supabaseUrl) &&
+  !config.supabasePublishableKey.startsWith('sb_secret_')
+) {
+  supabaseClient = window.supabase.createClient(
+    config.supabaseUrl,
+    config.supabasePublishableKey,
+    {
+      auth: {
+        persistSession: false,
+        autoRefreshToken: false,
+        detectSessionInUrl: false
+      }
+    }
+  );
+} else {
+  console.error('Guestbook Supabase configuration is missing or invalid.');
 }
 
 async function loadGuestbook() {
