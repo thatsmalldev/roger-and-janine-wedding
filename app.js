@@ -54,6 +54,8 @@
     $('guest-role').insertAdjacentElement('afterend', companionsBox);
   }
 
+  companionsBox.className = 'flex flex-col gap-6';
+
   let current = null;
   let busy = false;
   const NOT_FOUND = 'Name not found. Please check spelling or contact the couple.';
@@ -120,6 +122,10 @@
   }
   // No invitation code is stored in localStorage, cookies, URLs or browser logs.
 
+
+ 
+
+
   function addCompanion(index, saved) {
     const box = document.createElement('div');
 
@@ -138,16 +144,6 @@
       ['last_name', 'Last name']
     ]) {
       const id = `companion-${index}-${key}`;
-
-      let companionsBox = $('companions');
-
-      if (!companionsBox) {
-        companionsBox = document.createElement('div');
-        companionsBox.id = 'companions';
-        $('guest-role').insertAdjacentElement('afterend', companionsBox);
-      }
-
-      companionsBox.className = 'flex flex-col gap-6';
 
       const label = document.createElement('label');
       label.htmlFor = id;
