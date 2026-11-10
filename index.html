@@ -579,47 +579,49 @@
         </div>
 
         <!-- RSVP Form Box -->
-        <div class="glass-dark p-8 sm:p-12 rounded-3xl border border-white/10 shadow-2xl">
-          <form id="lookup-form">
-            <fieldset id="lookup-fields">
-              <legend class="font-display text-lg text-white mb-4">Find your invitation</legend>
-              <label for="first-name" class="block text-gold text-xs uppercase tracking-widest font-semibold mb-3">First
-                name</label>
-              <input id="first-name" name="first-name" autocomplete="given-name" maxlength="80"
-                class="w-full bg-noir-900/80 border border-white/10 rounded-xl px-4 py-3 text-ivory-100 placeholder-ivory-300/40 focus:outline-none focus:border-gold transition-colors text-sm mb-4"
-                required>
-              <label for="last-name" class="block text-gold text-xs uppercase tracking-widest font-semibold mb-3">Last
-                name</label>
-              <input id="last-name" name="last-name" autocomplete="family-name" maxlength="80"
-                class="w-full bg-noir-900/80 border border-white/10 rounded-xl px-4 py-3 text-ivory-100 placeholder-ivory-300/40 focus:outline-none focus:border-gold transition-colors text-sm mb-4"
-                required>
-              <label for="invitation-code"
-                class="block text-gold text-xs uppercase tracking-widest font-semibold mb-3">Private invitation
-                code</label>
-              <input type="text" id="invitation-code" name="invitation-code" autocomplete="off" spellcheck="false"
-                autocapitalize="none" maxlength="32" minlength="32" required aria-describedby="code-help"
-                class="w-full bg-noir-900/80 border border-white/10 rounded-xl px-4 py-3 text-ivory-100 placeholder-ivory-300/40 focus:outline-none focus:border-gold transition-colors text-sm"
-                disabled>
-              <p id="code-help" class="text-xs mb-4">Use the 32-character code shared with your invitation. Please keep
-                it
-                private.
-              </p>
-              <button id="lookup-button" type="submit"
-                class="w-full py-4 rounded-xl bg-gold hover:bg-white text-black font-bold text-xs uppercase tracking-widest transition-all shadow-xl">Find
-                my invitation</button>
-            </fieldset>
-          </form>
-          <p id="lookup-message" class="message" role="status" aria-live="polite" class="text-xs mb-4"></p>
-          <form id="rsvp-form" class="space-y-6" hidden>
-            <!-- Attendance Selector -->
-            <fieldset id="response-fields">
-            <legend id="guest-heading">Your response</legend>
-            <p id="guest-role" class="small"></p>
+         <div>
+        <form id="lookup-form">
+          <fieldset id="lookup-fields" class="glass-dark p-8 sm:p-12 rounded-3xl border border-white/10 shadow-2xl">
+            <legend class="font-display text-lg text-white">Find your invitation</legend>
+            <label for="first-name" class="block text-gold text-xs uppercase tracking-widest font-semibold mb-3">First
+              name</label>
+            <input id="first-name" name="first-name" autocomplete="given-name" maxlength="80"
+              class="w-full bg-noir-900/80 border border-white/10 rounded-xl px-4 py-3 text-ivory-100 placeholder-ivory-300/40 focus:outline-none focus:border-gold transition-colors text-sm mb-4"
+              required>
+            <label for="last-name" class="block text-gold text-xs uppercase tracking-widest font-semibold mb-3">Last
+              name</label>
+            <input id="last-name" name="last-name" autocomplete="family-name" maxlength="80"
+              class="w-full bg-noir-900/80 border border-white/10 rounded-xl px-4 py-3 text-ivory-100 placeholder-ivory-300/40 focus:outline-none focus:border-gold transition-colors text-sm mb-4"
+              required>
+            <label for="invitation-code"
+              class="block text-gold text-xs uppercase tracking-widest font-semibold mb-3">Private invitation
+              code</label>
+            <input type="text" id="invitation-code" name="invitation-code" autocomplete="off" spellcheck="false"
+              autocapitalize="none" maxlength="32" minlength="32" required aria-describedby="code-help"
+              class="w-full bg-noir-900/80 border border-white/10 rounded-xl px-4 py-3 text-ivory-100 placeholder-ivory-300/40 focus:outline-none focus:border-gold transition-colors text-sm"
+              disabled>
+            <p id="code-help" class="text-xs mb-4">Use the 32-character code shared with your invitation. Please keep
+              it
+              private.
+            </p>
+            <button id="lookup-button" type="submit"
+              class="w-full py-4 rounded-xl bg-gold hover:bg-white text-black font-bold text-xs uppercase tracking-widest transition-all shadow-xl">Find
+              my invitation</button>
+          </fieldset>
+        </form>
+        </div>
+        <p id="lookup-message" class="message" role="status" aria-live="polite" class="text-xs mb-4"></p>
+        <form id="rsvp-form" class="space-y-6">
+          <!-- Attendance Selector -->
+          <fieldset id="response-fields" class="glass-dark p-8 sm:p-12 rounded-3xl border border-white/10 shadow-2xl">
+            <legend id="guest-heading" class="font-display text-lg text-white">Your response</legend>
+            <p id="guest-role" class="text-xs"></p>
+
             <div>
               <label class="block text-xs uppercase tracking-widest text-slate-400 font-semibold mb-3">Will you join
                 us?</label>
 
-              <div class="grid grid-cols-2 gap-4">
+              <div class="grid grid-cols-2 gap-4 mb-4">
                 <label
                   class="relative flex items-center justify-center p-4 rounded-2xl border border-white/10 cursor-pointer hover:border-gold transition-all bg-white/5">
                   <input type="radio" name="main-status" value="attending" checked class="sr-only peer">
@@ -638,6 +640,8 @@
                   </span>
                 </label>
               </div>
+
+              <div id="companions"></div>
             </div>
 
             <button id="save-button" type="submit"
@@ -645,10 +649,11 @@
               Submit RSVP Confirmation
             </button>
 
-            </fieldset><button id="reset-button" class="secondary" type="button">Finish / use another invitation</button>
-          </form>
-          <p id="save-message" class="message" role="status" aria-live="polite"></p>
-        </div>
+          </fieldset><button id="reset-button"
+            class="secondary inline-flex items-center gap-3 bg-noir-800 hover:bg-noir-700 text-ivory-100 border border-gold/40 hover:border-gold font-medium text-xs tracking-widest uppercase px-8 py-4 rounded-full transition-all"
+            type="button">Finish / use another invitation</button>
+        </form>
+        <p id="save-message" class="message" role="status" aria-live="polite"></p>
       </div>
     </section>
 
