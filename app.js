@@ -541,12 +541,19 @@ function handleRSVPSubmit(e) {
 /* ===================================================
    5b. LOCALSTORAGE INSPECTOR & HELPER FUNCTIONS
    =================================================== */
+/* ===================================================
+   5b. LOCALSTORAGE INSPECTOR & HELPER FUNCTIONS
+   =================================================== */
 function refreshRSVPViewer() {
   const viewer = document.getElementById('localStorageViewer');
   const badge = document.getElementById('rsvpCounterBadge');
   const rsvps = JSON.parse(localStorage.getItem('wedding_rsvps') || '[]');
 
-  badge.innerText = `${rsvps.length} ${rsvps.length === 1 ? 'Entry' : 'Entries'}`;
+  if (badge) {
+    badge.innerText = `${rsvps.length} ${rsvps.length === 1 ? 'Entry' : 'Entries'}`;
+  }
+
+  if (!viewer) return;
 
   if (rsvps.length === 0) {
     viewer.innerHTML = `<p class="text-ivory-300/40 text-xs text-center py-6 italic font-serif">No RSVPs stored yet. Fill out the form above to see entries populate here!</p>`;
@@ -569,7 +576,9 @@ function refreshRSVPViewer() {
     `;
     viewer.appendChild(div);
   });
-  lucide.createIcons();
+  if (window.lucide) {
+    lucide.createIcons();
+  }
 }
 
 function clearRSVPLocalStorage() {
