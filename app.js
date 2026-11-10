@@ -246,7 +246,7 @@
     responseForm.hidden = true; lookupForm.hidden = false; lookupForm.reset();
     message('save-message', ''); message('lookup-message', ''); $('first-name').focus();
   });
-})();
+
 
 // Initialize Lucide Icons
 lucide.createIcons();
@@ -735,3 +735,5 @@ function animateParticles() {
   requestAnimationFrame(animateParticles);
 }
 animateParticles();
+
+})();
