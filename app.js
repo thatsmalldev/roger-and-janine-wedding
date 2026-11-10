@@ -119,34 +119,76 @@
     return;
   }
   // No invitation code is stored in localStorage, cookies, URLs or browser logs.
+
   function addCompanion(index, saved) {
     const box = document.createElement('div');
-    box.className = 'companion';
+
+    box.className =
+      'mt-6 space-y-4 rounded-2xl border border-white/10 bg-white/5 p-5';
+
     const title = document.createElement('h3');
+    title.className =
+      'font-display text-lg text-gold mb-4';
+
     title.textContent = `Companion ${index + 1}`;
     box.append(title);
-    for (const [key, caption] of [['first_name', 'First name'], ['last_name', 'Last name'], ['status', 'Will this companion attend?']]) {
+
+    for (const [key, caption] of [
+      ['first_name', 'First name'],
+      ['last_name', 'Last name'],
+      ['status', 'Will this companion attend?']
+    ]) {
       const id = `companion-${index}-${key}`;
+
       const label = document.createElement('label');
-      label.htmlFor = id; label.textContent = caption;
-      const control = document.createElement(key === 'status' ? 'select' : 'input');
+      label.htmlFor = id;
+      label.textContent = caption;
+      label.className =
+        'block text-xs uppercase tracking-widest text-slate-400 font-semibold mb-2';
+
+      const control = document.createElement(
+        key === 'status' ? 'select' : 'input'
+      );
+
       control.id = id;
+
+      control.className =
+        'w-full px-4 py-3 rounded-xl bg-noir-900/80 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-gold transition-colors';
+
       if (key === 'status') {
-        for (const [value, text] of [['', 'Please select'], ['attending', 'Attending'], ['declining', 'Declining / place unused']]) {
+        for (const [value, text] of [
+          ['', 'Please select'],
+          ['attending', 'Attending'],
+          ['declining', 'Declining / place unused']
+        ]) {
           const option = document.createElement('option');
-          option.value = value; option.textContent = text; control.append(option);
+          option.value = value;
+          option.textContent = text;
+          control.append(option);
         }
+
         control.required = true;
-        control.value = statusValid(saved?.status) ? saved.status : '';
+        control.value = statusValid(saved?.status)
+          ? saved.status
+          : '';
+
         control.addEventListener('change', syncNames);
       } else {
-        control.maxLength = 80; control.autocomplete = 'off';
-        control.value = typeof saved?.[key] === 'string' ? saved[key] : '';
+        control.maxLength = 80;
+        control.autocomplete = 'off';
+
+        control.value =
+          typeof saved?.[key] === 'string'
+            ? saved[key]
+            : '';
       }
+
       box.append(label, control);
     }
-    $('companions').append(box);
+
+    companionsBox.append(box);
   }
+
   function syncNames() {
     if (!current) return;
     for (let i = 0; i < current.guest.max_plus_ones; i++) {
