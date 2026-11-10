@@ -54,7 +54,7 @@
     $('guest-role').insertAdjacentElement('afterend', companionsBox);
   }
 
-  companionsBox.className = 'flex flex-col gap-6 mb-6';
+  companionsBox.className = 'flex flex-col gap-6 mb-4';
 
 
   let current = null;
@@ -242,8 +242,14 @@
       syncMain();
       document.querySelector('input[name="main-status"]:checked')?.focus();
       message('lookup-message', data.rsvp_status === 'pending' ? 'Your invitation is ready.' : 'Your saved response is shown below. You may update it while RSVPs are open.');
-    } catch {
-      message('lookup-message', 'We couldn’t reach the RSVP service. Please try again later or contact Roger or Janine.', 'error');
+    } catch (error) {
+      console.error('RSVP LOOKUP ERROR:', error);
+
+      message(
+        'lookup-message',
+        'Lookup failed. Please open the browser console to see the error.',
+        'error'
+      );
     } finally {
       busy = false; lookupFields.disabled = false;
       $('lookup-button').textContent = 'Find my invitation';
