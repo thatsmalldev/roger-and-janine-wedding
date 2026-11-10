@@ -43,6 +43,15 @@
   const responseForm = $('rsvp-form');
   const lookupFields = $('lookup-fields');
   const responseFields = $('response-fields');
+
+  let companionsBox = $('companions');
+
+  if (!companionsBox) {
+    companionsBox = document.createElement('div');
+    companionsBox.id = 'companions';
+    $('guest-role').insertAdjacentElement('afterend', companionsBox);
+  }
+
   let current = null;
   let busy = false;
   const NOT_FOUND = 'Name not found. Please check spelling or contact the couple.';
@@ -74,6 +83,19 @@
     return name;
   }
   const statusValid = (value) => value === 'attending' || value === 'declining';
+  function getMainStatus() {
+    return document.querySelector(
+      'input[name="main-status"]:checked'
+    )?.value || '';
+  }
+
+  function setMainStatus(value) {
+    const radio = document.querySelector(
+      `input[name="main-status"][value="${value}"]`
+    );
+
+    if (radio) radio.checked = true;
+  }
   const dateLabel = (iso) => new Intl.DateTimeFormat('en-PH', {
     timeZone: 'Asia/Manila', dateStyle: 'long', timeStyle: 'short'
   }).format(new Date(iso));
@@ -133,7 +155,7 @@
   }
   function syncMain() {
     if (!current) return;
-    const declining = $('main-status').value === 'declining';
+    const declining = getMainStatus() === 'declining';
     for (let i = 0; i < current.guest.max_plus_ones; i++) {
       const status = $(`companion-${i}-status`);
       if (declining) status.value = 'declining';
@@ -141,7 +163,9 @@
     }
     syncNames();
   }
-  $('main-status').addEventListener('change', syncMain);
+  document.querySelectorAll('input[name="main-status"]').forEach(radio => {
+    radio.addEventListener('change', syncMain);
+  });
   lookupForm.addEventListener('submit', async (event) => {
     event.preventDefault();
     if (busy || !lookupForm.reportValidity()) return;
@@ -168,7 +192,12 @@
         !Number.isInteger(data.revision) || !Array.isArray(data.plus_ones)) throw new Error('Invalid invitation');
       if (data.rsvp_deadline) {
         // Database cutoff is exclusive. Example: 00:00 Dec 20 means through Dec 19.
-        $('deadline-note').textContent = `Please respond before ${dateLabel(data.rsvp_deadline)} (Philippine Time).`;
+        const deadlineNote = $('deadline-note');
+
+        if (deadlineNote) {
+          deadlineNote.textContent =
+            `Please respond before ${dateLabel(data.rsvp_deadline)} (Philippine Time).`;
+        }
       }
       if (data.is_open !== true) {
         message('lookup-message', data.rsvp_deadline ?
@@ -182,7 +211,7 @@
       if (data.is_principal_sponsor) roles.push('Principal Sponsor (Ninong / Ninang)');
       if (data.is_entourage) roles.push('Entourage');
       $('guest-role').textContent = `${roles.join(' · ') || 'Wedding guest'} · Additional places reserved: ${data.max_plus_ones}`;
-      $('main-status').value = statusValid(data.rsvp_status) ? data.rsvp_status : '';
+      setMainStatus(statusValid(data.rsvp_status) ? data.rsvp_status : 'attending');
       $('companions').replaceChildren();
       for (let i = 0; i < data.max_plus_ones; i++) addCompanion(i, data.plus_ones[i]);
       responseFields.disabled = false;
@@ -190,7 +219,7 @@
       lookupForm.hidden = true;
       $('invitation-code').value = '';
       syncMain();
-      $('main-status').focus();
+      document.querySelector('input[name="main-status"]:checked')?.focus();
       message('lookup-message', data.rsvp_status === 'pending' ? 'Your invitation is ready.' : 'Your saved response is shown below. You may update it while RSVPs are open.');
     } catch {
       message('lookup-message', 'We couldn’t reach the RSVP service. Please try again later or contact Roger or Janine.', 'error');
@@ -204,7 +233,7 @@
     if (busy || !current || !responseForm.reportValidity()) return;
     message('save-message', '');
     let companions;
-    const status = $('main-status').value;
+    const status = getMainStatus();
     try {
       if (!statusValid(status)) throw new Error('Choose attending or declining.');
       companions = Array.from({ length: current.guest.max_plus_ones }, (_, i) => {

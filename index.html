@@ -1,11 +1,13 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="no-referrer">
   <meta name="robots" content="noindex,nofollow">
-  <meta name="description" content="Join Roger and Janine as they begin their marriage in faith and love. February 6, 2027, Pangasinan.">
+  <meta name="description"
+    content="Join Roger and Janine as they begin their marriage in faith and love. February 6, 2027, Pangasinan.">
   <title>Roger & Janine | February 6, 2027</title>
 
   <!-- Google Fonts -->
@@ -114,482 +116,483 @@
   </nav>
 
   <main id="main">
-  <!-- Hero Section -->
-  <section
-    class="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-4 overflow-hidden border-b border-white/10">
+    <!-- Hero Section -->
+    <section
+      class="relative min-h-screen flex items-center justify-center pt-24 pb-16 px-4 overflow-hidden border-b border-white/10">
 
-    <div
-      class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60 transform scale-105 transition-transform duration-10000"
-      style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=80');">
-    </div>
-    <div class="hero-bg-overlay absolute inset-0"></div>
+      <div
+        class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60 transform scale-105 transition-transform duration-10000"
+        style="background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=2000&q=80');">
+      </div>
+      <div class="hero-bg-overlay absolute inset-0"></div>
 
-    <!-- Background Overlay with Subtle Pattern -->
-    <div
-      class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-noir-700 via-noir-900 to-black opacity-90">
-    </div>
+      <!-- Background Overlay with Subtle Pattern -->
+      <div
+        class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-noir-700 via-noir-900 to-black opacity-90">
+      </div>
 
-    <!-- Floating Particles Ambient Canvas -->
-    <canvas id="ambient-canvas" class="ambient-canvas"></canvas>
+      <!-- Floating Particles Ambient Canvas -->
+      <canvas id="ambient-canvas" class="ambient-canvas"></canvas>
 
-    <!-- Fine Line Floral Art Background Overlay -->
-    <!-- <div
+      <!-- Fine Line Floral Art Background Overlay -->
+      <!-- <div
       class="absolute inset-0 opacity-10 bg-[radial-gradient(#C5A880_1px,transparent_1px)] [background-size:32px_32px]">
     </div> -->
 
-    <div class="relative z-10 max-w-4xl mx-auto text-center space-y-8">
-      <div class="inline-block animate-fade-in">
-        <span
-          class="text-gold uppercase tracking-[0.3em] text-xs font-semibold px-4 py-1.5 border border-gold/30 rounded-full glass-light">
-          We are getting married
-        </span>
-      </div>
-
-      <h1 class="font-display text-5xl sm:text-7xl md:text-8xl tracking-tight leading-none shimmer-text py-2">
-        Roger &amp; Janine
-      </h1>
-
-      <p class="font-serif italic text-2xl md:text-3xl text-ivory-200 font-light">
-        "Together in faith. A lifetime in love."
-      </p>
-      <p>With God at the center of our marriage, we’re ready to begin our next chapter.<br>We would love to share this
-        day with you.</p>
-
-      <div
-        class="pt-4 flex flex-col md:flex-row items-center justify-center gap-6 text-sm tracking-widest uppercase text-ivory-300">
-        <div class="flex items-center gap-2">
-          <i data-lucide="calendar" class="w-4 h-4 text-gold"></i>
-          <span>February 6, 2027</span>
-        </div>
-        <span class="hidden md:inline text-gold">•</span>
-        <div class="flex items-center gap-2">
-          <i data-lucide="clock" class="w-4 h-4 text-gold"></i>
-          <span>2:00 PM PH Time</span>
-        </div>
-        <span class="hidden md:inline text-gold">•</span>
-        <div class="flex items-center gap-2">
-          <i data-lucide="map-pin" class="w-4 h-4 text-gold"></i>
-          <span>San Carlos, Pangasinan</span>
-        </div>
-      </div>
-
-      <!-- Interactive Countdown Timer -->
-      <div id="countdown" class="pt-10">
-        <p class="text-xs uppercase tracking-[0.25em] text-gold mb-6 font-semibold">Counting Down To The Big Day</p>
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto">
-
-          <div
-            class="glass-dark p-4 rounded-2xl border border-white/10 flex flex-col items-center justify-center hover:border-gold/40 transition-colors">
-            <span id="days" class="font-display text-4xl sm:text-5xl font-bold text-white">00</span>
-            <span class="text-[10px] sm:text-xs uppercase tracking-widest text-ivory-300 mt-2">Days</span>
-          </div>
-
-          <div
-            class="glass-dark p-4 rounded-2xl border border-white/10 flex flex-col items-center justify-center hover:border-gold/40 transition-colors">
-            <span id="hours" class="font-display text-4xl sm:text-5xl font-bold text-white">00</span>
-            <span class="text-[10px] sm:text-xs uppercase tracking-widest text-ivory-300 mt-2">Hours</span>
-          </div>
-
-          <div
-            class="glass-dark p-4 rounded-2xl border border-white/10 flex flex-col items-center justify-center hover:border-gold/40 transition-colors">
-            <span id="minutes" class="font-display text-4xl sm:text-5xl font-bold text-white">00</span>
-            <span class="text-[10px] sm:text-xs uppercase tracking-widest text-ivory-300 mt-2">Minutes</span>
-          </div>
-
-          <div
-            class="glass-dark p-4 rounded-2xl border border-white/10 flex flex-col items-center justify-center hover:border-gold/40 transition-colors">
-            <span id="seconds" class="font-display text-4xl sm:text-5xl font-bold text-white text-gold">00</span>
-            <span class="text-[10px] sm:text-xs uppercase tracking-widest text-ivory-300 mt-2">Seconds</span>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="pt-8">
-        <a href="#rsvp"
-          class="inline-flex items-center gap-3 bg-gold hover:bg-gold-light text-noir-900 font-semibold text-xs tracking-widest uppercase px-8 py-4 rounded-full shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
-          <span>Reserve Your Seat</span>
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </a>
-      </div>
-    </div>
-  </section>
-
-
-  <!-- Our Story Section -->
-  <section id="our-story" class="py-24 px-4 max-w-6xl mx-auto border-b border-white/10">
-    <div class="text-center space-y-3 mb-16">
-      <span class="text-gold uppercase tracking-[0.2em] text-xs font-semibold">Memories &amp; Milestones</span>
-      <h2 class="font-display text-4xl md:text-5xl sm:text-5xl">Our Love Story</h2>
-      <div class="w-12 h-0.5 bg-gold mx-auto mt-4"></div>
-    </div>
-
-    <!-- Timeline Wrapper -->
-    <div class="relative wrap overflow-hidden p-2 md:p-10">
-      <!-- Vertical Center Line -->
-      <div class="border-2-2 absolute border-opacity-20 border-gold h-full border left-1/2 -ml-0.5 hidden md:block">
-      </div>
-
-      <!-- Timeline Item 1 -->
-      <div class="mb-12 flex justify-between items-center w-full right-timeline flex-col md:flex-row">
-        <div class="order-1 md:w-5/12"></div>
-        <div
-          class="z-20 flex items-center order-1 bg-gold shadow-xl w-10 h-10 rounded-full justify-center my-4 md:my-0">
-          <i data-lucide="heart" class="w-5 h-5 text-noir-900 fill-noir-900"></i>
-        </div>
-        <div
-          class="order-1 glass-dark rounded-2xl p-6 md:w-5/12 border border-white/10 hover:border-gold/30 transition-all">
-          <span class="text-gold text-xs font-mono tracking-widest">OCTOBER 2019</span>
-          <h3 class="font-display text-2xl text-white my-2">The First Spark</h3>
-          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=800"
-            alt="First Met"
-            class="w-full h-48 object-cover rounded-xl my-4 grayscale hover:grayscale-0 transition-all duration-500" />
-          <p class="text-ivory-300 text-sm leading-relaxed font-serif text-base">
-            What started as an accidental encounter at a quiet café in Makati turned into hours of endless conversation.
-            We realized within hours that our rhythm matched effortlessly.
-          </p>
-        </div>
-      </div>
-
-      <!-- Timeline Item 2 -->
-      <div class="mb-12 flex justify-between items-center w-full left-timeline flex-col md:flex-row-reverse">
-        <div class="order-1 md:w-5/12"></div>
-        <div
-          class="z-20 flex items-center order-1 bg-gold shadow-xl w-10 h-10 rounded-full justify-center my-4 md:my-0">
-          <i data-lucide="compass" class="w-5 h-5 text-noir-900"></i>
-        </div>
-        <div
-          class="order-1 glass-dark rounded-2xl p-6 md:w-5/12 border border-white/10 hover:border-gold/30 transition-all">
-          <span class="text-gold text-xs font-mono tracking-widest">DECEMBER 2021</span>
-          <h3 class="font-display text-2xl text-white my-2">Adventures &amp; Travels</h3>
-          <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800"
-            alt="Travels"
-            class="w-full h-48 object-cover rounded-xl my-4 grayscale hover:grayscale-0 transition-all duration-500" />
-          <p class="text-ivory-300 text-sm leading-relaxed font-serif text-base">
-            From mountain treks in Bataan to sunsets on the beaches of El Nido, every trip cemented our bond and brought
-            us closer together as best friends and partners.
-          </p>
-        </div>
-      </div>
-
-      <!-- Timeline Item 3 -->
-      <div class="mb-12 flex justify-between items-center w-full right-timeline flex-col md:flex-row">
-        <div class="order-1 md:w-5/12"></div>
-        <div
-          class="z-20 flex items-center order-1 bg-gold shadow-xl w-10 h-10 rounded-full justify-center my-4 md:my-0">
-          <i data-lucide="sparkles" class="w-5 h-5 text-noir-900"></i>
-        </div>
-        <div
-          class="order-1 glass-dark rounded-2xl p-6 md:w-5/12 border border-white/10 hover:border-gold/30 transition-all">
-          <span class="text-gold text-xs font-mono tracking-widest">FEBRUARY 14, 2025</span>
-          <h3 class="font-display text-2xl text-white my-2">The Proposal</h3>
-          <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=800"
-            alt="Proposal"
-            class="w-full h-48 object-cover rounded-xl my-4 grayscale hover:grayscale-0 transition-all duration-500" />
-          <p class="text-ivory-300 text-sm leading-relaxed font-serif text-base">
-            Under a canopy of starlight and soft acoustic melodies, Roger got down on one knee. With tears of joy,
-            Janine said "YES!" to a forever together.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Schedule Section -->
-  <section id="schedule" class="py-24 px-4 max-w-6xl mx-auto border-b border-white/10">
-    <div class="text-center space-y-3 mb-16">
-      <span class="text-gold uppercase tracking-[0.2em] text-xs font-semibold">Plan of Events</span>
-      <h2 class="font-display text-4xl md:text-5xl">The Big Day Schedule</h2>
-      <p class="text-ivory-300 text-sm max-w-xl mx-auto">Saturday, February 6, 2027.</p>
-    </div>
-
-
-    <!-- Timeline Cards Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-      <!-- Card 1 -->
-      <div
-        class="glass-dark p-8 rounded-2xl border border-white/10 flex flex-col justify-between hover:border-gold/50 transition-all hover:-translate-y-1">
-        <div>
-          <div
-            class="w-12 h-12 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center text-gold mb-6">
-            <i data-lucide="plane" class="w-6 h-6"></i>
-          </div>
-          <span class="text-gold text-s font-mono uppercase tracking-widest font-bold">2:00 PM - 3:00 PM</span>
-          <h3 class="font-display text-2xl text-white mt-2 mb-3">Guest Arrival</h3>
-          <p class="text-ivory-300 text-sm leading-relaxed font-serif">
-            A Warm Welcome to Our Dear Families and Friends.
-          </p>
-        </div>
-        <div class="mt-6 pt-4 border-t border-white/10 text-xs text-ivory-300 flex items-center justify-between">
-          <span>Enjoy Live Cooking, Coffee &amp; More!</span>
-          <i data-lucide="check-circle" class="w-4 h-4 text-gold"></i>
-        </div>
-      </div>
-
-      <!-- Card 1 -->
-      <div
-        class="glass-dark p-8 rounded-2xl border border-white/10 flex flex-col justify-between hover:border-gold/50 transition-all hover:-translate-y-1">
-        <div>
-          <div
-            class="w-12 h-12 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center text-gold mb-6">
-            <i data-lucide="houses" class="w-6 h-6"></i>
-          </div>
-          <span class="text-gold text-s font-mono uppercase tracking-widest font-bold">3:00 PM - 4:00 PM</span>
-          <h3 class="font-display text-2xl text-white mt-2 mb-3">Wedding Ceremony</h3>
-          <p class="text-ivory-300 text-sm leading-relaxed font-serif">
-            Witness our solemn vows and exchange of rings.
-          </p>
-        </div>
-        <div class="mt-6 pt-4 border-t border-white/10 text-xs text-ivory-300 flex items-center justify-between">
-          <span>Official Pronouncement of Marriage</span>
-          <i data-lucide="check-circle" class="w-4 h-4 text-gold"></i>
+      <div class="relative z-10 max-w-4xl mx-auto text-center space-y-8">
+        <div class="inline-block animate-fade-in">
+          <span
+            class="text-gold uppercase tracking-[0.3em] text-xs font-semibold px-4 py-1.5 border border-gold/30 rounded-full glass-light">
+            We are getting married
+          </span>
         </div>
 
-      </div>
+        <h1 class="font-display text-5xl sm:text-7xl md:text-8xl tracking-tight leading-none shimmer-text py-2">
+          Roger &amp; Janine
+        </h1>
 
-      <!-- Card 3 -->
-      <div
-        class="glass-dark p-8 rounded-2xl border border-white/10 flex flex-col justify-between hover:border-gold/50 transition-all hover:-translate-y-1">
-        <div>
-          <div
-            class="w-12 h-12 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center text-gold mb-6">
-            <i data-lucide="utensils" class="w-6 h-6"></i>
-          </div>
-          <span class="text-gold text-s font-mono uppercase tracking-widest font-bold">4:00 PM - 7:00 PM</span>
-          <h3 class="font-display text-2xl text-white mt-2 mb-3">Dinner &amp; Reception</h3>
-          <p class="text-ivory-300 text-sm leading-relaxed font-serif">
-            Let's continue the celebration with a sumptuous dinner, laughter, and beautiful memories to cherish forever.
-          </p>
-        </div>
-        <div class="mt-6 pt-4 border-t border-white/10 text-xs text-ivory-300 flex items-center justify-between">
-          <span>Wedding Traditions &amp; Activities</span>
-          <i data-lucide="check-circle" class="w-4 h-4 text-gold"></i>
-        </div>
-      </div>
-    </div>
-
-
-
-    <!-- Event Detail Modal Trigger Button -->
-    <div class="mt-12 text-center">
-      <button onclick="openEventDetailModal()"
-        class="inline-flex items-center gap-3 bg-noir-800 hover:bg-noir-700 text-ivory-100 border border-gold/40 hover:border-gold font-medium text-xs tracking-widest uppercase px-8 py-4 rounded-full transition-all duration-300">
-        <i data-lucide="info" class="w-4 h-4 text-gold"></i>
-        <span>View Full Details &amp; Dress Code</span>
-      </button>
-    </div>
-  </section>
-
-
-  <!-- Venue Section -->
-  <section id="venue" class="py-28 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-white/10">
-    <div class="text-center space-y-3 mb-12">
-      <span class="text-gold uppercase tracking-[0.2em] text-xs font-semibold">Location</span>
-      <h2 class="font-display text-4xl md:text-5xl">The Venue</h2>
-      <div class="w-16 h-0.5 bg-gold mx-auto mt-4"></div>
-    </div>
-
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <!-- Details -->
-      <div class="glass-dark p-8 sm:p-10 rounded-3xl border border-white/10 shadow-2xl space-y-6">
-        <span class="text-xs font-semibold uppercase tracking-widest text-gold block">KABALEYAN COVE RESORT</span>
-        <h3 class="font-display text-4xl md:text-5xl">Kawayan Hall</h3>
-        <p class="text-slate-300 text-sm leading-relaxed">
-          Set amidst sprawling gardens and grand architectural arches, our venue offers a timeless backdrop for both our
-          holy matrimony and evening banquet.
+        <p class="font-serif italic text-2xl md:text-3xl text-ivory-200 font-light">
+          "Together in faith. A lifetime in love."
         </p>
+        <p>With God at the center of our marriage, we’re ready to begin our next chapter.<br>We would love to share this
+          day with you.</p>
 
-        <div class="space-y-3 text-xs text-slate-300">
-          <p><i class="fas fa-map-marker-alt text-gold mr-2"></i> Kabaleyan Cove Resort &amp; Kawayan Hall</p>
-          <p><i class="fas fa-car text-gold mr-2"></i> Convenient highway access &amp; ample secure parking</p>
-          <p><i class="fas fa-hotel text-gold mr-2"></i> Accommodations at Kabaleyan Cove Resort</p>
-        </div>
-
-        <a href="https://maps.app.goo.gl/iNsFdGw2yiCwpVYTA" target="_blank" rel="noopener noreferrer"
-          class="inline-flex items-center px-6 py-3 rounded-full bg-white/10 hover:bg-gold-light hover:text-black text-white text-xs uppercase tracking-widest font-semibold border border-white/20 transition-all">
-          <i class="fas fa-directions mr-2"></i> Open Location Map
-        </a>
-      </div>
-
-      <!-- Image Visual -->
-      <div class="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl h-96 group">
-        <img src="https://kabaleyancoveresort.ph/wp-content/uploads/2018/10/FEP_8535-1024x589.jpg"
-          alt="Venue Architecture"
-          class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-8">
-          <div>
-            <p class="font-serif text-2xl font-bold text-white">San Carlos City, Pangasinan</p>
-            <p class="text-xs text-slate-300">February 6, 2027 • 2:00 PM PHT</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Photo Gallery Section -->
-  <section id="gallery" class="py-24 px-4 max-w-6xl mx-auto border-b border-white/10">
-    <div class="text-center space-y-3 mb-16">
-      <span class="text-gold uppercase tracking-[0.2em] text-xs font-semibold">Captured Moments</span>
-      <h2 class="font-display text-4xl md:text-5xl">Photo Gallery</h2>
-      <p class="text-ivory-300 text-sm max-w-xl mx-auto">Click any photograph to expand in high definition viewer.</p>
-    </div>
-
-    <!-- Gallery Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-
-      <div
-        class="relative group overflow-hidden rounded-2xl cursor-pointer aspect-square bg-noir-800 border border-white/10"
-        onclick="openLightbox(0)">
-        <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=800"
-          alt="Gallery Photo 1"
-          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 filter grayscale contrast-125 hover:grayscale-0" />
         <div
-          class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-          <div>
-            <p class="text-gold text-xs font-mono uppercase">Pre-Wedding Shoot</p>
-            <p class="text-white font-serif text-lg">Sunset by the Coast</p>
+          class="pt-4 flex flex-col md:flex-row items-center justify-center gap-6 text-sm tracking-widest uppercase text-ivory-300">
+          <div class="flex items-center gap-2">
+            <i data-lucide="calendar" class="w-4 h-4 text-gold"></i>
+            <span>February 6, 2027</span>
+          </div>
+          <span class="hidden md:inline text-gold">•</span>
+          <div class="flex items-center gap-2">
+            <i data-lucide="clock" class="w-4 h-4 text-gold"></i>
+            <span>2:00 PM PH Time</span>
+          </div>
+          <span class="hidden md:inline text-gold">•</span>
+          <div class="flex items-center gap-2">
+            <i data-lucide="map-pin" class="w-4 h-4 text-gold"></i>
+            <span>San Carlos, Pangasinan</span>
+          </div>
+        </div>
+
+        <!-- Interactive Countdown Timer -->
+        <div id="countdown" class="pt-10">
+          <p class="text-xs uppercase tracking-[0.25em] text-gold mb-6 font-semibold">Counting Down To The Big Day</p>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2xl mx-auto">
+
+            <div
+              class="glass-dark p-4 rounded-2xl border border-white/10 flex flex-col items-center justify-center hover:border-gold/40 transition-colors">
+              <span id="days" class="font-display text-4xl sm:text-5xl font-bold text-white">00</span>
+              <span class="text-[10px] sm:text-xs uppercase tracking-widest text-ivory-300 mt-2">Days</span>
+            </div>
+
+            <div
+              class="glass-dark p-4 rounded-2xl border border-white/10 flex flex-col items-center justify-center hover:border-gold/40 transition-colors">
+              <span id="hours" class="font-display text-4xl sm:text-5xl font-bold text-white">00</span>
+              <span class="text-[10px] sm:text-xs uppercase tracking-widest text-ivory-300 mt-2">Hours</span>
+            </div>
+
+            <div
+              class="glass-dark p-4 rounded-2xl border border-white/10 flex flex-col items-center justify-center hover:border-gold/40 transition-colors">
+              <span id="minutes" class="font-display text-4xl sm:text-5xl font-bold text-white">00</span>
+              <span class="text-[10px] sm:text-xs uppercase tracking-widest text-ivory-300 mt-2">Minutes</span>
+            </div>
+
+            <div
+              class="glass-dark p-4 rounded-2xl border border-white/10 flex flex-col items-center justify-center hover:border-gold/40 transition-colors">
+              <span id="seconds" class="font-display text-4xl sm:text-5xl font-bold text-white text-gold">00</span>
+              <span class="text-[10px] sm:text-xs uppercase tracking-widest text-ivory-300 mt-2">Seconds</span>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="pt-8">
+          <a href="#rsvp"
+            class="inline-flex items-center gap-3 bg-gold hover:bg-gold-light text-noir-900 font-semibold text-xs tracking-widest uppercase px-8 py-4 rounded-full shadow-2xl transition-all duration-300 transform hover:-translate-y-1">
+            <span>Reserve Your Seat</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Our Story Section -->
+    <section id="our-story" class="py-24 px-4 max-w-6xl mx-auto border-b border-white/10">
+      <div class="text-center space-y-3 mb-16">
+        <span class="text-gold uppercase tracking-[0.2em] text-xs font-semibold">Memories &amp; Milestones</span>
+        <h2 class="font-display text-4xl md:text-5xl sm:text-5xl">Our Love Story</h2>
+        <div class="w-12 h-0.5 bg-gold mx-auto mt-4"></div>
+      </div>
+
+      <!-- Timeline Wrapper -->
+      <div class="relative wrap overflow-hidden p-2 md:p-10">
+        <!-- Vertical Center Line -->
+        <div class="border-2-2 absolute border-opacity-20 border-gold h-full border left-1/2 -ml-0.5 hidden md:block">
+        </div>
+
+        <!-- Timeline Item 1 -->
+        <div class="mb-12 flex justify-between items-center w-full right-timeline flex-col md:flex-row">
+          <div class="order-1 md:w-5/12"></div>
+          <div
+            class="z-20 flex items-center order-1 bg-gold shadow-xl w-10 h-10 rounded-full justify-center my-4 md:my-0">
+            <i data-lucide="heart" class="w-5 h-5 text-noir-900 fill-noir-900"></i>
+          </div>
+          <div
+            class="order-1 glass-dark rounded-2xl p-6 md:w-5/12 border border-white/10 hover:border-gold/30 transition-all">
+            <span class="text-gold text-xs font-mono tracking-widest">OCTOBER 2019</span>
+            <h3 class="font-display text-2xl text-white my-2">The First Spark</h3>
+            <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=800"
+              alt="First Met"
+              class="w-full h-48 object-cover rounded-xl my-4 grayscale hover:grayscale-0 transition-all duration-500" />
+            <p class="text-ivory-300 text-sm leading-relaxed font-serif text-base">
+              What started as an accidental encounter at a quiet café in Makati turned into hours of endless
+              conversation.
+              We realized within hours that our rhythm matched effortlessly.
+            </p>
+          </div>
+        </div>
+
+        <!-- Timeline Item 2 -->
+        <div class="mb-12 flex justify-between items-center w-full left-timeline flex-col md:flex-row-reverse">
+          <div class="order-1 md:w-5/12"></div>
+          <div
+            class="z-20 flex items-center order-1 bg-gold shadow-xl w-10 h-10 rounded-full justify-center my-4 md:my-0">
+            <i data-lucide="compass" class="w-5 h-5 text-noir-900"></i>
+          </div>
+          <div
+            class="order-1 glass-dark rounded-2xl p-6 md:w-5/12 border border-white/10 hover:border-gold/30 transition-all">
+            <span class="text-gold text-xs font-mono tracking-widest">DECEMBER 2021</span>
+            <h3 class="font-display text-2xl text-white my-2">Adventures &amp; Travels</h3>
+            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800"
+              alt="Travels"
+              class="w-full h-48 object-cover rounded-xl my-4 grayscale hover:grayscale-0 transition-all duration-500" />
+            <p class="text-ivory-300 text-sm leading-relaxed font-serif text-base">
+              From mountain treks in Bataan to sunsets on the beaches of El Nido, every trip cemented our bond and
+              brought
+              us closer together as best friends and partners.
+            </p>
+          </div>
+        </div>
+
+        <!-- Timeline Item 3 -->
+        <div class="mb-12 flex justify-between items-center w-full right-timeline flex-col md:flex-row">
+          <div class="order-1 md:w-5/12"></div>
+          <div
+            class="z-20 flex items-center order-1 bg-gold shadow-xl w-10 h-10 rounded-full justify-center my-4 md:my-0">
+            <i data-lucide="sparkles" class="w-5 h-5 text-noir-900"></i>
+          </div>
+          <div
+            class="order-1 glass-dark rounded-2xl p-6 md:w-5/12 border border-white/10 hover:border-gold/30 transition-all">
+            <span class="text-gold text-xs font-mono tracking-widest">FEBRUARY 14, 2025</span>
+            <h3 class="font-display text-2xl text-white my-2">The Proposal</h3>
+            <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=800"
+              alt="Proposal"
+              class="w-full h-48 object-cover rounded-xl my-4 grayscale hover:grayscale-0 transition-all duration-500" />
+            <p class="text-ivory-300 text-sm leading-relaxed font-serif text-base">
+              Under a canopy of starlight and soft acoustic melodies, Roger got down on one knee. With tears of joy,
+              Janine said "YES!" to a forever together.
+            </p>
           </div>
         </div>
       </div>
+    </section>
 
-      <div
-        class="relative group overflow-hidden rounded-2xl cursor-pointer aspect-square bg-noir-800 border border-white/10"
-        onclick="openLightbox(1)">
-        <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=800"
-          alt="Gallery Photo 2"
-          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 filter grayscale contrast-125 hover:grayscale-0" />
+    <!-- Schedule Section -->
+    <section id="schedule" class="py-24 px-4 max-w-6xl mx-auto border-b border-white/10">
+      <div class="text-center space-y-3 mb-16">
+        <span class="text-gold uppercase tracking-[0.2em] text-xs font-semibold">Plan of Events</span>
+        <h2 class="font-display text-4xl md:text-5xl">The Big Day Schedule</h2>
+        <p class="text-ivory-300 text-sm max-w-xl mx-auto">Saturday, February 6, 2027.</p>
+      </div>
+
+
+      <!-- Timeline Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+        <!-- Card 1 -->
         <div
-          class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+          class="glass-dark p-8 rounded-2xl border border-white/10 flex flex-col justify-between hover:border-gold/50 transition-all hover:-translate-y-1">
           <div>
-            <p class="text-gold text-xs font-mono uppercase">Pre-Wedding Shoot</p>
-            <p class="text-white font-serif text-lg">Elegance in Motion</p>
+            <div
+              class="w-12 h-12 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center text-gold mb-6">
+              <i data-lucide="plane" class="w-6 h-6"></i>
+            </div>
+            <span class="text-gold text-s font-mono uppercase tracking-widest font-bold">2:00 PM - 3:00 PM</span>
+            <h3 class="font-display text-2xl text-white mt-2 mb-3">Guest Arrival</h3>
+            <p class="text-ivory-300 text-sm leading-relaxed font-serif">
+              A Warm Welcome to Our Dear Families and Friends.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/10 text-xs text-ivory-300 flex items-center justify-between">
+            <span>Enjoy Live Cooking, Coffee &amp; More!</span>
+            <i data-lucide="check-circle" class="w-4 h-4 text-gold"></i>
           </div>
         </div>
-      </div>
 
-      <div
-        class="relative group overflow-hidden rounded-2xl cursor-pointer aspect-square bg-noir-800 border border-white/10"
-        onclick="openLightbox(2)">
-        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&q=80&w=800"
-          alt="Gallery Photo 3"
-          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 filter grayscale contrast-125 hover:grayscale-0" />
+        <!-- Card 1 -->
         <div
-          class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+          class="glass-dark p-8 rounded-2xl border border-white/10 flex flex-col justify-between hover:border-gold/50 transition-all hover:-translate-y-1">
           <div>
-            <p class="text-gold text-xs font-mono uppercase">Engagement</p>
-            <p class="text-white font-serif text-lg">Under Starlit Skies</p>
+            <div
+              class="w-12 h-12 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center text-gold mb-6">
+              <i data-lucide="houses" class="w-6 h-6"></i>
+            </div>
+            <span class="text-gold text-s font-mono uppercase tracking-widest font-bold">3:00 PM - 4:00 PM</span>
+            <h3 class="font-display text-2xl text-white mt-2 mb-3">Wedding Ceremony</h3>
+            <p class="text-ivory-300 text-sm leading-relaxed font-serif">
+              Witness our solemn vows and exchange of rings.
+            </p>
           </div>
-        </div>
-      </div>
+          <div class="mt-6 pt-4 border-t border-white/10 text-xs text-ivory-300 flex items-center justify-between">
+            <span>Official Pronouncement of Marriage</span>
+            <i data-lucide="check-circle" class="w-4 h-4 text-gold"></i>
+          </div>
 
-      <div
-        class="relative group overflow-hidden rounded-2xl cursor-pointer aspect-square bg-noir-800 border border-white/10"
-        onclick="openLightbox(3)">
-        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=800"
-          alt="Gallery Photo 4"
-          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 filter grayscale contrast-125 hover:grayscale-0" />
+        </div>
+
+        <!-- Card 3 -->
         <div
-          class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+          class="glass-dark p-8 rounded-2xl border border-white/10 flex flex-col justify-between hover:border-gold/50 transition-all hover:-translate-y-1">
           <div>
-            <p class="text-gold text-xs font-mono uppercase">Travel</p>
-            <p class="text-white font-serif text-lg">Quiet Moments</p>
+            <div
+              class="w-12 h-12 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center text-gold mb-6">
+              <i data-lucide="utensils" class="w-6 h-6"></i>
+            </div>
+            <span class="text-gold text-s font-mono uppercase tracking-widest font-bold">4:00 PM - 7:00 PM</span>
+            <h3 class="font-display text-2xl text-white mt-2 mb-3">Dinner &amp; Reception</h3>
+            <p class="text-ivory-300 text-sm leading-relaxed font-serif">
+              Let's continue the celebration with a sumptuous dinner, laughter, and beautiful memories to cherish
+              forever.
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-white/10 text-xs text-ivory-300 flex items-center justify-between">
+            <span>Wedding Traditions &amp; Activities</span>
+            <i data-lucide="check-circle" class="w-4 h-4 text-gold"></i>
           </div>
         </div>
       </div>
 
-      <div
-        class="relative group overflow-hidden rounded-2xl cursor-pointer aspect-square bg-noir-800 border border-white/10"
-        onclick="openLightbox(4)">
-        <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=80&w=800"
-          alt="Gallery Photo 5"
-          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 filter grayscale contrast-125 hover:grayscale-0" />
-        <div
-          class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-          <div>
-            <p class="text-gold text-xs font-mono uppercase">Portraits</p>
-            <p class="text-white font-serif text-lg">Looking Toward Tomorrow</p>
-          </div>
-        </div>
-      </div>
 
-      <div
-        class="relative group overflow-hidden rounded-2xl cursor-pointer aspect-square bg-noir-800 border border-white/10"
-        onclick="openLightbox(5)">
-        <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&q=80&w=800"
-          alt="Gallery Photo 6"
-          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 filter grayscale contrast-125 hover:grayscale-0" />
-        <div
-          class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-          <div>
-            <p class="text-gold text-xs font-mono uppercase">Details</p>
-            <p class="text-white font-serif text-lg">Floral Whispers</p>
-          </div>
-        </div>
-      </div>
 
-    </div>
-  </section>
-
-  <!-- Gift Registry Section -->
-  <section id="gift" class="py-24 px-4 max-w-4xl mx-auto text-center border-b border-white/10">
-    <div class="glass-dark rounded-3xl p-8 md:p-14 border border-white/10 relative overflow-hidden">
-      <!-- Accent Top Border -->
-      <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold to-transparent"></div>
-
-      <div
-        class="w-16 h-16 rounded-full bg-gold/10 border border-gold/30 mx-auto flex items-center justify-center text-gold mb-6">
-        <i class="fas fa-gift fa-xl"></i>
-      </div>
-
-      <span class="text-gold uppercase tracking-[0.2em] text-xs font-semibold">Love &amp; Blessings</span>
-      <h2 class="font-display text-3xl md:text-5xl mt-2 mb-6">Gift Registry</h2>
-
-      <p class="text-ivory-200 font-serif text-lg md:text-xl leading-relaxed max-w-2xl mx-auto italic mb-8">
-        "Your presence on our special day is the greatest gift of all. However, should you wish to honor us with a gift,
-        a monetary blessing towards our dream home and future together would be deeply appreciated."
-      </p>
-
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <button onclick="openGiftModal()"
-          class="bg-gold hover:bg-gold-light text-noir-900 font-semibold text-xs tracking-widest uppercase px-8 py-4 rounded-full shadow-lg transition-all duration-300 inline-flex items-center gap-2">
-          <i data-lucide="qr-code" class="w-4 h-4"></i>
-          <span>View Digital Envelope &amp; QR Codes</span>
+      <!-- Event Detail Modal Trigger Button -->
+      <div class="mt-12 text-center">
+        <button onclick="openEventDetailModal()"
+          class="inline-flex items-center gap-3 bg-noir-800 hover:bg-noir-700 text-ivory-100 border border-gold/40 hover:border-gold font-medium text-xs tracking-widest uppercase px-8 py-4 rounded-full transition-all duration-300">
+          <i data-lucide="info" class="w-4 h-4 text-gold"></i>
+          <span>View Full Details &amp; Dress Code</span>
         </button>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- RSVP Section -->
-  <section id="rsvp" class="py-24 px-4 max-w-4xl mx-auto border-b border-white/10">
-    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Venue Section -->
+    <section id="venue" class="py-28 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 border-b border-white/10">
       <div class="text-center space-y-3 mb-12">
-        <span class="text-gold uppercase tracking-[0.2em] text-xs font-semibold">Honor Us With Your Presence</span>
-        <h2 class="font-display text-4xl md:text-5xl">RSVP Confirmation</h2>
-        <p class="text-ivory-300 text-sm max-w-md mx-auto">Kindly respond on or before December
-          19, 2026</p>
+        <span class="text-gold uppercase tracking-[0.2em] text-xs font-semibold">Location</span>
+        <h2 class="font-display text-4xl md:text-5xl">The Venue</h2>
+        <div class="w-16 h-0.5 bg-gold mx-auto mt-4"></div>
       </div>
 
-      <!-- RSVP Form Box -->
-      <div class="glass-dark p-8 sm:p-12 rounded-3xl border border-white/10 shadow-2xl">
-        <form id="lookup-form">
-          <fieldset id="lookup-fields">
-            <legend class="font-display text-lg text-white mb-4">Find your invitation</legend>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Details -->
+        <div class="glass-dark p-8 sm:p-10 rounded-3xl border border-white/10 shadow-2xl space-y-6">
+          <span class="text-xs font-semibold uppercase tracking-widest text-gold block">KABALEYAN COVE RESORT</span>
+          <h3 class="font-display text-4xl md:text-5xl">Kawayan Hall</h3>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            Set amidst sprawling gardens and grand architectural arches, our venue offers a timeless backdrop for both
+            our
+            holy matrimony and evening banquet.
+          </p>
+
+          <div class="space-y-3 text-xs text-slate-300">
+            <p><i class="fas fa-map-marker-alt text-gold mr-2"></i> Kabaleyan Cove Resort &amp; Kawayan Hall</p>
+            <p><i class="fas fa-car text-gold mr-2"></i> Convenient highway access &amp; ample secure parking</p>
+            <p><i class="fas fa-hotel text-gold mr-2"></i> Accommodations at Kabaleyan Cove Resort</p>
+          </div>
+
+          <a href="https://maps.app.goo.gl/iNsFdGw2yiCwpVYTA" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center px-6 py-3 rounded-full bg-white/10 hover:bg-gold-light hover:text-black text-white text-xs uppercase tracking-widest font-semibold border border-white/20 transition-all">
+            <i class="fas fa-directions mr-2"></i> Open Location Map
+          </a>
+        </div>
+
+        <!-- Image Visual -->
+        <div class="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl h-96 group">
+          <img src="https://kabaleyancoveresort.ph/wp-content/uploads/2018/10/FEP_8535-1024x589.jpg"
+            alt="Venue Architecture"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-8">
             <div>
-              <label for="first-name"
-                class="block text-gold text-xs uppercase tracking-widest font-semibold mb-3">First name</label>
+              <p class="font-serif text-2xl font-bold text-white">San Carlos City, Pangasinan</p>
+              <p class="text-xs text-slate-300">February 6, 2027 • 2:00 PM PHT</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section id="gallery" class="py-24 px-4 max-w-6xl mx-auto border-b border-white/10">
+      <div class="text-center space-y-3 mb-16">
+        <span class="text-gold uppercase tracking-[0.2em] text-xs font-semibold">Captured Moments</span>
+        <h2 class="font-display text-4xl md:text-5xl">Photo Gallery</h2>
+        <p class="text-ivory-300 text-sm max-w-xl mx-auto">Click any photograph to expand in high definition viewer.</p>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+
+        <div
+          class="relative group overflow-hidden rounded-2xl cursor-pointer aspect-square bg-noir-800 border border-white/10"
+          onclick="openLightbox(0)">
+          <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=800"
+            alt="Gallery Photo 1"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 filter grayscale contrast-125 hover:grayscale-0" />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+            <div>
+              <p class="text-gold text-xs font-mono uppercase">Pre-Wedding Shoot</p>
+              <p class="text-white font-serif text-lg">Sunset by the Coast</p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="relative group overflow-hidden rounded-2xl cursor-pointer aspect-square bg-noir-800 border border-white/10"
+          onclick="openLightbox(1)">
+          <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=800"
+            alt="Gallery Photo 2"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 filter grayscale contrast-125 hover:grayscale-0" />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+            <div>
+              <p class="text-gold text-xs font-mono uppercase">Pre-Wedding Shoot</p>
+              <p class="text-white font-serif text-lg">Elegance in Motion</p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="relative group overflow-hidden rounded-2xl cursor-pointer aspect-square bg-noir-800 border border-white/10"
+          onclick="openLightbox(2)">
+          <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&q=80&w=800"
+            alt="Gallery Photo 3"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 filter grayscale contrast-125 hover:grayscale-0" />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+            <div>
+              <p class="text-gold text-xs font-mono uppercase">Engagement</p>
+              <p class="text-white font-serif text-lg">Under Starlit Skies</p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="relative group overflow-hidden rounded-2xl cursor-pointer aspect-square bg-noir-800 border border-white/10"
+          onclick="openLightbox(3)">
+          <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=800"
+            alt="Gallery Photo 4"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 filter grayscale contrast-125 hover:grayscale-0" />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+            <div>
+              <p class="text-gold text-xs font-mono uppercase">Travel</p>
+              <p class="text-white font-serif text-lg">Quiet Moments</p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="relative group overflow-hidden rounded-2xl cursor-pointer aspect-square bg-noir-800 border border-white/10"
+          onclick="openLightbox(4)">
+          <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=80&w=800"
+            alt="Gallery Photo 5"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 filter grayscale contrast-125 hover:grayscale-0" />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+            <div>
+              <p class="text-gold text-xs font-mono uppercase">Portraits</p>
+              <p class="text-white font-serif text-lg">Looking Toward Tomorrow</p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="relative group overflow-hidden rounded-2xl cursor-pointer aspect-square bg-noir-800 border border-white/10"
+          onclick="openLightbox(5)">
+          <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&q=80&w=800"
+            alt="Gallery Photo 6"
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 filter grayscale contrast-125 hover:grayscale-0" />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+            <div>
+              <p class="text-gold text-xs font-mono uppercase">Details</p>
+              <p class="text-white font-serif text-lg">Floral Whispers</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Gift Registry Section -->
+    <section id="gift" class="py-24 px-4 max-w-4xl mx-auto text-center border-b border-white/10">
+      <div class="glass-dark rounded-3xl p-8 md:p-14 border border-white/10 relative overflow-hidden">
+        <!-- Accent Top Border -->
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-gold to-transparent"></div>
+
+        <div
+          class="w-16 h-16 rounded-full bg-gold/10 border border-gold/30 mx-auto flex items-center justify-center text-gold mb-6">
+          <i class="fas fa-gift fa-xl"></i>
+        </div>
+
+        <span class="text-gold uppercase tracking-[0.2em] text-xs font-semibold">Love &amp; Blessings</span>
+        <h2 class="font-display text-3xl md:text-5xl mt-2 mb-6">Gift Registry</h2>
+
+        <p class="text-ivory-200 font-serif text-lg md:text-xl leading-relaxed max-w-2xl mx-auto italic mb-8">
+          "Your presence on our special day is the greatest gift of all. However, should you wish to honor us with a
+          gift,
+          a monetary blessing towards our dream home and future together would be deeply appreciated."
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button onclick="openGiftModal()"
+            class="bg-gold hover:bg-gold-light text-noir-900 font-semibold text-xs tracking-widest uppercase px-8 py-4 rounded-full shadow-lg transition-all duration-300 inline-flex items-center gap-2">
+            <i data-lucide="qr-code" class="w-4 h-4"></i>
+            <span>View Digital Envelope &amp; QR Codes</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section id="rsvp" class="py-24 px-4 max-w-4xl mx-auto border-b border-white/10">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center space-y-3 mb-12">
+          <span class="text-gold uppercase tracking-[0.2em] text-xs font-semibold">Honor Us With Your Presence</span>
+          <h2 class="font-display text-4xl md:text-5xl">RSVP Confirmation</h2>
+          <p class="text-ivory-300 text-sm max-w-md mx-auto">Kindly respond on or before December
+            19, 2026</p>
+        </div>
+
+        <!-- RSVP Form Box -->
+        <div class="glass-dark p-8 sm:p-12 rounded-3xl border border-white/10 shadow-2xl">
+          <form id="lookup-form">
+            <fieldset id="lookup-fields">
+              <legend class="font-display text-lg text-white mb-4">Find your invitation</legend>
+              <label for="first-name" class="block text-gold text-xs uppercase tracking-widest font-semibold mb-3">First
+                name</label>
               <input id="first-name" name="first-name" autocomplete="given-name" maxlength="80"
                 class="w-full bg-noir-900/80 border border-white/10 rounded-xl px-4 py-3 text-ivory-100 placeholder-ivory-300/40 focus:outline-none focus:border-gold transition-colors text-sm mb-4"
                 required>
-            </div>
-            <div>
-              <label for="last-name"
-                class="block text-gold text-xs uppercase tracking-widest font-semibold mb-3">Last name</label>
+              <label for="last-name" class="block text-gold text-xs uppercase tracking-widest font-semibold mb-3">Last
+                name</label>
               <input id="last-name" name="last-name" autocomplete="family-name" maxlength="80"
                 class="w-full bg-noir-900/80 border border-white/10 rounded-xl px-4 py-3 text-ivory-100 placeholder-ivory-300/40 focus:outline-none focus:border-gold transition-colors text-sm mb-4"
                 required>
-            </div>
-            <div>
               <label for="invitation-code"
                 class="block text-gold text-xs uppercase tracking-widest font-semibold mb-3">Private invitation
                 code</label>
@@ -597,104 +600,105 @@
                 autocapitalize="none" maxlength="32" minlength="32" required aria-describedby="code-help"
                 class="w-full bg-noir-900/80 border border-white/10 rounded-xl px-4 py-3 text-ivory-100 placeholder-ivory-300/40 focus:outline-none focus:border-gold transition-colors text-sm"
                 disabled>
-              <p id="code-help" class="text-xs mb-4">Use the 32-character code shared with your invitation. Please keep it
+              <p id="code-help" class="text-xs mb-4">Use the 32-character code shared with your invitation. Please keep
+                it
                 private.
               </p>
+              <button id="lookup-button" type="submit"
+                class="w-full py-4 rounded-xl bg-gold hover:bg-white text-black font-bold text-xs uppercase tracking-widest transition-all shadow-xl">Find
+                my invitation</button>
+            </fieldset>
+          </form>
+          <p id="lookup-message" class="message" role="status" aria-live="polite" class="text-xs mb-4"></p>
+          <form id="rsvp-form" class="space-y-6" hidden>
+            <!-- Attendance Selector -->
+            <fieldset id="response-fields">
+            <legend id="guest-heading">Your response</legend>
+            <p id="guest-role" class="small"></p>
+            <div>
+              <label class="block text-xs uppercase tracking-widest text-slate-400 font-semibold mb-3">Will you join
+                us?</label>
+
+              <div class="grid grid-cols-2 gap-4">
+                <label
+                  class="relative flex items-center justify-center p-4 rounded-2xl border border-white/10 cursor-pointer hover:border-gold transition-all bg-white/5">
+                  <input type="radio" name="main-status" value="attending" checked class="sr-only peer">
+                  <span
+                    class="peer-checked:text-gold text-xs uppercase tracking-widest font-semibold flex items-center">
+                    <i class="fas fa-check-circle mr-2"></i> Joyfully Accept
+                  </span>
+                </label>
+
+                <label
+                  class="relative flex items-center justify-center p-4 rounded-2xl border border-white/10 cursor-pointer hover:border-rose-400 transition-all bg-white/5">
+                  <input type="radio" name="main-status" value="declining" class="sr-only peer">
+                  <span
+                    class="peer-checked:text-rose-400 text-xs uppercase tracking-widest font-semibold flex items-center">
+                    <i class="fas fa-times-circle mr-2"></i> Regretfully Decline
+                  </span>
+                </label>
+              </div>
             </div>
-            <button id="lookup-button" type="submit"
-              class="w-full py-4 rounded-xl bg-gold hover:bg-white text-black font-bold text-xs uppercase tracking-widest transition-all shadow-xl">Find
-              my invitation</button>
-          </fieldset>
-        </form>
 
-        <form id="rsvp-form" class="space-y-6" hidden>
-          <!-- Attendance Selector -->
-          <div>
-            <label class="block text-xs uppercase tracking-widest text-slate-400 font-semibold mb-3">Will you join
-              us?</label>
+            <button id="save-button" type="submit"
+              class="w-full py-4 rounded-xl bg-gold hover:bg-white text-black font-bold text-xs uppercase tracking-widest transition-all shadow-xl">
+              Submit RSVP Confirmation
+            </button>
 
-            <div class="grid grid-cols-2 gap-4">
-              <label
-                class="relative flex items-center justify-center p-4 rounded-2xl border border-white/10 cursor-pointer hover:border-gold transition-all bg-white/5">
-                <input type="radio" name="attendance" value="accept" checked class="sr-only peer">
-                <span class="peer-checked:text-gold text-xs uppercase tracking-widest font-semibold flex items-center">
-                  <i class="fas fa-check-circle mr-2"></i> Joyfully Accept
-                </span>
-              </label>
+            </fieldset><button id="reset-button" class="secondary" type="button">Finish / use another invitation</button>
+          </form>
+          <p id="save-message" class="message" role="status" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
 
-              <label
-                class="relative flex items-center justify-center p-4 rounded-2xl border border-white/10 cursor-pointer hover:border-rose-400 transition-all bg-white/5">
-                <input type="radio" name="attendance" value="decline" class="sr-only peer">
-                <span
-                  class="peer-checked:text-rose-400 text-xs uppercase tracking-widest font-semibold flex items-center">
-                  <i class="fas fa-times-circle mr-2"></i> Regretfully Decline
-                </span>
-              </label>
-            </div>
-          </div>
+    <!-- Guestbook Section -->
+    <section id="guestbook" class="py-24 px-4 max-w-4xl mx-auto">
+      <div class="text-center space-y-3 mb-12">
+        <span class="text-gold uppercase tracking-[0.2em] text-xs font-semibold">Love Notes</span>
+        <h2 class="font-display text-4xl md:text-5xl">Live Guestbook</h2>
+        <p class="text-ivory-300 text-sm max-w-md mx-auto">Leave your blessings and warm messages for Roger &amp;
+          Janine.
+        </p>
+      </div>
 
-          <!-- Guest Details -->
-          <div>
-            <label class="block text-xs uppercase tracking-widest text-slate-400 font-semibold mb-2">Full Name *</label>
-            <input type="text" id="rsvp-name" required placeholder="e.g. Juan Cruz"
-              class="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-luxury-accent">
-          </div>
-
-          <button type="submit"
-            class="w-full py-4 rounded-xl bg-gold hover:bg-white text-black font-bold text-xs uppercase tracking-widest transition-all shadow-xl">
-            Submit RSVP Confirmation
+      <!-- Add Note Box -->
+      <div class="glass-dark p-6 rounded-2xl border border-white/10 mb-8 space-y-4">
+        <h3 class="font-display text-lg text-white">Write in our Guestbook</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <input type="text" id="gbAuthor" placeholder="Your Name"
+            class="bg-noir-900/80 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-ivory-100 focus:outline-none focus:border-gold">
+          <input type="text" id="gbLocation" placeholder="Your City / Relation (e.g., Manila, Cousin)"
+            class="bg-noir-900/80 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-ivory-100 focus:outline-none focus:border-gold">
+        </div>
+        <textarea id="gbContent" rows="3" placeholder="Write your heartfelt note here..."
+          class="w-full bg-noir-900/80 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-ivory-100 focus:outline-none focus:border-gold resize-none"></textarea>
+        <div class="flex justify-end">
+          <button onclick="addGuestbookNote()"
+            class="bg-gold hover:bg-gold-light text-noir-900 font-semibold text-xs uppercase tracking-widest px-6 py-2.5 rounded-full transition-all flex items-center gap-2">
+            <i data-lucide="plus" class="w-4 h-4"></i>
+            <span>Post Note</span>
           </button>
-        </form>
+        </div>
       </div>
-    </div>
-  </section>
 
-  <!-- Guestbook Section -->
-  <section id="guestbook" class="py-24 px-4 max-w-4xl mx-auto">
-    <div class="text-center space-y-3 mb-12">
-      <span class="text-gold uppercase tracking-[0.2em] text-xs font-semibold">Love Notes</span>
-      <h2 class="font-display text-4xl md:text-5xl">Live Guestbook</h2>
-      <p class="text-ivory-300 text-sm max-w-md mx-auto">Leave your blessings and warm messages for Roger &amp; Janine.
-      </p>
-    </div>
-
-    <!-- Add Note Box -->
-    <div class="glass-dark p-6 rounded-2xl border border-white/10 mb-8 space-y-4">
-      <h3 class="font-display text-lg text-white">Write in our Guestbook</h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <input type="text" id="gbAuthor" placeholder="Your Name"
-          class="bg-noir-900/80 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-ivory-100 focus:outline-none focus:border-gold">
-        <input type="text" id="gbLocation" placeholder="Your City / Relation (e.g., Manila, Cousin)"
-          class="bg-noir-900/80 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-ivory-100 focus:outline-none focus:border-gold">
+      <!-- Notes List Feed -->
+      <div id="guestbookFeed" class="space-y-4">
+        <!-- Dynamic Javascript render here -->
       </div>
-      <textarea id="gbContent" rows="3" placeholder="Write your heartfelt note here..."
-        class="w-full bg-noir-900/80 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-ivory-100 focus:outline-none focus:border-gold resize-none"></textarea>
-      <div class="flex justify-end">
-        <button onclick="addGuestbookNote()"
-          class="bg-gold hover:bg-gold-light text-noir-900 font-semibold text-xs uppercase tracking-widest px-6 py-2.5 rounded-full transition-all flex items-center gap-2">
-          <i data-lucide="plus" class="w-4 h-4"></i>
-          <span>Post Note</span>
-        </button>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/10 text-center text-ivory-300 text-xs tracking-widest uppercase">
+      <div class="max-w-7xl mx-auto px-4 space-y-4">
+        <h3 class="font-display text-2xl text-white tracking-widest">Roger &amp; Janine</h3>
+        <p class="text-gold font-serif italic text-base capitalize">#RogerFoundHisJanine • Feb 06, 2027</p>
+        <p class="text-white/40 pt-4">&copy; 2027 Roger &amp; Janine Wedding Celebration. Crafted with love.</p>
       </div>
-    </div>
+    </footer>
 
-    <!-- Notes List Feed -->
-    <div id="guestbookFeed" class="space-y-4">
-      <!-- Dynamic Javascript render here -->
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="py-12 border-t border-white/10 text-center text-ivory-300 text-xs tracking-widest uppercase">
-    <div class="max-w-7xl mx-auto px-4 space-y-4">
-      <h3 class="font-display text-2xl text-white tracking-widest">Roger &amp; Janine</h3>
-      <p class="text-gold font-serif italic text-base capitalize">#RogerFoundHisJanine • Feb 06, 2027</p>
-      <p class="text-white/40 pt-4">&copy; 2027 Roger &amp; Janine Wedding Celebration. Crafted with love.</p>
-    </div>
-  </footer>
-
-  <!-- FAQ Section -->
-  <!--
+    <!-- FAQ Section -->
+    <!--
     <section id="faq" class="narrow">
       <p class="eyebrow">A few helpful details</p>
       <h2>Before you celebrate with us</h2>
@@ -736,7 +740,7 @@
           through the number or message thread used for your invitation.</p>
       </details>
     </section>
-  -->
+  
 
 
     <section id="rsvp" class="narrow">
@@ -784,198 +788,198 @@
   <footer>
     <p>Roger & Janine</p>
     <p class="small">February 6, 2027 · With faith, love, and grateful hearts.</p>
-  </footer>
+  </footer> -->
 
-  <!-- MODAL 1: Event Details & Dress Code Modal -->
-  <div id="eventDetailModal"
-    class="fixed inset-0 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
-    <div class="absolute inset-0 bg-black/80 backdrop-blur-md" onclick="closeEventDetailModal()"></div>
-    <div
-      class="relative glass-dark border border-white/20 rounded-3xl max-w-2xl w-full p-6 sm:p-8 max-h-[90vh] overflow-y-auto space-y-6 text-left shadow-2xl modal-content">
-      <button onclick="closeEventDetailModal()" class="absolute top-5 right-5 text-ivory-300 hover:text-white">
-        <i data-lucide="x" class="w-6 h-6"></i>
-      </button>
+    <!-- MODAL 1: Event Details & Dress Code Modal -->
+    <div id="eventDetailModal"
+      class="fixed inset-0 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+      <div class="absolute inset-0 bg-black/80 backdrop-blur-md" onclick="closeEventDetailModal()"></div>
+      <div
+        class="relative glass-dark border border-white/20 rounded-3xl max-w-2xl w-full p-6 sm:p-8 max-h-[90vh] overflow-y-auto space-y-6 text-left shadow-2xl modal-content">
+        <button onclick="closeEventDetailModal()" class="absolute top-5 right-5 text-ivory-300 hover:text-white">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
 
-      <div class="border-b border-white/10 pb-4">
-        <span class="text-gold uppercase tracking-widest text-xs font-semibold">Event Guidelines</span>
-        <h3 class="font-display text-3xl text-white mt-1">Ceremony &amp; Reception Details</h3>
-      </div>
-
-      <!-- Section: Dress Code -->
-      <div class="space-y-2">
-        <div class="flex items-center gap-2 text-gold font-semibold text-sm uppercase tracking-wider">
-          <i data-lucide="user-check" class="w-4 h-4"></i>
-          <span>Dress Code: Black Tie / Formal Monochrome</span>
+        <div class="border-b border-white/10 pb-4">
+          <span class="text-gold uppercase tracking-widest text-xs font-semibold">Event Guidelines</span>
+          <h3 class="font-display text-3xl text-white mt-1">Ceremony &amp; Reception Details</h3>
         </div>
-        <p class="text-ivory-200 text-sm leading-relaxed font-serif">
-          We kindly request our guests to dress in formal attire following our palette:
+
+        <!-- Section: Dress Code -->
+        <div class="space-y-2">
+          <div class="flex items-center gap-2 text-gold font-semibold text-sm uppercase tracking-wider">
+            <i data-lucide="user-check" class="w-4 h-4"></i>
+            <span>Dress Code: Black Tie / Formal Monochrome</span>
+          </div>
+          <p class="text-ivory-200 text-sm leading-relaxed font-serif">
+            We kindly request our guests to dress in formal attire following our palette:
+          </p>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
+            <div class="bg-noir-900 p-3 rounded-xl border border-white/10 text-center text-xs">
+              <span class="font-semibold text-white block">Gentlemen</span>
+              <span class="text-ivory-300 text-[11px]">Classic Black Tuxedo / Dark Suit &amp; Bowtie</span>
+            </div>
+            <div class="bg-noir-900 p-3 rounded-xl border border-white/10 text-center text-xs">
+              <span class="font-semibold text-white block">Ladies</span>
+              <span class="text-ivory-300 text-[11px]">Floor-length Black, Ivory, or Champagne Gown</span>
+            </div>
+            <div class="bg-noir-900 p-3 rounded-xl border border-white/10 text-center text-xs col-span-2 sm:col-span-1">
+              <span class="font-semibold text-gold block">Kindly Avoid</span>
+              <span class="text-ivory-300 text-[11px]">Casual Jeans, Sneakers &amp; Neon Colors</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section: Parking & Transportation -->
+        <div class="space-y-2 pt-2 border-t border-white/10">
+          <div class="flex items-center gap-2 text-gold font-semibold text-sm uppercase tracking-wider">
+            <i data-lucide="car" class="w-4 h-4"></i>
+            <span>Parking &amp; Transportation Tips</span>
+          </div>
+          <ul class="text-ivory-300 text-xs space-y-2 list-disc list-inside leading-relaxed font-serif">
+            <li>Complimentary valet parking is available at the Grand Ballroom main entrance.</li>
+            <li>Shuttle services will run between St. Andrew Cathedral and the Reception venue every 15 minutes
+              post-ceremony.</li>
+            <li>Rideshare drops (Grab/Taxi) are directly accessible at Gate 2.</li>
+          </ul>
+        </div>
+
+        <!-- Section: Location Links -->
+        <div class="pt-4 flex flex-col sm:flex-row gap-3">
+          <a href="https://maps.google.com" target="_blank" rel="noopener"
+            class="flex-1 bg-white/10 hover:bg-gold hover:text-noir-900 border border-white/20 text-white text-xs font-semibold uppercase tracking-widest py-3 rounded-xl text-center transition-all flex items-center justify-center gap-2">
+            <i data-lucide="map" class="w-4 h-4"></i>
+            <span>Open Ceremony Map</span>
+          </a>
+          <a href="https://maps.google.com" target="_blank" rel="noopener"
+            class="flex-1 bg-white/10 hover:bg-gold hover:text-noir-900 border border-white/20 text-white text-xs font-semibold uppercase tracking-widest py-3 rounded-xl text-center transition-all flex items-center justify-center gap-2">
+            <i data-lucide="map-pin" class="w-4 h-4"></i>
+            <span>Open Reception Map</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL 2: Digital Envelope Gift Modal -->
+    <div id="giftModal"
+      class="fixed inset-0 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+      <div class="absolute inset-0 bg-black/80 backdrop-blur-md" onclick="closeGiftModal()"></div>
+      <div
+        class="relative glass-dark border border-white/20 rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-6 text-center shadow-2xl modal-content">
+        <button onclick="closeGiftModal()" class="absolute top-5 right-5 text-ivory-300 hover:text-white">
+          <i data-lucide="x" class="w-6 h-6"></i>
+        </button>
+
+        <div class="w-12 h-12 rounded-full bg-gold/20 text-gold mx-auto flex items-center justify-center">
+          <i data-lucide="credit-card" class="w-6 h-6"></i>
+        </div>
+
+        <div>
+          <h3 class="font-display text-2xl text-white">Digital Gift Envelope</h3>
+          <p class="text-ivory-300 text-xs mt-1">Thank you for showering us with love &amp; blessings.</p>
+        </div>
+
+        <!-- GCash / Bank Cards -->
+        <div class="space-y-4 text-left">
+          <!-- GCash -->
+          <div class="bg-noir-900 p-4 rounded-2xl border border-white/10 flex items-center justify-between">
+            <div>
+              <span class="text-xs text-gold uppercase tracking-widest font-mono">GCash / Maya</span>
+              <p class="text-white font-medium text-sm">Roger Santos</p>
+              <p id="gcashNum" class="text-ivory-300 font-mono text-xs">0917 123 4567</p>
+            </div>
+            <button onclick="copyToClipboard('09171234567', 'GCash Number')"
+              class="bg-white/10 hover:bg-gold hover:text-noir-900 text-white p-2.5 rounded-xl transition-all"
+              title="Copy Number">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <!-- Bank Account -->
+          <div class="bg-noir-900 p-4 rounded-2xl border border-white/10 flex items-center justify-between">
+            <div>
+              <span class="text-xs text-gold uppercase tracking-widest font-mono">BPI Bank Account</span>
+              <p class="text-white font-medium text-sm">Janine Reyes</p>
+              <p id="bpiNum" class="text-ivory-300 font-mono text-xs">1234 5678 9012</p>
+            </div>
+            <button onclick="copyToClipboard('123456789012', 'Bank Account Number')"
+              class="bg-white/10 hover:bg-gold hover:text-noir-900 text-white p-2.5 rounded-xl transition-all"
+              title="Copy Account Number">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <p class="text-ivory-300/60 text-xs italic font-serif">
+          "Your warm wishes and presence are all we truly ask for!"
         </p>
-        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2">
-          <div class="bg-noir-900 p-3 rounded-xl border border-white/10 text-center text-xs">
-            <span class="font-semibold text-white block">Gentlemen</span>
-            <span class="text-ivory-300 text-[11px]">Classic Black Tuxedo / Dark Suit &amp; Bowtie</span>
-          </div>
-          <div class="bg-noir-900 p-3 rounded-xl border border-white/10 text-center text-xs">
-            <span class="font-semibold text-white block">Ladies</span>
-            <span class="text-ivory-300 text-[11px]">Floor-length Black, Ivory, or Champagne Gown</span>
-          </div>
-          <div class="bg-noir-900 p-3 rounded-xl border border-white/10 text-center text-xs col-span-2 sm:col-span-1">
-            <span class="font-semibold text-gold block">Kindly Avoid</span>
-            <span class="text-ivory-300 text-[11px]">Casual Jeans, Sneakers &amp; Neon Colors</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Section: Parking & Transportation -->
-      <div class="space-y-2 pt-2 border-t border-white/10">
-        <div class="flex items-center gap-2 text-gold font-semibold text-sm uppercase tracking-wider">
-          <i data-lucide="car" class="w-4 h-4"></i>
-          <span>Parking &amp; Transportation Tips</span>
-        </div>
-        <ul class="text-ivory-300 text-xs space-y-2 list-disc list-inside leading-relaxed font-serif">
-          <li>Complimentary valet parking is available at the Grand Ballroom main entrance.</li>
-          <li>Shuttle services will run between St. Andrew Cathedral and the Reception venue every 15 minutes
-            post-ceremony.</li>
-          <li>Rideshare drops (Grab/Taxi) are directly accessible at Gate 2.</li>
-        </ul>
-      </div>
-
-      <!-- Section: Location Links -->
-      <div class="pt-4 flex flex-col sm:flex-row gap-3">
-        <a href="https://maps.google.com" target="_blank" rel="noopener"
-          class="flex-1 bg-white/10 hover:bg-gold hover:text-noir-900 border border-white/20 text-white text-xs font-semibold uppercase tracking-widest py-3 rounded-xl text-center transition-all flex items-center justify-center gap-2">
-          <i data-lucide="map" class="w-4 h-4"></i>
-          <span>Open Ceremony Map</span>
-        </a>
-        <a href="https://maps.google.com" target="_blank" rel="noopener"
-          class="flex-1 bg-white/10 hover:bg-gold hover:text-noir-900 border border-white/20 text-white text-xs font-semibold uppercase tracking-widest py-3 rounded-xl text-center transition-all flex items-center justify-center gap-2">
-          <i data-lucide="map-pin" class="w-4 h-4"></i>
-          <span>Open Reception Map</span>
-        </a>
       </div>
     </div>
-  </div>
 
-  <!-- MODAL 2: Digital Envelope Gift Modal -->
-  <div id="giftModal"
-    class="fixed inset-0 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
-    <div class="absolute inset-0 bg-black/80 backdrop-blur-md" onclick="closeGiftModal()"></div>
-    <div
-      class="relative glass-dark border border-white/20 rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-6 text-center shadow-2xl modal-content">
-      <button onclick="closeGiftModal()" class="absolute top-5 right-5 text-ivory-300 hover:text-white">
-        <i data-lucide="x" class="w-6 h-6"></i>
+    <!-- MODAL 3: Lightbox Image Viewer Modal -->
+    <div id="lightboxModal"
+      class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 opacity-0 pointer-events-none transition-opacity duration-300">
+      <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white hover:text-gold z-50">
+        <i data-lucide="x" class="w-8 h-8"></i>
+      </button>
+      <button onclick="prevLightbox()"
+        class="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gold z-50 p-2 bg-black/40 rounded-full">
+        <i data-lucide="chevron-left" class="w-8 h-8"></i>
+      </button>
+      <button onclick="nextLightbox()"
+        class="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gold z-50 p-2 bg-black/40 rounded-full">
+        <i data-lucide="chevron-right" class="w-8 h-8"></i>
       </button>
 
-      <div class="w-12 h-12 rounded-full bg-gold/20 text-gold mx-auto flex items-center justify-center">
-        <i data-lucide="credit-card" class="w-6 h-6"></i>
+      <div class="max-w-4xl w-full max-h-[85vh] flex flex-col items-center justify-center">
+        <img id="lightboxImg" src="" alt="Expanded View"
+          class="max-h-[75vh] max-w-full rounded-2xl object-contain shadow-2xl border border-white/10">
+        <p id="lightboxCaption" class="text-gold font-serif italic text-lg mt-4 text-center"></p>
       </div>
+    </div>
 
-      <div>
-        <h3 class="font-display text-2xl text-white">Digital Gift Envelope</h3>
-        <p class="text-ivory-300 text-xs mt-1">Thank you for showering us with love &amp; blessings.</p>
-      </div>
+    <!-- MODAL 4: RSVP Confirmation Modal -->
+    <div id="rsvpModal"
+      class="fixed inset-0 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+      <div class="absolute inset-0 bg-black/80 backdrop-blur-md" onclick="closeRSVPModal()"></div>
+      <div
+        class="relative glass-dark border border-white/20 rounded-3xl max-w-md w-full p-8 text-center space-y-6 shadow-2xl modal-content">
+        <div class="w-16 h-16 rounded-full bg-gold/20 text-gold mx-auto flex items-center justify-center">
+          <i data-lucide="check" class="w-8 h-8"></i>
+        </div>
 
-      <!-- GCash / Bank Cards -->
-      <div class="space-y-4 text-left">
-        <!-- GCash -->
-        <div class="bg-noir-900 p-4 rounded-2xl border border-white/10 flex items-center justify-between">
-          <div>
-            <span class="text-xs text-gold uppercase tracking-widest font-mono">GCash / Maya</span>
-            <p class="text-white font-medium text-sm">Roger Santos</p>
-            <p id="gcashNum" class="text-ivory-300 font-mono text-xs">0917 123 4567</p>
+        <div class="space-y-2">
+          <h3 class="font-display text-3xl text-white">RSVP Received!</h3>
+          <p class="text-ivory-200 text-sm font-serif">Thank you, <span id="confirmName"
+              class="text-gold font-semibold"></span>!</p>
+        </div>
+
+        <div class="bg-noir-900 p-4 rounded-2xl border border-white/10 text-left text-xs space-y-2">
+          <div class="flex justify-between text-ivory-300">
+            <span>Status:</span>
+            <span id="confirmStatus" class="text-gold font-semibold"></span>
           </div>
-          <button onclick="copyToClipboard('09171234567', 'GCash Number')"
-            class="bg-white/10 hover:bg-gold hover:text-noir-900 text-white p-2.5 rounded-xl transition-all"
-            title="Copy Number">
-            <i data-lucide="copy" class="w-4 h-4"></i>
-          </button>
-        </div>
-
-        <!-- Bank Account -->
-        <div class="bg-noir-900 p-4 rounded-2xl border border-white/10 flex items-center justify-between">
-          <div>
-            <span class="text-xs text-gold uppercase tracking-widest font-mono">BPI Bank Account</span>
-            <p class="text-white font-medium text-sm">Janine Reyes</p>
-            <p id="bpiNum" class="text-ivory-300 font-mono text-xs">1234 5678 9012</p>
+          <div class="flex justify-between text-ivory-300">
+            <span>Guests Reserved:</span>
+            <span id="confirmGuests" class="text-white font-semibold"></span>
           </div>
-          <button onclick="copyToClipboard('123456789012', 'Bank Account Number')"
-            class="bg-white/10 hover:bg-gold hover:text-noir-900 text-white p-2.5 rounded-xl transition-all"
-            title="Copy Account Number">
-            <i data-lucide="copy" class="w-4 h-4"></i>
-          </button>
         </div>
-      </div>
 
-      <p class="text-ivory-300/60 text-xs italic font-serif">
-        "Your warm wishes and presence are all we truly ask for!"
-      </p>
+        <p class="text-ivory-300 text-xs">We can't wait to celebrate our big day with you on Feb 6, 2027!</p>
+
+        <button onclick="closeRSVPModal()"
+          class="w-full bg-gold hover:bg-gold-light text-noir-900 font-semibold text-xs tracking-widest uppercase py-3.5 rounded-xl transition-all">
+          Close Window
+        </button>
+      </div>
     </div>
-  </div>
 
-  <!-- MODAL 3: Lightbox Image Viewer Modal -->
-  <div id="lightboxModal"
-    class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 opacity-0 pointer-events-none transition-opacity duration-300">
-    <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white hover:text-gold z-50">
-      <i data-lucide="x" class="w-8 h-8"></i>
-    </button>
-    <button onclick="prevLightbox()"
-      class="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:text-gold z-50 p-2 bg-black/40 rounded-full">
-      <i data-lucide="chevron-left" class="w-8 h-8"></i>
-    </button>
-    <button onclick="nextLightbox()"
-      class="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:text-gold z-50 p-2 bg-black/40 rounded-full">
-      <i data-lucide="chevron-right" class="w-8 h-8"></i>
-    </button>
-
-    <div class="max-w-4xl w-full max-h-[85vh] flex flex-col items-center justify-center">
-      <img id="lightboxImg" src="" alt="Expanded View"
-        class="max-h-[75vh] max-w-full rounded-2xl object-contain shadow-2xl border border-white/10">
-      <p id="lightboxCaption" class="text-gold font-serif italic text-lg mt-4 text-center"></p>
+    <!-- Toast Notification Bar -->
+    <div id="toast"
+      class="fixed top-20 right-6 z-50 transform translate-x-full transition-transform duration-300 glass-dark border border-gold/40 text-ivory-100 px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 text-xs">
+      <i data-lucide="check-circle" class="w-4 h-4 text-gold"></i>
+      <span id="toastMsg">Copied to clipboard!</span>
     </div>
-  </div>
-
-  <!-- MODAL 4: RSVP Confirmation Modal -->
-  <div id="rsvpModal"
-    class="fixed inset-0 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
-    <div class="absolute inset-0 bg-black/80 backdrop-blur-md" onclick="closeRSVPModal()"></div>
-    <div
-      class="relative glass-dark border border-white/20 rounded-3xl max-w-md w-full p-8 text-center space-y-6 shadow-2xl modal-content">
-      <div class="w-16 h-16 rounded-full bg-gold/20 text-gold mx-auto flex items-center justify-center">
-        <i data-lucide="check" class="w-8 h-8"></i>
-      </div>
-
-      <div class="space-y-2">
-        <h3 class="font-display text-3xl text-white">RSVP Received!</h3>
-        <p class="text-ivory-200 text-sm font-serif">Thank you, <span id="confirmName"
-            class="text-gold font-semibold"></span>!</p>
-      </div>
-
-      <div class="bg-noir-900 p-4 rounded-2xl border border-white/10 text-left text-xs space-y-2">
-        <div class="flex justify-between text-ivory-300">
-          <span>Status:</span>
-          <span id="confirmStatus" class="text-gold font-semibold"></span>
-        </div>
-        <div class="flex justify-between text-ivory-300">
-          <span>Guests Reserved:</span>
-          <span id="confirmGuests" class="text-white font-semibold"></span>
-        </div>
-      </div>
-
-      <p class="text-ivory-300 text-xs">We can't wait to celebrate our big day with you on Feb 6, 2027!</p>
-
-      <button onclick="closeRSVPModal()"
-        class="w-full bg-gold hover:bg-gold-light text-noir-900 font-semibold text-xs tracking-widest uppercase py-3.5 rounded-xl transition-all">
-        Close Window
-      </button>
-    </div>
-  </div>
-
-  <!-- Toast Notification Bar -->
-  <div id="toast"
-    class="fixed top-20 right-6 z-50 transform translate-x-full transition-transform duration-300 glass-dark border border-gold/40 text-ivory-100 px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 text-xs">
-    <i data-lucide="check-circle" class="w-4 h-4 text-gold"></i>
-    <span id="toastMsg">Copied to clipboard!</span>
-  </div>
 
 
 
@@ -983,6 +987,7 @@
 
 
 
-</main>
+  </main>
 </body>
+
 </html>
