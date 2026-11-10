@@ -506,12 +506,10 @@ function handleRSVPSubmit(e) {
   const name = document.getElementById('rsvpName').value.trim();
   const status = document.getElementById('rsvpStatus').value;
   const guests = document.getElementById('rsvpGuests').value;
-  const dietary = document.getElementById('rsvpDietary').value;
-  const song = document.getElementById('rsvpSong').value;
   const message = document.getElementById('rsvpMessage').value;
 
   const rsvpData = {
-    name, status, guests, dietary, song, message, timestamp: new Date().toISOString()
+    name, status, guests, message, timestamp: new Date().toISOString()
   };
 
   // Save to LocalStorage
@@ -713,6 +711,32 @@ function renderGuestbookFeed(notes) {
   });
 
   lucide.createIcons();
+}
+
+function saveGuestbookEntry(author, location, text) {
+  let notes = JSON.parse(localStorage.getItem('wedding_guestbook') || JSON.stringify(defaultNotes));
+  notes.unshift({
+    author: author,
+    location: location || "Dear Friend",
+    text: text,
+    time: "Just now",
+    likes: 0
+  });
+  localStorage.setItem('wedding_guestbook', JSON.stringify(notes));
+  renderGuestbookFeed(notes);
+}
+
+function escapeHTML(str) {
+  if (!str) return '';
+  return String(str).replace(/[&<>'"]/g, 
+    tag => ({
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;',
+      "'": '&#39;',
+      '"': '&quot;'
+    }[tag] || tag)
+  );
 }
 
 async function addGuestbookNote() {
