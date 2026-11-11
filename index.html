@@ -644,13 +644,13 @@
                   class="relative flex items-center justify-center p-3 sm:p-4 min-h-14 rounded-2xl border border-white/10 cursor-pointer hover:border-gold transition-all bg-white/5">
                   <input type="radio" name="main-status" value="attending" checked class="sr-only peer">
                   <span
-                    class="peer-checked:text-rose-400 text-[11px] sm:text-xs uppercase tracking-wide sm:tracking-widest font-semibold flex flex-wrap items-center justify-center text-center gap-1 leading-relaxed">
+                    class="peer-checked:text-gold text-xs uppercase tracking-widest font-semibold flex items-center">
                     <i class="fas fa-check-circle mr-2"></i> Joyfully Accept
                   </span>
                 </label>
 
                 <label
-                  class="relative flex items-center justify-center p-4 rounded-2xl border border-white/10 cursor-pointer hover:border-rose-400 transition-all bg-white/5">
+                  class="peer-checked:text-rose-400 text-[11px] sm:text-xs uppercase tracking-wide sm:tracking-widest font-semibold flex flex-wrap items-center justify-center text-center gap-1 leading-relaxed">
                   <input type="radio" name="main-status" value="declining" class="sr-only peer">
                   <span
                     class="peer-checked:text-rose-400 text-xs uppercase tracking-widest font-semibold flex items-center">
@@ -864,8 +864,8 @@
     </div>
 
     <!-- Toast Notification Bar -->
-    <div id="toast"
-      class="fixed top-20 left-4 right-4 sm:left-auto sm:right-6 w-auto sm:w-96 max-w-[calc(100vw-2rem)] z-[100] transform translate-x-full transition-transform duration-300 glass-dark border border-gold/40 text-ivory-100 px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 text-xs max-w-sm whitespace-normal leading-relaxed">
+    <div id="toast" role="status" aria-live="polite"
+      class="fixed top-20 left-4 right-4 sm:left-auto sm:right-6 sm:w-96 max-w-[calc(100vw-2rem)] z-[100] opacity-0 pointer-events-none transition-opacity duration-300 bg-noir-800 border border-gold/40 rounded-xl shadow-2xl p-4">
       <i data-lucide="check-circle" class="w-4 h-4 text-gold"></i>
       <span id="toastMsg">Copied to clipboard!</span>
     </div>

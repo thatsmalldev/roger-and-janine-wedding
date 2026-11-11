@@ -535,14 +535,31 @@ function copyToClipboard(text, label) {
   showToast(`Copied ${label} to clipboard!`);
 }
 
+
+let toastTimeout;
+
 function showToast(msg) {
   const toast = document.getElementById('toast');
-  document.getElementById('toastMsg').textContent = msg;
+  const toastMsg = document.getElementById('toastMsg');
 
-  toast.classList.remove('opacity-0', 'pointer-events-none');
+  if (!toast || !toastMsg) return;
+
+  toastMsg.textContent = msg;
+
+  // Cancel any previous dismissal timer
+  clearTimeout(toastTimeout);
+
+  // Show the toast
+  toast.classList.remove(
+    'opacity-0',
+    'pointer-events-none',
+    'translate-x-full'
+  );
+
   toast.classList.add('opacity-100');
 
-  setTimeout(() => {
+  // Hide after 6 seconds
+  toastTimeout = setTimeout(() => {
     toast.classList.remove('opacity-100');
     toast.classList.add('opacity-0', 'pointer-events-none');
   }, 6000);
