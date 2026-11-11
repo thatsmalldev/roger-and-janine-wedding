@@ -315,6 +315,11 @@
       current.guest.revision = data.revision;
       current.guest.rsvp_status = status; current.guest.plus_ones = companions;
       if (typeof window.refreshWeddingCommunity === 'function') window.refreshWeddingCommunity();
+      openRSVPConfirmation({
+        name: `${current.guest.first_name} ${current.guest.last_name}`,
+        status,
+        guests: status === 'attending' ? 1 + companions.length : 0
+      });
       message('save-message', status === 'attending' ?
         'Your response has been saved. We’re looking forward to celebrating with you! — Roger & Janine' :
         'Your response has been saved. We’ll miss you, and we’re grateful for your love and prayers. — Roger & Janine', 'success');
@@ -376,7 +381,6 @@ window.addEventListener('DOMContentLoaded', () => {
     lucide.createIcons();
   }
   loadGuestbook();
-  refreshRSVPViewer();
 });
 
 /* ===================================================
@@ -504,138 +508,24 @@ function showToast(msg) {
   }, 3000);
 }
 
-/* ===================================================
-   5. RSVP FORM SYSTEM & LOCALSTORAGE
-   =================================================== */
-function handleRSVPSubmit(e) {
-  e.preventDefault();
-
-  const name = document.getElementById('rsvpName').value.trim();
-  const status = document.getElementById('rsvpStatus').value;
-  const guests = document.getElementById('rsvpGuests').value;
-  const message = document.getElementById('rsvpMessage').value;
-
-  const rsvpData = {
-    name, status, guests, message, timestamp: new Date().toISOString()
-  };
-
-  // Save to LocalStorage
-  let existingRSVPs = JSON.parse(localStorage.getItem('wedding_rsvps') || '[]');
-  existingRSVPs.push(rsvpData);
-  localStorage.setItem('wedding_rsvps', JSON.stringify(existingRSVPs));
-
-
-  // Display Modal Confirmation
-  document.getElementById('confirmName').innerText = name;
-  document.getElementById('confirmStatus').innerText = status;
-  document.getElementById('confirmGuests').innerText = guests;
-
-  // Update Inspector UI
-  refreshRSVPViewer();
-
+function openRSVPConfirmation({ name, status, guests }) {
   const modal = document.getElementById('rsvpModal');
+  if (!modal) return;
+  document.getElementById('confirmName').textContent = name;
+  document.getElementById('confirmStatus').textContent =
+    status === 'attending' ? 'Joyfully Accepted' : 'Regretfully Declined';
+  document.getElementById('confirmGuests').textContent = String(guests);
+  document.getElementById('rsvp-modal-title').textContent =
+    status === 'attending' ? 'RSVP Confirmed!' : 'Response Received';
+  document.getElementById('rsvp-modal-note').textContent = status === 'attending'
+    ? 'We look forward to celebrating with you on February 6, 2027!'
+    : 'Thank you for letting us know. We appreciate your love and prayers.';
   modal.classList.remove('opacity-0', 'pointer-events-none');
   modal.classList.add('opacity-100', 'pointer-events-auto');
-
-  // Reset form
-  document.getElementById('rsvpForm').reset();
-}
-
-/* ===================================================
-   5b. LOCALSTORAGE INSPECTOR & HELPER FUNCTIONS
-   =================================================== */
-/* ===================================================
-   5b. LOCALSTORAGE INSPECTOR & HELPER FUNCTIONS
-   =================================================== */
-function refreshRSVPViewer() {
-  const viewer = document.getElementById('localStorageViewer');
-  const badge = document.getElementById('rsvpCounterBadge');
-  const rsvps = JSON.parse(localStorage.getItem('wedding_rsvps') || '[]');
-
-  if (badge) {
-    badge.innerText = `${rsvps.length} ${rsvps.length === 1 ? 'Entry' : 'Entries'}`;
-  }
-
-  if (!viewer) return;
-
-  if (rsvps.length === 0) {
-    viewer.innerHTML = `<p class="text-ivory-300/40 text-xs text-center py-6 italic font-serif">No RSVPs stored yet. Fill out the form above to see entries populate here!</p>`;
-    return;
-  }
-
-  viewer.innerHTML = '';
-  rsvps.forEach((item, index) => {
-    const div = document.createElement('div');
-    div.className = "p-3 bg-noir-800 rounded-xl border border-white/5 space-y-1 text-xs";
-    div.innerHTML = `
-      <div class="flex justify-between items-center text-white font-medium">
-        <span>#${index + 1} ${escapeHTML(item.name)}</span>
-        <span class="text-gold text-[10px] uppercase font-mono">${escapeHTML(item.status)}</span>
-      </div>
-      <div class="text-[11px] text-ivory-300/70 flex justify-between">
-        <span>Guests: ${item.guests} | Dietary: ${escapeHTML(item.dietary || 'None')}</span>
-        <span class="text-ivory-300/40 text-[9px] font-mono">${new Date(item.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
-      </div>
-    `;
-    viewer.appendChild(div);
-  });
-  if (window.lucide) {
-    lucide.createIcons();
-  }
-}
-
-function clearRSVPLocalStorage() {
-  if (confirm("Are you sure you want to clear all stored RSVP entries?")) {
-    localStorage.removeItem('wedding_rsvps');
-    refreshRSVPViewer();
-    showToast("RSVP LocalStorage cleared!");
-  }
-}
-
-/* ===================================================
-   5c. EXPORT RSVPs TO EXCEL (CSV FILE GENERATOR)
-   =================================================== */
-function exportRSVPToExcel() {
-  const rsvps = JSON.parse(localStorage.getItem('wedding_rsvps') || '[]');
-
-  if (rsvps.length === 0) {
-    showToast("No RSVP entries to export yet!");
-    return;
-  }
-
-  // 1. Define Excel CSV Headers
-  const headers = ["#", "Name", "Status", "Guests", "Dietary Restrictions", "Song Request", "Message", "Submission Time"];
-
-  // 2. Format rows as CSV string
-  const csvRows = [headers.join(",")];
-
-  rsvps.forEach((item, idx) => {
-    const row = [
-      idx + 1,
-      `"${(item.name || '').replace(/"/g, '""')}"`,
-      `"${(item.status || '').replace(/"/g, '""')}"`,
-      `"${(item.guests || '').replace(/"/g, '""')}"`,
-      `"${(item.dietary || '').replace(/"/g, '""')}"`,
-      `"${(item.song || '').replace(/"/g, '""')}"`,
-      `"${(item.message || '').replace(/"/g, '""')}"`,
-      `"${new Date(item.timestamp).toLocaleString()}"`
-    ];
-    csvRows.push(row.join(","));
-  });
-
-  const csvString = "\uFEFF" + csvRows.join("\n"); // UTF-8 BOM for Excel special character support
-
-  // 3. Trigger automatic browser file download
-  const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement('a');
-  link.setAttribute('href', url);
-  link.setAttribute('download', `Roger_Janine_Wedding_RSVP_List_${new Date().toISOString().slice(0, 10)}.csv`);
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-
-  showToast("RSVP list exported to Excel CSV successfully!");
+  modal.setAttribute('role', 'dialog');
+  modal.setAttribute('aria-modal', 'true');
+  modal.setAttribute('aria-label', 'RSVP confirmation');
+  modal.querySelector('button[onclick="closeRSVPModal()"]')?.focus();
 }
 
 function closeRSVPModal() {
@@ -844,7 +734,6 @@ animateParticles();
 // Initialize Page
 function initializePage() {
   loadGuestbook();
-  refreshRSVPViewer();
 }
 
 if (document.readyState === 'loading') {
