@@ -489,17 +489,7 @@ function prevLightbox() {
 /* ===================================================
    3. EVENT DETAIL & GIFT MODALS
    =================================================== */
-function openEventDetailModal() {
-  const m = document.getElementById('eventDetailModal');
-  m.classList.remove('opacity-0', 'pointer-events-none');
-  m.classList.add('opacity-100', 'pointer-events-auto');
-}
 
-function closeEventDetailModal() {
-  const m = document.getElementById('eventDetailModal');
-  m.classList.remove('opacity-100', 'pointer-events-auto');
-  m.classList.add('opacity-0', 'pointer-events-none');
-}
 
 function openGiftModal() {
   const m = document.getElementById('giftModal');
