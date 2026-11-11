@@ -555,12 +555,30 @@
           a monetary blessing towards our dream home and future together would be deeply appreciated."
         </p>
 
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button onclick="openGiftModal()"
-            class="bg-gold hover:bg-gold-light text-noir-900 font-semibold text-xs tracking-widest uppercase px-8 py-4 rounded-full shadow-lg transition-all duration-300 inline-flex items-center gap-2">
-            <i data-lucide="qr-code" class="w-4 h-4"></i>
-            <span>View Digital Envelope &amp; QR Codes</span>
-          </button>
+        <!-- QR codes displayed directly for easy access -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-2xl mx-auto">
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
+            <h3 class="font-display text-xl text-gold mb-4">GCash</h3>
+            <img src="images/gcash-qr.png" alt="GCash gift payment QR code"
+              class="w-48 h-48 max-w-full object-contain mx-auto bg-white rounded-xl p-2 mb-4">
+            <p class="text-ivory-300 text-xs mb-4">Scan using your GCash app</p>
+            <a href="images/gcash-qr.png" download="Roger-Janine-GCash-QR.png"
+              class="inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-light text-noir-900 font-semibold text-xs tracking-wider uppercase px-5 py-3 rounded-full transition-colors">
+              <i data-lucide="download" class="w-4 h-4"></i>
+              Download QR Code
+            </a>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
+            <h3 class="font-display text-xl text-gold mb-4">BDO Transfer</h3>
+            <img src="images/bdo-qr.png" alt="BDO bank transfer QR code"
+              class="w-48 h-48 max-w-full object-contain mx-auto bg-white rounded-xl p-2 mb-4">
+            <p class="text-ivory-300 text-xs mb-4">Scan using a compatible banking app</p>
+            <a href="images/bdo-qr.png" download="Roger-Janine-BDO-QR.png"
+              class="inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-light text-noir-900 font-semibold text-xs tracking-wider uppercase px-5 py-3 rounded-full transition-colors">
+              <i data-lucide="download" class="w-4 h-4"></i>
+              Download QR Code
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -783,70 +801,7 @@
     </div>
 
     
-<!-- MONETARY GIFTS MODAL -->
-<div id="giftModal"
-  class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 p-4">
-
-  <div class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-noir-900 border border-gold/30 rounded-3xl p-6 sm:p-10 text-center shadow-2xl">
-
-    <button type="button" onclick="closeGiftModal()"
-      aria-label="Close gift modal"
-      class="absolute top-4 right-4 text-ivory-300 hover:text-gold transition-colors">
-      <i data-lucide="x" class="w-5 h-5"></i>
-    </button>
-
-    <i data-lucide="credit-card" class="w-8 h-8 text-gold mx-auto mb-4"></i>
-
-    <h2 class="font-display text-3xl text-white mb-4">
-      A Gift of Love
-    </h2>
-
-    <p class="text-ivory-300 text-sm font-serif leading-relaxed mb-8">
-      Your presence at our wedding is the greatest gift of all.
-      Should you wish to bless us with a gift, you may do so
-      through the options below.
-    </p>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-8">
-
-      <!-- GCASH -->
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
-        <h3 class="font-display text-xl text-gold mb-4">GCash</h3>
-
-        <img src="images/gcash-qr.png"
-          alt="GCash gift payment QR code"
-          class="w-44 h-44 max-w-full object-contain mx-auto bg-white rounded-xl p-2 mb-4">
-
-        <p class="text-ivory-300 text-xs">
-          Scan using your GCash app
-        </p>
-      </div>
-
-      <!-- BDO -->
-      <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
-        <h3 class="font-display text-xl text-gold mb-4">BDO Transfer</h3>
-
-        <img src="images/bdo-qr.png"
-          alt="BDO bank transfer QR code"
-          class="w-44 h-44 max-w-full object-contain mx-auto bg-white rounded-xl p-2 mb-4">
-
-        <p class="text-ivory-300 text-xs">
-          Scan using a compatible banking app
-        </p>
-      </div>
-
-    </div>
-
-    <p class="font-serif italic text-ivory-300 text-sm">
-      With love and gratitude,<br>
-      <span class="text-gold">Roger &amp; Janine</span>
-    </p>
-
-  </div>
-</div>
-
-
-    <!-- MODAL 3: Lightbox Image Viewer Modal -->
+<!-- MODAL 3: Lightbox Image Viewer Modal -->
     <div id="lightboxModal"
       class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 opacity-0 pointer-events-none transition-opacity duration-300">
       <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white hover:text-gold z-50">
