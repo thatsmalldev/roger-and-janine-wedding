@@ -727,32 +727,31 @@ async function loadGuestbook() {
     count.hidden = true;
     list.replaceChildren();
     for (const guest of guests) {
-      // Create person icon
-      const personIcon = document.createElement('i');
-      personIcon.setAttribute('data-lucide', 'user-round');
-      personIcon.className = 'w-4 h-4 text-gold flex-shrink-0';
+      const item = document.createElement('div');
 
-      // Create guest name
-      const mainName = document.createElement('span');
-      mainName.className = 'font-medium text-white';
-      mainName.textContent = String(guest.name || 'Guest');
+      // One row per invitation, without individual guest cards
+      item.className =
+        'flex items-start gap-2 py-2 text-sm text-ivory-200';
 
-      // Create icon and name container
-      const nameRow = document.createElement('div');
-      nameRow.className = 'flex items-center gap-2';
+      const icon = document.createElement('i');
+      icon.setAttribute('data-lucide', 'user-round');
+      icon.className = 'w-4 h-4 text-gold shrink-0 mt-0.5';
 
-      nameRow.append(personIcon, mainName);
-      item.append(nameRow);
+      const names = document.createElement('span');
+      names.className = 'text-sm text-white leading-relaxed';
 
-      const companions = Array.isArray(guest.companions) ? guest.companions : [];
-      if (companions.length) {
-        const beside = document.createElement('span');
-        beside.className = 'text-ivory-300';
-        beside.textContent = '  ·  ' + companions.join(', ');
-        item.append(beside);
-      }
+      const mainName = formatGuestName(guest.name || 'Guest');
+
+      const companions = Array.isArray(guest.companions)
+        ? guest.companions.map(formatGuestName).filter(Boolean)
+        : [];
+
+      names.textContent = [mainName, ...companions].join(' · ');
+
+      item.append(icon, names);
       list.append(item);
     }
+
     if (window.lucide) {
       lucide.createIcons({ nodes: [list] });
     }
