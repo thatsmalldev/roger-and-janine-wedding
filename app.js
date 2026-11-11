@@ -528,7 +528,7 @@ function copyToClipboard(text, label) {
 }
 
 
-let toastTimeout;
+let toastTimeout = null;
 
 function showToast(msg) {
   const toast = document.getElementById('toast');
@@ -536,12 +536,21 @@ function showToast(msg) {
 
   if (!toast || !toastMsg) return;
 
+  // Cancel the previous timer
+  if (toastTimeout !== null) {
+    clearTimeout(toastTimeout);
+  }
+
+  // Update the message
   toastMsg.textContent = msg;
 
+  // Show the toast
   toast.classList.remove('translate-x-full');
 
-  setTimeout(() => {
+  // Hide after 6 seconds
+  toastTimeout = setTimeout(() => {
     toast.classList.add('translate-x-full');
+    toastTimeout = null;
   }, 6000);
 }
 
