@@ -683,6 +683,7 @@ function exportRSVPToExcel() {
 
 function closeRSVPModal() {
   const modal = document.getElementById('rsvpModal');
+
   if (modal) {
     modal.classList.remove('opacity-100', 'pointer-events-auto');
     modal.classList.add('opacity-0', 'pointer-events-none');
@@ -691,16 +692,11 @@ function closeRSVPModal() {
   // Restore background scrolling
   document.body.style.overflow = '';
 
-  // Reuse the Supabase RSVP form's existing reset handler.
-  // The reset button stays in the DOM but is hidden from guests.
+  // Reset RSVP form
   const resetButton = document.getElementById('reset-button');
   if (resetButton) resetButton.click();
 
-  document.getElementById('rsvp')?.scrollIntoView({
-    behavior: 'smooth', block: 'start'
-  });
-
-  // Show success notification after closing the modal
+  // Show success notification
   showToast(
     'Your response has been saved. We’re looking forward to celebrating with you! — Roger & Janine'
   );
