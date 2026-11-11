@@ -240,8 +240,20 @@
         return;
       }
       current = { identity, guest: data };
+
+      const messageField = $('rsvp-guestbook-message');
+      messageField.value = '';
+
+
+
       $('rsvp-guestbook-message').value = '';
-      const savedMessage = await client.rpc('get_my_guestbook_message', identity);
+      const { data: savedMessage, error: messageError } =
+        await client.rpc('get_my_guestbook_message', identity);
+
+      if (messageError) throw messageError;
+
+      messageField.value = savedMessage || '';
+      
       if (savedMessage.error) throw savedMessage.error;
       $('rsvp-guestbook-message').value = savedMessage.data || '';
       $('guest-heading').textContent = `${data.first_name} ${data.last_name} — your response`;
@@ -319,14 +331,14 @@
         'Your response has been saved. We’re looking forward to celebrating with you! — Roger & Janine' :
         'Your response has been saved. We’ll miss you, and we’re grateful for your love and prayers. — Roger & Janine', 'success');
     } catch (error) {
-  console.error('RSVP SUBMISSION ERROR:', error);
+      console.error('RSVP SUBMISSION ERROR:', error);
 
-  message(
-    'save-message',
-    error.message || 'An unexpected error occurred while saving your RSVP.',
-    'error'
-  );
-} finally {
+      message(
+        'save-message',
+        error.message || 'An unexpected error occurred while saving your RSVP.',
+        'error'
+      );
+    } finally {
       busy = false; responseFields.disabled = false; $('reset-button').disabled = false;
       $('save-button').textContent = 'Send our response';
       syncMain();
@@ -353,23 +365,23 @@
   });
 
   document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener('click', function (event) {
-    const targetId = this.getAttribute('href');
+    link.addEventListener('click', function (event) {
+      const targetId = this.getAttribute('href');
 
-    if (!targetId || targetId === '#') return;
+      if (!targetId || targetId === '#') return;
 
-    const target = document.querySelector(targetId);
+      const target = document.querySelector(targetId);
 
-    if (!target) return;
+      if (!target) return;
 
-    event.preventDefault();
+      event.preventDefault();
 
-    target.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
     });
   });
-});
 
 
 })();
@@ -656,8 +668,8 @@ let communityClient = null;
 try {
   const config = window.WEDDING_CONFIG;
   if (window.supabase && config?.supabaseUrl && config?.supabasePublishableKey &&
-      /^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(config.supabaseUrl) &&
-      !config.supabasePublishableKey.startsWith('sb_secret_')) {
+    /^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(config.supabaseUrl) &&
+    !config.supabasePublishableKey.startsWith('sb_secret_')) {
     communityClient = window.supabase.createClient(config.supabaseUrl, config.supabasePublishableKey, {
       auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false }
     });
