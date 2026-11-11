@@ -264,7 +264,7 @@
       $('invitation-code').value = '';
       syncMain();
       document.querySelector('input[name="main-status"]:checked')?.focus();
-      message('lookup-message', data.rsvp_status === 'pending' ? 'Your invitation is ready.' : 'Your saved response is shown below. You may update it while RSVPs are open.');
+      message('lookup-message', '');
     } catch (error) {
       console.error('RSVP LOOKUP ERROR:', error);
 
