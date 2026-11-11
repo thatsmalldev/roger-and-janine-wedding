@@ -776,8 +776,11 @@ async function loadGuestbook() {
       name.className = 'text-white text-sm';
       name.textContent = formatGuestName(note.author || 'Guest');
       const body = document.createElement('p');
-      body.className = 'text-ivory-200 text-sm font-serif leading-relaxed whitespace-pre-wrap';
-      body.textContent = String(note.content || '');
+      body.className =
+        'text-ivory-200 text-sm font-serif italic leading-relaxed whitespace-pre-wrap';
+
+      body.textContent = `“${String(note.content || '').trim()}”`;
+
       card.append(name, body);
       feed.append(card);
     }
