@@ -672,23 +672,10 @@ function exportRSVPToExcel() {
 function closeRSVPModal() {
   const modal = document.getElementById('rsvpModal');
 
-  if (modal) {
-    modal.classList.remove('opacity-100', 'pointer-events-auto');
-    modal.classList.add('opacity-0', 'pointer-events-none');
-  }
+  if (!modal) return;
 
-  // Use the existing "Use another invitation" reset button
-  const resetButton = document.getElementById('reset-button');
-
-  if (resetButton) {
-    resetButton.click();
-  }
-
-  // Return to the RSVP lookup section
-  document.getElementById('rsvp')?.scrollIntoView({
-    behavior: 'smooth',
-    block: 'start'
-  });
+  modal.classList.remove('opacity-100', 'pointer-events-auto');
+  modal.classList.add('opacity-0', 'pointer-events-none');
 }
 
 /* ===================================================
