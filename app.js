@@ -728,31 +728,35 @@ async function loadGuestbook() {
     list.replaceChildren();
     for (const guest of guests) {
       const item = document.createElement('div');
-      item.className = 'rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-ivory-200';
+
+      item.className = 'flex items-start gap-2 py-2 text-sm text-ivory-200';
+
       // Create person icon
       const personIcon = document.createElement('i');
       personIcon.setAttribute('data-lucide', 'user-round');
       personIcon.className = 'w-4 h-4 text-gold flex-shrink-0';
 
       // Create guest name
-      const mainName = document.createElement('span');
-      mainName.className = 'font-medium text-white';
-      mainName.textContent = String(guest.name || 'Guest');
+      const names = document.createElement('span');
+      names.className = 'font-medium text-white';
+
+      const mainName = formatGuestName(guest.name || 'Guest');
 
       // Create icon and name container
       const nameRow = document.createElement('div');
       nameRow.className = 'flex items-center gap-2';
 
-      nameRow.append(personIcon, mainName);
-      item.append(nameRow);
+      
 
-      const companions = Array.isArray(guest.companions) ? guest.companions : [];
+      const companions = Array.isArray(guest.companions) ? guest.companions.map(formatGuestName).filter(Boolean) : [];
       if (companions.length) {
         const beside = document.createElement('span');
         beside.className = 'text-ivory-300';
         beside.textContent = '  ·  ' + companions.join(', ');
         item.append(beside);
       }
+
+      item.append(personIcon, mainName);
       list.append(item);
     }
     if (window.lucide) {
