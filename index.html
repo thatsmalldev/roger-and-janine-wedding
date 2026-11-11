@@ -615,7 +615,7 @@
           <!-- Attendance Selector -->
           <fieldset id="response-fields" class="glass-dark p-8 sm:p-12 rounded-3xl border border-white/10 shadow-2xl">
             <legend id="guest-heading" class="font-display text-xl text-white">Your response</legend>
-            <p id="guest-role" class="text-xs mb-2"></p>
+            <p id="guest-role" class="text-xs mb-2 -mt-5 sm:-mt-9"></p>
 
             <div>
               <label class="block text-xs uppercase tracking-widest text-slate-400 font-semibold mb-3">Will you join
@@ -657,20 +657,20 @@
 
           </fieldset><button id="reset-button"
             class="secondary inline-flex items-center gap-3 bg-noir-800 hover:bg-noir-700 text-ivory-100 border border-gold/40 hover:border-gold font-medium text-xs tracking-widest uppercase px-8 py-4 rounded-full transition-all"
-            type="button">Finish</button>
+            type="button">Finish / use another invitation</button>
         </form>
         <p id="save-message" class="message" role="status" aria-live="polite"></p>
       </div>
     </section>
 
     <!-- Accepted guests and live guestbook -->
-    <section id="guestbook" class="py-24 px-4 max-w-6xl mx-auto">
+    <section id="guestbook" class="py-24 px-4 max-w-4xl mx-auto">
       <div class="text-center space-y-3 mb-12">
         <span class="font-script text-gold text-3xl">With Love &amp; Gratitude</span>
         <h2 class="font-display text-4xl md:text-5xl">Our Wedding Community</h2>
         <p class="text-ivory-300 text-sm">Guests who have accepted and the heartfelt messages shared with us.</p>
       </div>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+      <div class="flex flex-col gap-8">
         <div class="glass-dark p-6 sm:p-8 rounded-3xl border border-white/10">
           <h3 class="font-display text-xl text-white mb-2">Joyfully Accepted</h3>
           <p id="accepted-count" class="text-gold text-sm mb-5" aria-live="polite">Loading guests…</p>
