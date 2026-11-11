@@ -350,9 +350,6 @@
 
       message('save-message', '');
 
-      showToast(
-        'Your response has been saved. We’re looking forward to celebrating with you! — Roger & Janine'
-      );
     } catch (error) {
       message('save-message', FRIENDLY_ERRORS.has(error.message) ? error.message :
         'We couldn’t confirm that your response was saved. Please find your invitation again to check before retrying.', 'error');
