@@ -532,28 +532,13 @@ let toastTimeout;
 
 function showToast(msg) {
   const toast = document.getElementById('toast');
-  const toastMsg = document.getElementById('toastMsg');
 
-  if (!toast || !toastMsg) return;
+  document.getElementById('toastMsg').innerText = msg;
 
-  toastMsg.textContent = msg;
+  toast.classList.remove('translate-x-full');
 
-  // Cancel any previous dismissal timer
-  clearTimeout(toastTimeout);
-
-  // Show the toast
-  toast.classList.remove(
-    'opacity-0',
-    'pointer-events-none',
-    'translate-x-full'
-  );
-
-  toast.classList.add('opacity-100');
-
-  // Hide after 6 seconds
-  toastTimeout = setTimeout(() => {
-    toast.classList.remove('opacity-100');
-    toast.classList.add('opacity-0', 'pointer-events-none');
+  setTimeout(() => {
+    toast.classList.add('translate-x-full');
   }, 6000);
 }
 
