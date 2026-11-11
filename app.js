@@ -537,11 +537,15 @@ function copyToClipboard(text, label) {
 
 function showToast(msg) {
   const toast = document.getElementById('toast');
-  document.getElementById('toastMsg').innerText = msg;
-  toast.classList.remove('translate-x-full');
+  document.getElementById('toastMsg').textContent = msg;
+
+  toast.classList.remove('opacity-0', 'pointer-events-none');
+  toast.classList.add('opacity-100');
+
   setTimeout(() => {
-    toast.classList.add('translate-x-full');
-  }, 3000);
+    toast.classList.remove('opacity-100');
+    toast.classList.add('opacity-0', 'pointer-events-none');
+  }, 6000);
 }
 
 /* ===================================================

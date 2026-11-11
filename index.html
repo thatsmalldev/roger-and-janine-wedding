@@ -639,12 +639,12 @@
               <label class="block text-xs uppercase tracking-widest text-slate-400 font-semibold mb-3">Will you join
                 us?</label>
 
-              <div class="grid grid-cols-2 gap-4 mb-2">
+              <div class="grid grid-cols-1 min-[400px]:grid-cols-2 gap-3 mb-2">
                 <label
-                  class="relative flex items-center justify-center p-4 rounded-2xl border border-white/10 cursor-pointer hover:border-gold transition-all bg-white/5">
+                  class="relative flex items-center justify-center p-3 sm:p-4 min-h-14 rounded-2xl border border-white/10 cursor-pointer hover:border-gold transition-all bg-white/5">
                   <input type="radio" name="main-status" value="attending" checked class="sr-only peer">
                   <span
-                    class="peer-checked:text-gold text-xs uppercase tracking-widest font-semibold flex items-center">
+                    class="peer-checked:text-rose-400 text-[11px] sm:text-xs uppercase tracking-wide sm:tracking-widest font-semibold flex flex-wrap items-center justify-center text-center gap-1 leading-relaxed">
                     <i class="fas fa-check-circle mr-2"></i> Joyfully Accept
                   </span>
                 </label>
@@ -663,8 +663,12 @@
             </div>
 
             <div class="mt-6 mb-5">
-              <label for="rsvp-guestbook-message" class="block text-gold text-xs uppercase tracking-widest font-semibold mb-3">Leave a message for Roger &amp; Janine <span class="text-ivory-300 normal-case tracking-normal">(optional)</span></label>
-              <textarea id="rsvp-guestbook-message" maxlength="1000" rows="4" placeholder="Share your wishes, blessings, or prayers..." class="w-full bg-noir-900/80 border border-white/10 rounded-xl px-4 py-3 text-ivory-100 placeholder-ivory-300/40 focus:outline-none focus:border-gold transition-colors text-sm resize-none"></textarea>
+              <label for="rsvp-guestbook-message"
+                class="block text-gold text-xs uppercase tracking-widest font-semibold mb-3">Leave a message for Roger
+                &amp; Janine <span class="text-ivory-300 normal-case tracking-normal">(optional)</span></label>
+              <textarea id="rsvp-guestbook-message" maxlength="1000" rows="4"
+                placeholder="Share your wishes, blessings, or prayers..."
+                class="w-full bg-noir-900/80 border border-white/10 rounded-xl px-4 py-3 text-ivory-100 placeholder-ivory-300/40 focus:outline-none focus:border-gold transition-colors text-sm resize-none"></textarea>
             </div>
 
             <button id="save-button" type="submit"
@@ -672,8 +676,8 @@
               Submit RSVP Confirmation
             </button>
 
-          </fieldset><button id="reset-button"
-            class="hidden" type="button" hidden aria-hidden="true" tabindex="-1">Use another invitation</button>
+          </fieldset><button id="reset-button" class="hidden" type="button" hidden aria-hidden="true" tabindex="-1">Use
+            another invitation</button>
         </form>
         <p id="save-message" class="message" role="status" aria-live="polite"></p>
       </div>
@@ -800,8 +804,8 @@
       </div>
     </div>
 
-    
-<!-- MODAL 3: Lightbox Image Viewer Modal -->
+
+    <!-- MODAL 3: Lightbox Image Viewer Modal -->
     <div id="lightboxModal"
       class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/95 opacity-0 pointer-events-none transition-opacity duration-300">
       <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white hover:text-gold z-50">
@@ -861,7 +865,7 @@
 
     <!-- Toast Notification Bar -->
     <div id="toast"
-      class="fixed top-20 right-6 z-[100] transform translate-x-full transition-transform duration-300 glass-dark border border-gold/40 text-ivory-100 px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 text-xs">
+      class="fixed top-20 left-4 right-4 sm:left-auto sm:right-6 w-auto sm:w-96 max-w-[calc(100vw-2rem)] z-[100] transform translate-x-full transition-transform duration-300 glass-dark border border-gold/40 text-ivory-100 px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 text-xs max-w-sm whitespace-normal leading-relaxed">
       <i data-lucide="check-circle" class="w-4 h-4 text-gold"></i>
       <span id="toastMsg">Copied to clipboard!</span>
     </div>
