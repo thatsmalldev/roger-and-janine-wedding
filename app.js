@@ -913,19 +913,6 @@ function closeDressCodeModal() {
 }
 
 
-// Close when clicking outside the modal
-document.getElementById('dressCodeModal')?.addEventListener('click', (e) => {
-  if (e.target.id === 'dressCodeModal') {
-    closeDressCodeModal();
-  }
-});
-
-// Close with Escape
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    closeDressCodeModal();
-  }
-});
 
 /* ----------------------------------------------------
            2. Ambient Dust Particle Canvas
@@ -975,6 +962,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!modal) return;
 
+  // Close when clicking the dark backdrop
   modal.addEventListener('click', (event) => {
     if (
       event.target === modal ||
@@ -984,6 +972,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // Close when pressing Escape
   document.addEventListener('keydown', (event) => {
     if (
       event.key === 'Escape' &&
