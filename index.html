@@ -863,26 +863,11 @@
       </div>
     </div>
 
-    <!-- Toast Notification -->
-    <div id="toast" role="status" aria-live="polite" class="fixed top-20 right-4 sm:right-6 z-[100]
-         w-max max-w-[calc(100vw-2rem)]
-         bg-noir-800 border border-gold/40
-         rounded-xl shadow-2xl
-         px-5 py-4
-         transform translate-x-full
-         transition-transform duration-300">
-
-      <div class="flex flex-row items-center gap-3">
-
-        <!-- Checkmark -->
-        <i data-lucide="check-circle" class="w-5 h-5 shrink-0 text-gold"></i>
-
-        <!-- Message -->
-        <span id="toastMsg" class="min-w-0 text-sm text-ivory-100 leading-relaxed break-words">
-        </span>
-
-      </div>
-    </div>
+    <!-- Toast Notification Bar -->
+  <div id="toast" class="fixed top-20 right-6 z-50 transform translate-x-full transition-transform duration-300 glass-dark border border-gold/40 text-ivory-100 px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 text-xs">
+    <i data-lucide="check-circle" class="w-4 h-4 text-gold"></i>
+    <span id="toastMsg">Copied to clipboard!</span>
+  </div>
 
 
 
