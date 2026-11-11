@@ -765,10 +765,10 @@
     <!-- MODAL 1: Event Details & Dress Code Modal -->
     <div id="dressCodeModal"
       class="fixed inset-0 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
-      <div class="absolute inset-0 bg-black/80 backdrop-blur-md" onclick="closeDressCodeModal()"></div>
+      <div class="absolute inset-0 bg-black/80 backdrop-blur-md"></div>
       <div
         class="relative glass-dark border border-white/20 rounded-3xl max-w-2xl w-full p-6 sm:p-8 max-h-[90vh] overflow-y-auto space-y-6 text-left shadow-2xl modal-content">
-        <button class="absolute top-5 right-5 text-ivory-300 hover:text-white">
+        <button class="absolute top-5 right-5 text-ivory-300 hover:text-white" onclick="closeDressCodeModal()">
           <i data-lucide="x" class="w-6 h-6"></i>
         </button>
 
