@@ -901,7 +901,37 @@ function toggleSynthMusic() {
   }
 }
 
+function openDressCodeModal() {
+  const modal = document.getElementById('dressCodeModal');
+  if (!modal) return;
 
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeDressCodeModal() {
+  const modal = document.getElementById('dressCodeModal');
+  if (!modal) return;
+
+  modal.classList.add('hidden');
+  modal.classList.remove('flex');
+  document.body.style.overflow = '';
+}
+
+// Close when clicking outside the modal
+document.getElementById('dressCodeModal')?.addEventListener('click', (e) => {
+  if (e.target.id === 'dressCodeModal') {
+    closeDressCodeModal();
+  }
+});
+
+// Close with Escape
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeDressCodeModal();
+  }
+});
 
 /* ----------------------------------------------------
            2. Ambient Dust Particle Canvas
