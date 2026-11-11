@@ -720,10 +720,22 @@ async function loadGuestbook() {
     for (const guest of guests) {
       const item = document.createElement('div');
       item.className = 'rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-ivory-200';
+      // Create person icon
+      const personIcon = document.createElement('i');
+      personIcon.setAttribute('data-lucide', 'user-round');
+      personIcon.className = 'w-4 h-4 text-gold flex-shrink-0';
+
+      // Create guest name
       const mainName = document.createElement('span');
       mainName.className = 'font-medium text-white';
       mainName.textContent = String(guest.name || 'Guest');
-      item.append(mainName);
+
+      // Create icon and name container
+      const nameRow = document.createElement('div');
+      nameRow.className = 'flex items-center gap-2';
+
+      nameRow.append(personIcon, mainName);
+      item.append(nameRow);
 
       const companions = Array.isArray(guest.companions) ? guest.companions : [];
       if (companions.length) {
@@ -740,7 +752,7 @@ async function loadGuestbook() {
       const card = document.createElement('div');
       card.className = 'rounded-2xl border border-white/10 bg-white/5 p-5 space-y-2';
       const name = document.createElement('h4');
-      name.className = 'font-display text-white text-sm';
+      name.className = 'text-white text-sm';
       name.textContent = String(note.author || 'Guest');
       const body = document.createElement('p');
       body.className = 'text-ivory-200 text-sm font-serif leading-relaxed whitespace-pre-wrap';
