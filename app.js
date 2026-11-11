@@ -462,35 +462,27 @@ function prevLightbox() {
    3. EVENT DETAIL & GIFT MODALS
    =================================================== */
 function openEventDetailModal() {
-  const modal = document.getElementById('eventDetailModal');
-  if (!modal) return;
-
-  modal.classList.remove('opacity-0', 'pointer-events-none');
-  modal.classList.add('opacity-100', 'pointer-events-auto');
+  const m = document.getElementById('eventDetailModal');
+  m.classList.remove('opacity-0', 'pointer-events-none');
+  m.classList.add('opacity-100', 'pointer-events-auto');
 }
 
 function closeEventDetailModal() {
-  const modal = document.getElementById('eventDetailModal');
-  if (!modal) return;
-
-  modal.classList.remove('opacity-100', 'pointer-events-auto');
-  modal.classList.add('opacity-0', 'pointer-events-none');
+  const m = document.getElementById('eventDetailModal');
+  m.classList.remove('opacity-100', 'pointer-events-auto');
+  m.classList.add('opacity-0', 'pointer-events-none');
 }
 
 function openGiftModal() {
-  const modal = document.getElementById('giftModal');
-  if (!modal) return;
-
-  modal.classList.remove('opacity-0', 'pointer-events-none');
-  modal.classList.add('opacity-100', 'pointer-events-auto');
+  const m = document.getElementById('giftModal');
+  m.classList.remove('opacity-0', 'pointer-events-none');
+  m.classList.add('opacity-100', 'pointer-events-auto');
 }
 
 function closeGiftModal() {
-  const modal = document.getElementById('giftModal');
-  if (!modal) return;
-
-  modal.classList.remove('opacity-100', 'pointer-events-auto');
-  modal.classList.add('opacity-0', 'pointer-events-none');
+  const m = document.getElementById('giftModal');
+  m.classList.remove('opacity-100', 'pointer-events-auto');
+  m.classList.add('opacity-0', 'pointer-events-none');
 }
 
 /* ===================================================
