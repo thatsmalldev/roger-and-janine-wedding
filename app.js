@@ -719,11 +719,23 @@ async function loadGuestbook() {
     list.replaceChildren();
     for (const guest of guests) {
       const item = document.createElement('div');
-      item.className = 'rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-ivory-200';
+      item.className = 'rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-ivory-200';
+      // Create person icon
+      const personIcon = document.createElement('i');
+      personIcon.setAttribute('data-lucide', 'user-round');
+      personIcon.className = 'w-4 h-4 text-gold flex-shrink-0';
+
+      // Create guest name
       const mainName = document.createElement('span');
       mainName.className = 'font-medium text-white';
       mainName.textContent = String(guest.name || 'Guest');
-      item.append(mainName);
+
+      // Create icon and name container
+      const nameRow = document.createElement('div');
+      nameRow.className = 'flex items-center gap-2';
+
+      nameRow.append(personIcon, mainName);
+      item.append(nameRow);
 
       const companions = Array.isArray(guest.companions) ? guest.companions : [];
       if (companions.length) {
@@ -734,7 +746,9 @@ async function loadGuestbook() {
       }
       list.append(item);
     }
-    if (!guests.length) list.textContent = 'No accepted RSVPs yet.';
+    if (window.lucide) {
+      lucide.createIcons({ nodes: [list] });
+    }
     feed.replaceChildren();
     for (const note of notes) {
       const card = document.createElement('div');
