@@ -244,7 +244,7 @@
       const savedMessage = await client.rpc('get_my_guestbook_message', identity);
       if (savedMessage.error) throw savedMessage.error;
       $('rsvp-guestbook-message').value = savedMessage.data || '';
-      $('guest-heading').textContent = `${data.first_name} ${data.last_name} — your response`;
+      $('guest-heading').textContent = `${data.first_name} ${data.last_name}`;
       const roles = [];
       if (data.is_principal_sponsor) roles.push('Principal Sponsor (Ninong / Ninang)');
       if (data.is_entourage) roles.push('Entourage');
