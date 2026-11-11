@@ -341,24 +341,28 @@
           confirmGuests.textContent = guestCount;
         }
 
-        modal.classList.remove('opacity-0', 'pointer-events-none');
-        modal.classList.add('opacity-100', 'pointer-events-auto');
+        if (modal) {
+          modal.classList.remove('opacity-0', 'pointer-events-none');
+          modal.classList.add('opacity-100', 'pointer-events-auto');
+
+          // Disable background scrolling
+          document.body.style.overflow = 'hidden';
+        }
+
+        if (typeof window.refreshWeddingCommunity === 'function')
+          window.refreshWeddingCommunity();
+
+        message('save-message', '');
+
+      } catch (error) {
+        message('save-message', FRIENDLY_ERRORS.has(error.message) ? error.message :
+          'We couldn’t confirm that your response was saved. Please find your invitation again to check before retrying.', 'error');
+      } finally {
+        busy = false; responseFields.disabled = false; $('reset-button').disabled = false;
+        $('save-button').textContent = 'Send our response';
+        syncMain();
       }
-
-      if (typeof window.refreshWeddingCommunity === 'function')
-        window.refreshWeddingCommunity();
-
-      message('save-message', '');
-
-    } catch (error) {
-      message('save-message', FRIENDLY_ERRORS.has(error.message) ? error.message :
-        'We couldn’t confirm that your response was saved. Please find your invitation again to check before retrying.', 'error');
-    } finally {
-      busy = false; responseFields.disabled = false; $('reset-button').disabled = false;
-      $('save-button').textContent = 'Send our response';
-      syncMain();
-    }
-  });
+    });
   $('reset-button').addEventListener('click', () => {
     if (busy) return;
 
@@ -684,6 +688,9 @@ function closeRSVPModal() {
     modal.classList.remove('opacity-100', 'pointer-events-auto');
     modal.classList.add('opacity-0', 'pointer-events-none');
   }
+
+  // Restore background scrolling
+  document.body.style.overflow = '';
 
   // Reuse the Supabase RSVP form's existing reset handler.
   // The reset button stays in the DOM but is hidden from guests.
