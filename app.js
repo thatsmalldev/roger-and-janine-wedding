@@ -346,9 +346,7 @@
       }
 
       if (typeof window.refreshWeddingCommunity === 'function') window.refreshWeddingCommunity();
-      message('save-message', status === 'attending' ?
-        'Your response has been saved. We’re looking forward to celebrating with you! — Roger & Janine' :
-        'Your response has been saved. We’ll miss you, and we’re grateful for your love and prayers. — Roger & Janine', 'success');
+      message('save-message', '');
     } catch (error) {
       message('save-message', FRIENDLY_ERRORS.has(error.message) ? error.message :
         'We couldn’t confirm that your response was saved. Please find your invitation again to check before retrying.', 'error');
@@ -672,10 +670,23 @@ function exportRSVPToExcel() {
 function closeRSVPModal() {
   const modal = document.getElementById('rsvpModal');
 
-  if (!modal) return;
+  if (modal) {
+    modal.classList.remove('opacity-100', 'pointer-events-auto');
+    modal.classList.add('opacity-0', 'pointer-events-none');
+  }
 
-  modal.classList.remove('opacity-100', 'pointer-events-auto');
-  modal.classList.add('opacity-0', 'pointer-events-none');
+  // Use the existing "Use another invitation" reset button
+  const resetButton = document.getElementById('reset-button');
+
+  if (resetButton) {
+    resetButton.click();
+  }
+
+  // Return to the RSVP lookup section
+  document.getElementById('rsvp')?.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start'
+  });
 }
 
 /* ===================================================
