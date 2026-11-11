@@ -699,6 +699,13 @@ try {
   }
 } catch (error) { console.error('Community initialization failed:', error); }
 
+// Format displayed names without changing the names saved in Supabase.
+function formatGuestName(name) {
+  return String(name || '').trim().replace(/\s+/g, ' ')
+    .replace(/(^|[\s'-])(\p{L})/gu, (_, separator, letter) =>
+      separator + letter.toUpperCase());
+}
+
 async function loadGuestbook() {
   const feed = document.getElementById('guestbookFeed');
   const list = document.getElementById('accepted-guest-list');
@@ -757,7 +764,7 @@ async function loadGuestbook() {
 
     // Initialize dynamically created icons
     if (window.lucide) {
-      lucide.createIcons({ nodes: [list] });
+      lucide.createIcons();
     }
 
     if (!guests.length) list.textContent = 'No accepted RSVPs yet.';
@@ -767,7 +774,7 @@ async function loadGuestbook() {
       card.className = 'rounded-2xl border border-white/10 bg-white/5 p-5 space-y-2';
       const name = document.createElement('h4');
       name.className = 'text-white text-sm';
-      name.textContent = String(note.author || 'Guest');
+      name.textContent = formatGuestName(note.author || 'Guest');
       const body = document.createElement('p');
       body.className = 'text-ivory-200 text-sm font-serif leading-relaxed whitespace-pre-wrap';
       body.textContent = String(note.content || '');
