@@ -715,11 +715,11 @@ async function loadGuestbook() {
     const guests = Array.isArray(data?.guests) ? data.guests : [];
     const notes = Array.isArray(data?.messages) ? data.messages : [];
     const total = Number(data?.attendee_count) || 0;
-    count.textContent = `${total} confirmed attendee${total === 1 ? '' : 's'} (including companions)`;
+    count.hidden = true;
     list.replaceChildren();
     for (const guest of guests) {
       const item = document.createElement('div');
-      item.className = 'rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-ivory-200';
+      item.className = 'rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-ivory-200';
       const mainName = document.createElement('span');
       mainName.className = 'font-medium text-white';
       mainName.textContent = String(guest.name || 'Guest');
