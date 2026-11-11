@@ -532,8 +532,11 @@ let toastTimeout;
 
 function showToast(msg) {
   const toast = document.getElementById('toast');
+  const toastMsg = document.getElementById('toastMsg');
 
-  document.getElementById('toastMsg').innerText = msg;
+  if (!toast || !toastMsg) return;
+
+  toastMsg.textContent = msg;
 
   toast.classList.remove('translate-x-full');
 
