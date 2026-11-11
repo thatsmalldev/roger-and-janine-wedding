@@ -346,7 +346,9 @@
       }
 
       if (typeof window.refreshWeddingCommunity === 'function') window.refreshWeddingCommunity();
-      message('save-message', '');
+      message('save-message', status === 'attending' ?
+        'Your response has been saved. We’re looking forward to celebrating with you! — Roger & Janine' :
+        'Your response has been saved. We’ll miss you, and we’re grateful for your love and prayers. — Roger & Janine', 'success');
     } catch (error) {
       message('save-message', FRIENDLY_ERRORS.has(error.message) ? error.message :
         'We couldn’t confirm that your response was saved. Please find your invitation again to check before retrying.', 'error');
