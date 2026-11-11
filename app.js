@@ -699,15 +699,6 @@ try {
   }
 } catch (error) { console.error('Community initialization failed:', error); }
 
-function formatGuestName(name) {
-  return String(name || '')
-    .trim()
-    .replace(/\s+/g, ' ')
-    .replace(/(^|[\s'-])(\p{L})/gu, (match, separator, letter) =>
-      separator + letter.toUpperCase()
-    );
-}
-
 async function loadGuestbook() {
   const feed = document.getElementById('guestbookFeed');
   const list = document.getElementById('accepted-guest-list');
@@ -728,46 +719,40 @@ async function loadGuestbook() {
     list.replaceChildren();
     for (const guest of guests) {
       const item = document.createElement('div');
-
-      item.className = 'flex items-start gap-2 py-2 text-sm text-ivory-200';
-
+      item.className = 'rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-ivory-200';
       // Create person icon
       const personIcon = document.createElement('i');
       personIcon.setAttribute('data-lucide', 'user-round');
       personIcon.className = 'w-4 h-4 text-gold flex-shrink-0';
 
       // Create guest name
-      const names = document.createElement('span');
-      names.className = 'font-medium text-white';
-
-      const mainName = formatGuestName(guest.name || 'Guest');
+      const mainName = document.createElement('span');
+      mainName.className = 'font-medium text-white';
+      mainName.textContent = String(guest.name || 'Guest');
 
       // Create icon and name container
       const nameRow = document.createElement('div');
       nameRow.className = 'flex items-center gap-2';
 
-      
+      nameRow.append(personIcon, mainName);
+      item.append(nameRow);
 
-      const companions = Array.isArray(guest.companions) ? guest.companions.map(formatGuestName).filter(Boolean) : [];
+      const companions = Array.isArray(guest.companions) ? guest.companions : [];
       if (companions.length) {
         const beside = document.createElement('span');
         beside.className = 'text-ivory-300';
         beside.textContent = '  ·  ' + companions.join(', ');
         item.append(beside);
       }
-
-      item.append(personIcon, mainName);
       list.append(item);
     }
-    if (window.lucide) {
-      lucide.createIcons({ nodes: [list] });
-    }
+    if (!guests.length) list.textContent = 'No accepted RSVPs yet.';
     feed.replaceChildren();
     for (const note of notes) {
       const card = document.createElement('div');
       card.className = 'rounded-2xl border border-white/10 bg-white/5 p-5 space-y-2';
       const name = document.createElement('h4');
-      name.className = 'font-display text-white text-sm';
+      name.className = 'text-white text-sm';
       name.textContent = String(note.author || 'Guest');
       const body = document.createElement('p');
       body.className = 'text-ivory-200 text-sm font-serif leading-relaxed whitespace-pre-wrap';
