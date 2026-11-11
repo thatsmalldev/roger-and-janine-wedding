@@ -782,61 +782,69 @@
       </div>
     </div>
 
-    <!-- MODAL 2: Digital Envelope Gift Modal -->
-    <div id="giftModal"
-      class="fixed inset-0 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
-      <div class="absolute inset-0 bg-black/80 backdrop-blur-md" onclick="closeGiftModal()"></div>
-      <div
-        class="relative glass-dark border border-white/20 rounded-3xl max-w-lg w-full p-6 sm:p-8 space-y-6 text-center shadow-2xl modal-content">
-        <button onclick="closeGiftModal()" class="absolute top-5 right-5 text-ivory-300 hover:text-white">
-          <i data-lucide="x" class="w-6 h-6"></i>
-        </button>
+    
+<!-- MONETARY GIFTS MODAL -->
+<div id="giftModal"
+  class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300 p-4">
 
-        <div class="w-12 h-12 rounded-full bg-gold/20 text-gold mx-auto flex items-center justify-center">
-          <i data-lucide="credit-card" class="w-6 h-6"></i>
-        </div>
+  <div class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-noir-900 border border-gold/30 rounded-3xl p-6 sm:p-10 text-center shadow-2xl">
 
-        <div>
-          <h3 class="font-display text-2xl text-white">Digital Gift Envelope</h3>
-          <p class="text-ivory-300 text-xs mt-1">Thank you for showering us with love &amp; blessings.</p>
-        </div>
+    <button type="button" onclick="closeGiftModal()"
+      aria-label="Close gift modal"
+      class="absolute top-4 right-4 text-ivory-300 hover:text-gold transition-colors">
+      <i data-lucide="x" class="w-5 h-5"></i>
+    </button>
 
-        <!-- GCash / Bank Cards -->
-        <div class="space-y-4 text-left">
-          <!-- GCash -->
-          <div class="bg-noir-900 p-4 rounded-2xl border border-white/10 flex items-center justify-between">
-            <div>
-              <span class="text-xs text-gold uppercase tracking-widest font-mono">GCash / Maya</span>
-              <p class="text-white font-medium text-sm">Roger Santos</p>
-              <p id="gcashNum" class="text-ivory-300 text-xs">0917 123 4567</p>
-            </div>
-            <button onclick="copyToClipboard('09171234567', 'GCash Number')"
-              class="bg-white/10 hover:bg-gold hover:text-noir-900 text-white p-2.5 rounded-xl transition-all"
-              title="Copy Number">
-              <i data-lucide="copy" class="w-4 h-4"></i>
-            </button>
-          </div>
+    <i data-lucide="credit-card" class="w-8 h-8 text-gold mx-auto mb-4"></i>
 
-          <!-- Bank Account -->
-          <div class="bg-noir-900 p-4 rounded-2xl border border-white/10 flex items-center justify-between">
-            <div>
-              <span class="text-xs text-gold uppercase tracking-widest font-mono">BPI Bank Account</span>
-              <p class="text-white font-medium text-sm">Janine Reyes</p>
-              <p id="bpiNum" class="text-ivory-300 text-xs">1234 5678 9012</p>
-            </div>
-            <button onclick="copyToClipboard('123456789012', 'Bank Account Number')"
-              class="bg-white/10 hover:bg-gold hover:text-noir-900 text-white p-2.5 rounded-xl transition-all"
-              title="Copy Account Number">
-              <i data-lucide="copy" class="w-4 h-4"></i>
-            </button>
-          </div>
-        </div>
+    <h2 class="font-display text-3xl text-white mb-4">
+      A Gift of Love
+    </h2>
 
-        <p class="text-ivory-300/60 text-xs italic font-serif">
-          "Your warm wishes and presence are all we truly ask for!"
+    <p class="text-ivory-300 text-sm font-serif leading-relaxed mb-8">
+      Your presence at our wedding is the greatest gift of all.
+      Should you wish to bless us with a gift, you may do so
+      through the options below.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-8">
+
+      <!-- GCASH -->
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
+        <h3 class="font-display text-xl text-gold mb-4">GCash</h3>
+
+        <img src="images/gcash-qr.png"
+          alt="GCash gift payment QR code"
+          class="w-44 h-44 max-w-full object-contain mx-auto bg-white rounded-xl p-2 mb-4">
+
+        <p class="text-ivory-300 text-xs">
+          Scan using your GCash app
         </p>
       </div>
+
+      <!-- BDO -->
+      <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
+        <h3 class="font-display text-xl text-gold mb-4">BDO Transfer</h3>
+
+        <img src="images/bdo-qr.png"
+          alt="BDO bank transfer QR code"
+          class="w-44 h-44 max-w-full object-contain mx-auto bg-white rounded-xl p-2 mb-4">
+
+        <p class="text-ivory-300 text-xs">
+          Scan using a compatible banking app
+        </p>
+      </div>
+
     </div>
+
+    <p class="font-serif italic text-ivory-300 text-sm">
+      With love and gratitude,<br>
+      <span class="text-gold">Roger &amp; Janine</span>
+    </p>
+
+  </div>
+</div>
+
 
     <!-- MODAL 3: Lightbox Image Viewer Modal -->
     <div id="lightboxModal"
