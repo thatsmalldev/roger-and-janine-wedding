@@ -891,12 +891,14 @@ function toggleSynthMusic() {
   }
 }
 
+
 function openDressCodeModal() {
   const modal = document.getElementById('dressCodeModal');
   if (!modal) return;
 
-  modal.classList.remove('hidden');
-  modal.classList.add('flex');
+  modal.classList.remove('opacity-0', 'pointer-events-none');
+  modal.classList.add('opacity-100', 'pointer-events-auto');
+
   document.body.style.overflow = 'hidden';
 }
 
@@ -904,10 +906,12 @@ function closeDressCodeModal() {
   const modal = document.getElementById('dressCodeModal');
   if (!modal) return;
 
-  modal.classList.add('hidden');
-  modal.classList.remove('flex');
+  modal.classList.remove('opacity-100', 'pointer-events-auto');
+  modal.classList.add('opacity-0', 'pointer-events-none');
+
   document.body.style.overflow = '';
 }
+
 
 // Close when clicking outside the modal
 document.getElementById('dressCodeModal')?.addEventListener('click', (e) => {
@@ -965,6 +969,32 @@ function animateParticles() {
 animateParticles();
 
 
+
+document.addEventListener('DOMContentLoaded', () => {
+  const modal = document.getElementById('dressCodeModal');
+
+  if (!modal) return;
+
+  modal.addEventListener('click', (event) => {
+    if (
+      event.target === modal ||
+      event.target === modal.firstElementChild
+    ) {
+      closeDressCodeModal();
+    }
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (
+      event.key === 'Escape' &&
+      modal.classList.contains('opacity-100')
+    ) {
+      closeDressCodeModal();
+    }
+  });
+});
+
+
 // Initialize Page
 function initializePage() {
   loadGuestbook();
@@ -976,3 +1006,4 @@ if (document.readyState === 'loading') {
 } else {
   initializePage();
 }
+
