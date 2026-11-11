@@ -417,7 +417,7 @@
 
         <!-- Image Visual -->
         <div class="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl h-96 group">
-          <img src="https://kabaleyancoveresort.ph/wp-content/uploads/2018/10/FEP_8535-1024x589.jpg"
+          <img src="https://kabaleyancoveresort.ph/wp-content/uploads/2018/10/FEP_8385-1024x677.jpg"
             alt="Venue Architecture"
             class="w-full h-full object-cover duration-700 group-hover:scale-110 filter grayscale contrast-125 hover:grayscale-0">
           <div
@@ -611,7 +611,7 @@
           </form>
         </div>
         <p id="lookup-message" class="message" role="status" aria-live="polite" class="text-xs mb-4"></p>
-        <form id="rsvp-form" class="space-y-6" hidden>
+        <form id="rsvp-form" class="space-y-6" onsubmit="handleRSVPSubmit(event)" hidden>
           <!-- Attendance Selector -->
           <fieldset id="response-fields" class="glass-dark p-8 sm:p-12 rounded-3xl border border-white/10 shadow-2xl">
             <legend id="guest-heading" class="font-display text-xl text-white">Your response</legend>
@@ -782,35 +782,6 @@
           </div>
         </div>
 
-        <!-- Section: Parking & Transportation -->
-        <div class="space-y-2 pt-2 border-t border-white/10">
-          <div class="flex items-center gap-2 text-gold font-semibold text-sm uppercase tracking-wider">
-            <i data-lucide="car" class="w-4 h-4"></i>
-            <span>Parking &amp; Transportation Tips</span>
-          </div>
-          <ul class="text-ivory-300 text-xs space-y-2 list-disc list-inside leading-relaxed font-serif">
-            <li>Complimentary valet parking is available at the Grand Ballroom main entrance.</li>
-            <li>Shuttle services will run between St. Andrew Cathedral and the Reception venue every 15 minutes
-              post-ceremony.</li>
-            <li>Rideshare drops (Grab/Taxi) are directly accessible at Gate 2.</li>
-          </ul>
-        </div>
-
-        <!-- Section: Location Links -->
-        <div class="pt-4 flex flex-col sm:flex-row gap-3">
-          <a href="https://maps.google.com" target="_blank" rel="noopener"
-            class="flex-1 bg-white/10 hover:bg-gold hover:text-noir-900 border border-white/20 text-white text-xs font-semibold uppercase tracking-widest py-3 rounded-xl text-center transition-all flex items-center justify-center gap-2">
-            <i data-lucide="map" class="w-4 h-4"></i>
-            <span>Open Ceremony Map</span>
-          </a>
-          <a href="https://maps.google.com" target="_blank" rel="noopener"
-            class="flex-1 bg-white/10 hover:bg-gold hover:text-noir-900 border border-white/20 text-white text-xs font-semibold uppercase tracking-widest py-3 rounded-xl text-center transition-all flex items-center justify-center gap-2">
-            <i data-lucide="map-pin" class="w-4 h-4"></i>
-            <span>Open Reception Map</span>
-          </a>
-        </div>
-      </div>
-    </div>
 
     <!-- MODAL 2: Digital Envelope Gift Modal -->
     <div id="giftModal"
