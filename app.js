@@ -314,6 +314,37 @@
       if (data?.saved !== true || !Number.isInteger(data.revision)) throw new Error('Save not confirmed');
       current.guest.revision = data.revision;
       current.guest.rsvp_status = status; current.guest.plus_ones = companions;
+
+      // Show RSVP confirmation modal after successful save
+      const modal = document.getElementById('rsvpModal');
+
+      if (modal) {
+        const fullName =
+          `${current.guest.first_name} ${current.guest.last_name}`;
+
+        const guestCount = status === 'attending'
+          ? 1 + companions.filter(c => c.status === 'attending').length
+          : 0;
+
+        const confirmName = document.getElementById('confirmName');
+        const confirmStatus = document.getElementById('confirmStatus');
+        const confirmGuests = document.getElementById('confirmGuests');
+
+        if (confirmName) confirmName.textContent = fullName;
+
+        if (confirmStatus) {
+          confirmStatus.textContent =
+            status === 'attending' ? 'Attending' : 'Declining';
+        }
+
+        if (confirmGuests) {
+          confirmGuests.textContent = guestCount;
+        }
+
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        modal.classList.add('opacity-100', 'pointer-events-auto');
+      }
+
       if (typeof window.refreshWeddingCommunity === 'function') window.refreshWeddingCommunity();
       message('save-message', status === 'attending' ?
         'Your response has been saved. We’re looking forward to celebrating with you! — Roger & Janine' :
@@ -348,23 +379,23 @@
   });
 
   document.querySelectorAll('a[href^="#"]').forEach(link => {
-  link.addEventListener('click', function (event) {
-    const targetId = this.getAttribute('href');
+    link.addEventListener('click', function (event) {
+      const targetId = this.getAttribute('href');
 
-    if (!targetId || targetId === '#') return;
+      if (!targetId || targetId === '#') return;
 
-    const target = document.querySelector(targetId);
+      const target = document.querySelector(targetId);
 
-    if (!target) return;
+      if (!target) return;
 
-    event.preventDefault();
+      event.preventDefault();
 
-    target.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
+      target.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+      });
     });
   });
-});
 
 
 })();
@@ -640,6 +671,9 @@ function exportRSVPToExcel() {
 
 function closeRSVPModal() {
   const modal = document.getElementById('rsvpModal');
+
+  if (!modal) return;
+
   modal.classList.remove('opacity-100', 'pointer-events-auto');
   modal.classList.add('opacity-0', 'pointer-events-none');
 }
@@ -651,8 +685,8 @@ let communityClient = null;
 try {
   const config = window.WEDDING_CONFIG;
   if (window.supabase && config?.supabaseUrl && config?.supabasePublishableKey &&
-      /^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(config.supabaseUrl) &&
-      !config.supabasePublishableKey.startsWith('sb_secret_')) {
+    /^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(config.supabaseUrl) &&
+    !config.supabasePublishableKey.startsWith('sb_secret_')) {
     communityClient = window.supabase.createClient(config.supabaseUrl, config.supabasePublishableKey, {
       auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false }
     });
