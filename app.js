@@ -719,21 +719,47 @@ async function loadGuestbook() {
     list.replaceChildren();
     for (const guest of guests) {
       const item = document.createElement('div');
-      item.className = 'rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-ivory-200';
+
+      // No background, border, or rounded container
+      item.className = 'flex items-start gap-2 py-2 text-sm text-ivory-200';
+
+      // Gold person icon
+      const icon = document.createElement('i');
+      icon.setAttribute('data-lucide', 'user-round');
+      icon.className = 'w-4 h-4 text-gold shrink-0 mt-0.5';
+
+      // Keep guest and companions together
+      const names = document.createElement('span');
+      names.className = 'font-display text-sm text-white leading-relaxed';
+
       const mainName = document.createElement('span');
       mainName.className = 'font-medium text-white';
-      mainName.textContent = String(guest.name || 'Guest');
-      item.append(mainName);
+      mainName.textContent = formatGuestName(guest.name || 'Guest');
 
-      const companions = Array.isArray(guest.companions) ? guest.companions : [];
+      names.append(mainName);
+
+      const companions = Array.isArray(guest.companions)
+        ? guest.companions
+        : [];
+
       if (companions.length) {
         const beside = document.createElement('span');
         beside.className = 'text-ivory-300';
-        beside.textContent = '  ·  ' + companions.join(', ');
-        item.append(beside);
+        beside.textContent =
+          '  ·  ' + companions.map(formatGuestName).join(', ');
+
+        names.append(beside);
       }
+
+      item.append(icon, names);
       list.append(item);
     }
+
+    // Initialize dynamically created icons
+    if (window.lucide) {
+      lucide.createIcons({ nodes: [list] });
+    }
+
     if (!guests.length) list.textContent = 'No accepted RSVPs yet.';
     feed.replaceChildren();
     for (const note of notes) {
