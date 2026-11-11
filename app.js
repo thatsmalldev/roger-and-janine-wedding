@@ -680,7 +680,18 @@ async function loadGuestbook() {
     for (const guest of guests) {
       const item = document.createElement('div');
       item.className = 'rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-ivory-200';
-      item.textContent = String(guest.name || 'Guest');
+      const mainName = document.createElement('span');
+      mainName.className = 'font-medium text-white';
+      mainName.textContent = String(guest.name || 'Guest');
+      item.append(mainName);
+
+      const companions = Array.isArray(guest.companions) ? guest.companions : [];
+      if (companions.length) {
+        const beside = document.createElement('span');
+        beside.className = 'text-ivory-300';
+        beside.textContent = '  ·  ' + companions.join(', ');
+        item.append(beside);
+      }
       list.append(item);
     }
     if (!guests.length) list.textContent = 'No accepted RSVPs yet.';
