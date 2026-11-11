@@ -100,7 +100,7 @@
         <a href="#our-story" class="hover:text-gold transition-colors">Our Story</a>
         <a href="#schedule" class="hover:text-gold transition-colors">Schedule</a>
         <a href="#gallery" class="hover:text-gold transition-colors">Gallery</a>
-        <a href="#gift" id="rsvp-nav-button" class="hover:text-gold transition-colors">Gifts</a>
+        <a href="#gift" class="hover:text-gold transition-colors">Gifts</a>
         <a href="#rsvp" class="hover:text-gold transition-colors">RSVP Guide</a>
         <a href="#guestbook" class="hover:text-gold transition-colors">Guestbook</a>
       </div>
@@ -603,17 +603,7 @@
                 </div>
 
               </div>
-              <label for="invitation-code"
-                class="block text-gold text-xs uppercase tracking-widest font-semibold mb-3">Private invitation
-                code</label>
-              <input type="text" id="invitation-code" name="invitation-code" autocomplete="off" spellcheck="false"
-                autocapitalize="none" maxlength="32" minlength="32" required aria-describedby="code-help"
-                class="w-full bg-noir-900/80 border border-white/10 rounded-xl px-4 py-3 text-ivory-100 placeholder-ivory-300/40 focus:outline-none focus:border-gold transition-colors text-sm"
-                disabled>
-              <p id="code-help" class="text-xs mb-6">Use the 32-character code shared with your invitation. Please keep
-                it
-                private.
-              </p>
+              <input type="hidden" id="invitation-code" name="invitation-code" autocomplete="off">
               <button id="lookup-button" type="submit"
                 class="w-full py-4 rounded-xl bg-gold hover:bg-white text-black font-bold text-xs uppercase tracking-widest transition-all shadow-xl">Find
                 my invitation</button>
@@ -654,6 +644,12 @@
               <div id="companions"></div>
             </div>
 
+            <div class="mt-6 mb-5">
+              <label for="rsvp-guestbook-message" class="block text-gold text-xs uppercase tracking-widest font-semibold mb-3">Leave a message for Roger &amp; Janine <span class="text-ivory-300 normal-case tracking-normal">(optional)</span></label>
+              <textarea id="rsvp-guestbook-message" maxlength="1000" rows="4" placeholder="Share your wishes, blessings, or prayers..." class="w-full bg-noir-900/80 border border-white/10 rounded-xl px-4 py-3 text-ivory-100 placeholder-ivory-300/40 focus:outline-none focus:border-gold transition-colors text-sm resize-y"></textarea>
+              <p class="text-xs text-ivory-300 mt-2">Your message will appear publicly under your invitation name. Leaving this blank will remove a previously saved message.</p>
+            </div>
+
             <button id="save-button" type="submit"
               class="w-full py-4 rounded-xl bg-gold hover:bg-white text-black font-bold text-xs uppercase tracking-widest transition-all shadow-xl">
               Submit RSVP Confirmation
@@ -667,41 +663,23 @@
       </div>
     </section>
 
-    <!-- Guestbook Section -->
-    <section id="guestbook" class="py-24 px-4 max-w-4xl mx-auto">
+    <!-- Accepted guests and live guestbook -->
+    <section id="guestbook" class="py-24 px-4 max-w-6xl mx-auto">
       <div class="text-center space-y-3 mb-12">
-        <span class="font-script text-gold text-3xl">Love Notes</span>
-        <h2 class="font-display text-4xl md:text-5xl">Live Guestbook</h2>
-        <p class="text-ivory-300 text-sm max-w-md mx-auto">Leave your blessings and warm messages for Roger &amp;
-          Janine.
-        </p>
+        <span class="font-script text-gold text-3xl">With Love &amp; Gratitude</span>
+        <h2 class="font-display text-4xl md:text-5xl">Our Wedding Community</h2>
+        <p class="text-ivory-300 text-sm">Guests who have accepted and the heartfelt messages shared with us.</p>
       </div>
-
-
-      
-      <!-- Add Note Box -->
-      <div class="glass-dark p-6 rounded-2xl border border-white/10 mb-8 space-y-4">
-        <h3 class="font-display text-lg text-white">Write in our Guestbook</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <input type="text" id="gbAuthor" placeholder="Your Name"
-            class="bg-noir-900/80 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-ivory-100 focus:outline-none focus:border-gold">
-          <input type="text" id="gbLocation" placeholder="Your City / Relation (e.g., Manila, Cousin)"
-            class="bg-noir-900/80 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-ivory-100 focus:outline-none focus:border-gold">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+        <div class="glass-dark p-6 sm:p-8 rounded-3xl border border-white/10">
+          <h3 class="font-display text-xl text-white mb-2">Joyfully Accepted</h3>
+          <p id="accepted-count" class="text-gold text-sm mb-5" aria-live="polite">Loading guests…</p>
+          <div id="accepted-guest-list" class="space-y-3" aria-live="polite"></div>
         </div>
-        <textarea id="gbContent" rows="3" placeholder="Write your heartfelt note here..."
-          class="w-full bg-noir-900/80 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-ivory-100 focus:outline-none focus:border-gold resize-none"></textarea>
-        <div class="flex justify-end">
-          <button onclick="addGuestbookNote()"
-            class="bg-gold hover:bg-gold-light text-noir-900 font-semibold text-xs uppercase tracking-widest px-6 py-2.5 rounded-full transition-all flex items-center gap-2">
-            <i data-lucide="plus" class="w-4 h-4"></i>
-            <span>Post Note</span>
-          </button>
+        <div class="glass-dark p-6 sm:p-8 rounded-3xl border border-white/10">
+          <h3 class="font-display text-xl text-white mb-5">Live Guestbook</h3>
+          <div id="guestbookFeed" class="space-y-4" aria-live="polite"></div>
         </div>
-      </div>
-
-      <!-- Notes List Feed -->
-      <div id="guestbookFeed" class="space-y-4">
-        <!-- Dynamic Javascript render here -->
       </div>
     </section>
 

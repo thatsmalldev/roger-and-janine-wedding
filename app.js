@@ -33,7 +33,7 @@
   if (document.readyState === "loading") {
     document.addEventListener(
       "DOMContentLoaded",
-      populateInvitationCode
+      () => { populateInvitationCode(); window.addEventListener('hashchange', populateInvitationCode); }
     );
   } else {
     populateInvitationCode();
@@ -240,6 +240,10 @@
         return;
       }
       current = { identity, guest: data };
+      $('rsvp-guestbook-message').value = '';
+      const savedMessage = await client.rpc('get_my_guestbook_message', identity);
+      if (savedMessage.error) throw savedMessage.error;
+      $('rsvp-guestbook-message').value = savedMessage.data || '';
       $('guest-heading').textContent = `${data.first_name} ${data.last_name} — your response`;
       const roles = [];
       if (data.is_principal_sponsor) roles.push('Principal Sponsor (Ninong / Ninang)');
@@ -301,13 +305,16 @@
     busy = true; responseFields.disabled = true; $('reset-button').disabled = true;
     $('save-button').textContent = 'Saving your response…';
     try {
-      const { data, error } = await client.rpc('submit_rsvp', {
-        ...current.identity, p_status: status, p_plus_ones: companions, p_revision: current.guest.revision
+      const { data, error } = await client.rpc('submit_rsvp_with_message', {
+        ...current.identity, p_status: status, p_plus_ones: companions,
+        p_revision: current.guest.revision,
+        p_message: $('rsvp-guestbook-message').value.trim()
       });
       if (error) throw error;
       if (data?.saved !== true || !Number.isInteger(data.revision)) throw new Error('Save not confirmed');
       current.guest.revision = data.revision;
       current.guest.rsvp_status = status; current.guest.plus_ones = companions;
+      if (typeof window.refreshWeddingCommunity === 'function') window.refreshWeddingCommunity();
       message('save-message', status === 'attending' ?
         'Your response has been saved. We’re looking forward to celebrating with you! — Roger & Janine' :
         'Your response has been saved. We’ll miss you, and we’re grateful for your love and prayers. — Roger & Janine', 'success');
@@ -517,10 +524,6 @@ function handleRSVPSubmit(e) {
   existingRSVPs.push(rsvpData);
   localStorage.setItem('wedding_rsvps', JSON.stringify(existingRSVPs));
 
-  // Also add message to guestbook if provided
-  if (message) {
-    saveGuestbookEntry(name, "Guest", message);
-  }
 
   // Display Modal Confirmation
   document.getElementById('confirmName').innerText = name;
@@ -642,206 +645,69 @@ function closeRSVPModal() {
 }
 
 /* ===================================================
-   6. LIVE GUESTBOOK (LOCALSTORAGE)
+   6. PUBLIC WEDDING COMMUNITY (SUPABASE RPC)
    =================================================== */
-const defaultNotes = [
-  { author: "Auntie Clara", location: "Vancouver, Canada", content: "Wishing you both a lifetime of happiness, endless laughter, and divine blessings!", time: "2 days ago", likes: 5 },
-  { author: "Mark & Sarah", location: "Quezon City", content: "Can't wait to celebrate on the dance floor! So happy for you two!", time: "1 week ago", likes: 8 }
-];
-
-let supabaseClient = null;
-const config = window.WEDDING_CONFIG;
-
-if (
-  window.supabase &&
-  config?.supabaseUrl &&
-  config?.supabasePublishableKey &&
-  /^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(config.supabaseUrl) &&
-  !config.supabasePublishableKey.startsWith('sb_secret_')
-) {
-  supabaseClient = window.supabase.createClient(
-    config.supabaseUrl,
-    config.supabasePublishableKey,
-    {
-      auth: {
-        persistSession: false,
-        autoRefreshToken: false,
-        detectSessionInUrl: false
-      }
-    }
-  );
-} else {
-  console.error('Guestbook Supabase configuration is missing or invalid.');
-}
+let communityClient = null;
+try {
+  const config = window.WEDDING_CONFIG;
+  if (window.supabase && config?.supabaseUrl && config?.supabasePublishableKey &&
+      /^https:\/\/[a-z0-9-]+\.supabase\.co$/i.test(config.supabaseUrl) &&
+      !config.supabasePublishableKey.startsWith('sb_secret_')) {
+    communityClient = window.supabase.createClient(config.supabaseUrl, config.supabasePublishableKey, {
+      auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false }
+    });
+  }
+} catch (error) { console.error('Community initialization failed:', error); }
 
 async function loadGuestbook() {
   const feed = document.getElementById('guestbookFeed');
-  
-  // If Supabase isn't configured yet, fallback to localStorage
-  if (!supabaseClient) {
-    const stored = localStorage.getItem('wedding_guestbook');
-    let notes = stored ? JSON.parse(stored) : defaultNotes;
-    renderGuestbookFeed(notes);
+  const list = document.getElementById('accepted-guest-list');
+  const count = document.getElementById('accepted-count');
+  if (!feed || !list || !count) return;
+  if (!communityClient) {
+    count.textContent = 'Community unavailable';
+    feed.textContent = 'The guestbook is temporarily unavailable.';
     return;
   }
-
-  // Fetch entries from Supabase PostgreSQL Table
   try {
-    const { data, error } = await supabaseClient
-      .from('guestbook')
-      .select('*')
-      .order('created_at', { ascending: false });
-
+    const { data, error } = await communityClient.rpc('get_wedding_community');
     if (error) throw error;
-    renderGuestbookFeed(data || []);
-  } catch (err) {
-    console.error('Supabase fetch error:', err.message);
-    const stored = localStorage.getItem('wedding_guestbook');
-    renderGuestbookFeed(stored ? JSON.parse(stored) : defaultNotes);
-  }
-}
-
-function renderGuestbookFeed(notes) {
-  const feed = document.getElementById('guestbookFeed');
-  feed.innerHTML = '';
-
-  if (notes.length === 0) {
-    feed.innerHTML = `<p class="text-center text-ivory-300/50 text-xs py-8">Be the first to leave a sweet note!</p>`;
-    return;
-  }
-
-  notes.forEach((item) => {
-    const noteId = item.id;
-    const timeFormatted = item.created_at 
-      ? new Date(item.created_at).toLocaleDateString([], { month: 'short', day: 'numeric' })
-      : (item.time || 'Recently');
-
-    const card = document.createElement('div');
-    card.className = "glass-dark p-6 rounded-2xl border border-white/10 space-y-3 hover:border-gold/30 transition-all";
-    card.innerHTML = `
-      <div class="flex justify-between items-start">
-        <div>
-          <h4 class="font-display text-white font-medium">${escapeHTML(item.author)}</h4>
-          <span class="text-[11px] text-gold font-mono uppercase">${escapeHTML(item.location || 'Friend')}</span>
-        </div>
-        <div class="flex items-center gap-3">
-          <span class="text-[10px] text-ivory-300/60 font-mono">${timeFormatted}</span>
-        </div>
-      </div>
-      <p class="text-ivory-200 text-sm font-serif leading-relaxed">"${escapeHTML(item.content)}"</p>
-      <div class="flex items-center justify-end gap-2 pt-2 text-xs text-ivory-300">
-        <button onclick="likeGuestbookNote('${noteId}', ${item.likes || 0})" class="hover:text-gold flex items-center gap-1 transition-colors">
-          <i data-lucide="heart" class="w-3.5 h-3.5 text-gold"></i>
-          <span>${item.likes || 0}</span>
-        </button>
-      </div>
-    `;
-    feed.appendChild(card);
-  });
-
-  lucide.createIcons();
-}
-
-function saveGuestbookEntry(author, location, content) {
-  let notes = JSON.parse(localStorage.getItem('wedding_guestbook') || JSON.stringify(defaultNotes));
-  notes.unshift({
-    author: author,
-    location: location || "Dear Friend",
-    content: content,
-    time: "Just now",
-    likes: 0
-  });
-  localStorage.setItem('wedding_guestbook', JSON.stringify(notes));
-  renderGuestbookFeed(notes);
-}
-
-function escapeHTML(str) {
-  if (!str) return '';
-  return String(str).replace(/[&<>'"]/g, 
-    tag => ({
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;',
-      "'": '&#39;',
-      '"': '&quot;'
-    }[tag] || tag)
-  );
-}
-
-async function addGuestbookNote() {
-  const author = document.getElementById('gbAuthor').value.trim();
-  const location = document.getElementById('gbLocation').value.trim();
-  const content = document.getElementById('gbContent').value.trim();
-
-  if (!author || !content) {
-    showToast("Please enter your name and note!");
-    return;
-  }
-
-  if (supabaseClient) {
-    // Insert row into Supabase SQL database
-    const { error } = await supabaseClient
-      .from('guestbook')
-      .insert([{ author, location: location || 'Friend', content: content, likes: 0 }]);
-
-    if (error) {
-      showToast("Error saving note to database!");
-      console.error(error);
-      return;
+    const guests = Array.isArray(data?.guests) ? data.guests : [];
+    const notes = Array.isArray(data?.messages) ? data.messages : [];
+    const total = Number(data?.attendee_count) || 0;
+    count.textContent = `${total} confirmed attendee${total === 1 ? '' : 's'} (including companions)`;
+    list.replaceChildren();
+    for (const guest of guests) {
+      const item = document.createElement('div');
+      item.className = 'rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-ivory-200';
+      item.textContent = String(guest.name || 'Guest');
+      list.append(item);
     }
-  } else {
-    console.error('Guestbook Supabase client is not initialized.');
-    showToast('Database connection is unavailable. Please try again later.');
-    return;
-}
-
-  document.getElementById('gbAuthor').value = '';
-  document.getElementById('gbLocation').value = '';
-  document.getElementById('gbContent').value = '';
-
-  showToast("Thank you for your warm note!");
-  loadGuestbook();
-}
-
-async function deleteGuestbookNote(id) {
-  if (!confirm("Delete this note from the database?")) return;
-
-  if (supabaseClient && typeof id === 'string' && id.length > 20) {
-    // Execute SQL DELETE command via Supabase Client
-    const { error } = await supabaseClient
-      .from('guestbook')
-      .delete()
-      .eq('id', id);
-
-    if (error) {
-      showToast("Error deleting note!");
-      console.error(error);
-      return;
+    if (!guests.length) list.textContent = 'No accepted RSVPs yet.';
+    feed.replaceChildren();
+    for (const note of notes) {
+      const card = document.createElement('div');
+      card.className = 'rounded-2xl border border-white/10 bg-white/5 p-5 space-y-2';
+      const name = document.createElement('h4');
+      name.className = 'font-display text-white text-sm';
+      name.textContent = String(note.author || 'Guest');
+      const body = document.createElement('p');
+      body.className = 'text-ivory-200 text-sm font-serif leading-relaxed whitespace-pre-wrap';
+      body.textContent = String(note.content || '');
+      card.append(name, body);
+      feed.append(card);
     }
-  } else {
-    // Local fallback deletion
-    let notes = JSON.parse(localStorage.getItem('wedding_guestbook') || JSON.stringify(defaultNotes));
-    notes.splice(id, 1);
-    localStorage.setItem('wedding_guestbook', JSON.stringify(notes));
+    if (!notes.length) feed.textContent = 'Be the first to leave a heartfelt message with your RSVP.';
+  } catch (error) {
+    console.error('Wedding community fetch error:', error);
+    count.textContent = 'Could not load accepted guests';
+    feed.textContent = 'Could not load guestbook messages. Please try again later.';
   }
-
-  showToast("Message deleted from database!");
-  loadGuestbook();
 }
-
-async function likeGuestbookNote(id, currentLikes) {
-  if (supabaseClient && typeof id === 'string' && id.length > 20) {
-    await supabaseClient
-      .from('guestbook')
-      .update({ likes: currentLikes + 1 })
-      .eq('id', id);
-  } else {
-    let notes = JSON.parse(localStorage.getItem('wedding_guestbook') || JSON.stringify(defaultNotes));
-    if (notes[id]) notes[id].likes = (notes[id].likes || 0) + 1;
-    localStorage.setItem('wedding_guestbook', JSON.stringify(notes));
-  }
-  loadGuestbook();
-}
+window.refreshWeddingCommunity = loadGuestbook;
+window.setInterval(() => {
+  if (document.visibilityState === 'visible') loadGuestbook();
+}, 10000);
 
 /* ===================================================
    7. SOFT SYNTH AMBIENT BACKGROUND PLAYER (WEB AUDIO API)
