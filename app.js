@@ -350,8 +350,14 @@
         modal.classList.add('opacity-100', 'pointer-events-auto');
       }
 
-      if (typeof window.refreshWeddingCommunity === 'function') window.refreshWeddingCommunity();
+      if (typeof window.refreshWeddingCommunity === 'function')
+        window.refreshWeddingCommunity();
+
       message('save-message', '');
+
+      showToast(
+        'Your response has been saved. We’re looking forward to celebrating with you! — Roger & Janine'
+      );
     } catch (error) {
       message('save-message', FRIENDLY_ERRORS.has(error.message) ? error.message :
         'We couldn’t confirm that your response was saved. Please find your invitation again to check before retrying.', 'error');
