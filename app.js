@@ -312,11 +312,6 @@
       });
       if (error) throw error;
       if (data?.saved !== true || !Number.isInteger(data.revision)) throw new Error('Save not confirmed');
-
-      // Show success toast only after Supabase confirms the RSVP was saved
-      showToast(
-        'Your response has been saved. We’re looking forward to celebrating with you! — Roger & Janine'
-      );
       current.guest.revision = data.revision;
       current.guest.rsvp_status = status; current.guest.plus_ones = companions;
 
@@ -714,7 +709,14 @@ function closeRSVPModal() {
   document.getElementById('rsvp')?.scrollIntoView({
     behavior: 'smooth', block: 'start'
   });
+
+  // Show success notification after closing the modal
+  showToast(
+    'Your response has been saved. We’re looking forward to celebrating with you! — Roger & Janine'
+  );
 }
+
+
 
 /* ===================================================
    6. PUBLIC WEDDING COMMUNITY (SUPABASE RPC)

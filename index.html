@@ -650,7 +650,7 @@
                 </label>
 
                 <label
-                  class="peer-checked:text-rose-400 text-[11px] sm:text-xs uppercase tracking-wide sm:tracking-widest font-semibold flex flex-wrap items-center justify-center text-center gap-1 leading-relaxed">
+                  class="relative flex items-center justify-center p-3 sm:p-4 min-h-14 rounded-2xl transition-all cursor-pointer text-[11px] sm:text-xs uppercase tracking-wide sm:tracking-widest font-semibold flex flex-wrap items-center justify-center text-center gap-1 leading-relaxed border border-white/10 hover:border-rose-400/50 peer-checked:border-rose-400">
                   <input type="radio" name="main-status" value="declining" class="sr-only peer">
                   <span
                     class="peer-checked:text-rose-400 text-xs uppercase tracking-widest font-semibold flex items-center">
@@ -864,8 +864,7 @@
     </div>
 
     <!-- Toast Notification Bar -->
-    <div id="toast" role="status" aria-live="polite"
-      class="fixed top-20 left-4 right-4 sm:left-auto sm:right-6 sm:w-96 max-w-[calc(100vw-2rem)] z-[100] opacity-0 pointer-events-none transition-opacity duration-300 bg-noir-800 border border-gold/40 rounded-xl shadow-2xl p-4">
+    <div id="toast" role="status" aria-live="polite" class="fixed top-20 left-4 right-4 sm:left-auto sm:right-6 sm:w-96 max-w-[calc(100vw-2rem)] z-[100] opacity-0 pointer-events-none transition-opacity duration-300 bg-noir-800 border border-gold/40 rounded-xl shadow-2xl p-4">
       <i data-lucide="check-circle" class="w-4 h-4 text-gold"></i>
       <span id="toastMsg">Copied to clipboard!</span>
     </div>
