@@ -737,7 +737,7 @@ async function loadGuestbook() {
 
       // Keep guest and companions together
       const names = document.createElement('span');
-      names.className = 'font-display text-sm text-white leading-relaxed';
+      names.className = 'text-sm text-white leading-relaxed';
 
       const mainName = document.createElement('span');
       mainName.className = 'font-medium text-white';
