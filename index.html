@@ -611,7 +611,7 @@
           </form>
         </div>
         <p id="lookup-message" class="message" role="status" aria-live="polite" class="text-xs mb-4"></p>
-        <form id="rsvp-form" class="space-y-6" hidden>
+        <form id="rsvp-form" class="space-y-6" onsubmit="handleRSVPSubmit(event)" hidden>
           <!-- Attendance Selector -->
           <fieldset id="response-fields" class="glass-dark p-8 sm:p-12 rounded-3xl border border-white/10 shadow-2xl">
             <legend id="guest-heading" class="font-display text-xl text-white">Your response</legend>
@@ -872,7 +872,7 @@
         </div>
 
         <div class="space-y-2">
-          <h3 id="rsvp-modal-title" class="font-display text-3xl text-white">RSVP Received!</h3>
+          <h3 class="font-display text-3xl text-white">RSVP Received!</h3>
           <p class="text-ivory-200 text-sm font-serif">Thank you, <span id="confirmName"
               class="text-gold font-semibold"></span>!</p>
         </div>
@@ -888,7 +888,7 @@
           </div>
         </div>
 
-        <p id="rsvp-modal-note" class="text-ivory-300 text-xs">Thank you for responding to our invitation.</p>
+        <p class="text-ivory-300 text-xs">We can't wait to celebrate our big day with you on Feb 6, 2027!</p>
 
         <button onclick="closeRSVPModal()"
           class="w-full bg-gold hover:bg-gold-light text-noir-900 font-semibold text-xs tracking-widest uppercase py-3.5 rounded-xl transition-all">
