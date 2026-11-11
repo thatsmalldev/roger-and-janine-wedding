@@ -727,8 +727,6 @@ async function loadGuestbook() {
     count.hidden = true;
     list.replaceChildren();
     for (const guest of guests) {
-      const item = document.createElement('div');
-      item.className = 'rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-ivory-200';
       // Create person icon
       const personIcon = document.createElement('i');
       personIcon.setAttribute('data-lucide', 'user-round');
@@ -758,12 +756,14 @@ async function loadGuestbook() {
     if (window.lucide) {
       lucide.createIcons({ nodes: [list] });
     }
+
+
     feed.replaceChildren();
     for (const note of notes) {
       const card = document.createElement('div');
       card.className = 'rounded-2xl border border-white/10 bg-white/5 p-5 space-y-2';
       const name = document.createElement('h4');
-      name.className = 'font-display text-white text-sm';
+      name.className = 'text-white text-sm';
       name.textContent = String(note.author || 'Guest');
       const body = document.createElement('p');
       body.className = 'text-ivory-200 text-sm font-serif leading-relaxed whitespace-pre-wrap';
