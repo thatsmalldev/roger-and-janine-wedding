@@ -67,7 +67,7 @@
   <link rel="stylesheet" href="styles.css">
   <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script defer src="config.js"></script>
-  <script defer src="app.js?v=20261112"></script>
+  <script defer src="app.js"></script>
 </head>
 
 
@@ -376,7 +376,7 @@
       <!-- Event Detail Modal Trigger Button -->
       <div class="mt-12 text-center">
         <button onclick="openDressCodeModal()"
-          class="inline-flex items-center justify-center whitespace-nowrap border border-gold/40 text-gold hover:bg-gold hover:text-noir-900 transition-all duration-300 rounded-full px-5 py-3 text-xs uppercase tracking-widest font-semibold">
+          class="inline-flex items-center bg-noir-800 hover:bg-noir-700 text-ivory-100 border border-gold/40 hover:border-gold font-medium text-xs tracking-widest uppercase px-8 py-4 rounded-full transition-all duration-300">
           <i data-lucide="info" class="w-4 h-4 text-gold"></i>
           <span>View Full Details &amp; Dress Code</span>
         </button>
@@ -769,7 +769,7 @@
       <div
         class="relative glass-dark border border-white/20 rounded-3xl max-w-2xl w-full max-h-[90dvh] flex flex-col overflow-hidden text-left shadow-2xl modal-content">
         <div class="overflow-y-auto overscroll-contain min-h-0 flex-1 px-6 pb-6 pt-4 sm:px-8 sm:pb-8 sm:pt-5 space-y-4">
-          <button type="button" onclick="closeDressCodeModal()" aria-label="Close dress code" class="absolute top-4 right-4 z-20 flex items-center justify-center w-9 h-9 rounded-full bg-noir-900/90 border border-white/10 text-ivory-300 hover:text-gold transition-colors">
+          <button class="absolute top-5 right-5 text-ivory-300 hover:text-white" onclick="closeDressCodeModal()">
             <i data-lucide="x" class="w-6 h-6"></i>
           </button>
 
