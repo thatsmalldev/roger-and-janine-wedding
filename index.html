@@ -555,30 +555,12 @@
           a monetary blessing towards our dream home and future together would be deeply appreciated."
         </p>
 
-        <!-- QR codes displayed directly for easy access -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-2xl mx-auto">
-          <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
-            <h3 class="font-display text-xl text-gold mb-4">GCash</h3>
-            <img src="images/gcash-qr.jpg" alt="GCash gift payment QR code"
-              class="w-48 h-48 max-w-full object-contain mx-auto bg-white rounded-xl p-2 mb-4">
-            <p class="text-ivory-300 text-xs mb-4">Scan using your GCash app</p>
-            <a href="images/gcash-qr.jpg" download="Roger-Janine-GCash-QR.png" onclick="showToast('GCash QR Code download started!')"
-              class="inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-light text-noir-900 font-semibold text-xs tracking-wider uppercase px-5 py-3 rounded-full transition-colors">
-              <i data-lucide="download" class="w-4 h-4"></i>
-              Download QR Code
-            </a>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-2xl p-5">
-            <h3 class="font-display text-xl text-gold mb-4">BDO Transfer</h3>
-            <img src="images/bdo-qr.jpg" alt="BDO bank transfer QR code" 
-              class="w-48 h-48 max-w-full object-contain mx-auto bg-white rounded-xl p-2 mb-4">
-            <p class="text-ivory-300 text-xs mb-4">Scan using a compatible banking app</p>
-            <a href="images/bdo-qr.jpg" download="Roger-Janine-BDO-QR.png" onclick="showToast('BDO QR Code download started!')"
-              class="inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold-light text-noir-900 font-semibold text-xs tracking-wider uppercase px-5 py-3 rounded-full transition-colors">
-              <i data-lucide="download" class="w-4 h-4"></i>
-              Download QR Code
-            </a>
-          </div>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button onclick="openGiftModal()"
+            class="bg-gold hover:bg-gold-light text-noir-900 font-semibold text-xs tracking-widest uppercase px-8 py-4 rounded-full shadow-lg transition-all duration-300 inline-flex items-center gap-2">
+            <i data-lucide="qr-code" class="w-4 h-4"></i>
+            <span>View QR Codes</span>
+          </button>
         </div>
       </div>
     </section>
@@ -817,6 +799,98 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+
+
+
+    <!-- Gift Modal -->
+    <div id="giftModal"
+      class="fixed inset-0 z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300">
+
+      <!-- Backdrop -->
+      <div class="absolute inset-0 bg-black/80 backdrop-blur-md" onclick="closeGiftModal()"></div>
+
+      <!-- Modal Container -->
+      <div role="dialog" aria-modal="true" aria-labelledby="giftModalTitle"
+        class="relative glass-dark border border-white/20 rounded-3xl max-w-3xl w-full max-h-[90dvh] flex flex-col overflow-hidden text-center shadow-2xl modal-content">
+
+        <!-- Fixed Header -->
+        <div class="relative shrink-0 px-6 pt-7 pb-5 border-b border-white/10">
+
+          <!-- Close Button -->
+          <button type="button" onclick="closeGiftModal()" aria-label="Close gift modal"
+            class="absolute top-5 right-5 text-ivory-300 hover:text-white transition-colors">
+            <i data-lucide="x" class="w-6 h-6"></i>
+          </button>
+
+          <!-- Icon -->
+          <div class="w-12 h-12 rounded-full bg-gold/20 text-gold mx-auto flex items-center justify-center mb-4">
+            <i data-lucide="credit-card" class="w-6 h-6"></i>
+          </div>
+
+          <!-- Title -->
+          <h3 id="giftModalTitle" class="font-display text-2xl text-white">
+            Digital Gift Envelope
+          </h3>
+
+          <p class="text-ivory-300 text-xs mt-2">
+            Thank you for showering us with love &amp; blessings.
+          </p>
+
+        </div>
+
+        <!-- Scrollable Content -->
+        <div class="min-h-0 flex-1 overflow-y-auto lg:overflow-y-hidden overscroll-contain p-6 sm:p-8">
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+
+            <!-- GCash -->
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-5 text-center">
+
+              <h4 class="font-display text-xl text-gold mb-4">
+                GCash
+              </h4>
+
+              <div class="rounded-xl bg-white p-3 mb-5">
+                <img src="images/gcash-qr.png" alt="GCash QR Code"
+                  class="w-full max-w-[300px] h-auto mx-auto object-contain">
+              </div>
+
+              <button type="button" onclick="event.stopPropagation(); downloadQRCode('images/gcash-qr.png', 'Roger-Janine-GCash-QR.png')"
+                class="inline-flex items-center justify-center gap-2 rounded-full bg-gold px-5 py-3 text-xs font-semibold uppercase tracking-wider text-noir-900 hover:bg-gold-light transition">
+
+                <i data-lucide="download" class="w-4 h-4"></i>
+                Download QR Code
+              </button>
+
+            </div>
+
+            <!-- BDO -->
+            <div class="rounded-2xl border border-white/10 bg-white/5 p-5 text-center">
+
+              <h4 class="font-display text-xl text-gold mb-4">
+                BDO Bank Transfer
+              </h4>
+
+              <div class="rounded-xl bg-white p-3 mb-5">
+                <img src="images/bdo-qr.png" alt="BDO Bank Transfer QR Code"
+                  class="w-full max-w-[300px] h-auto mx-auto object-contain">
+              </div>
+
+              <button type="button" onclick="event.stopPropagation(); downloadQRCode('images/bdo-qr.png', 'Roger-Janine-BDO-QR.png')"
+                class="inline-flex items-center justify-center gap-2 rounded-full bg-gold px-5 py-3 text-xs font-semibold uppercase tracking-wider text-noir-900 hover:bg-gold-light transition">
+
+                <i data-lucide="download" class="w-4 h-4"></i>
+                Download QR Code
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
     </div>
 

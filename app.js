@@ -494,17 +494,29 @@ function prevLightbox() {
    =================================================== */
 
 
+
 function openGiftModal() {
-  const m = document.getElementById('giftModal');
-  m.classList.remove('opacity-0', 'pointer-events-none');
-  m.classList.add('opacity-100', 'pointer-events-auto');
+  const modal = document.getElementById('giftModal');
+  if (!modal) return;
+
+  modal.classList.remove('opacity-0', 'pointer-events-none');
+  modal.classList.add('opacity-100', 'pointer-events-auto');
+
+  // Disable background scrolling
+  document.body.style.overflow = 'hidden';
 }
 
 function closeGiftModal() {
-  const m = document.getElementById('giftModal');
-  m.classList.remove('opacity-100', 'pointer-events-auto');
-  m.classList.add('opacity-0', 'pointer-events-none');
+  const modal = document.getElementById('giftModal');
+  if (!modal) return;
+
+  modal.classList.remove('opacity-100', 'pointer-events-auto');
+  modal.classList.add('opacity-0', 'pointer-events-none');
+
+  // Restore background scrolling
+  document.body.style.overflow = '';
 }
+
 
 /* ===================================================
    4. COPY TO CLIPBOARD HELPER & TOAST
@@ -984,6 +996,80 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+
+async function downloadQRCode(file, filename) {
+  try {
+    const response = await fetch(file, { cache: 'no-store' });
+
+    if (!response.ok) {
+      throw new Error('Unable to load QR code');
+    }
+
+    const blob = await response.blob();
+
+    // Create a temporary download URL
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+
+    link.href = url;
+    link.download = filename;
+
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+
+    // Release the temporary URL after the browser starts downloading
+    setTimeout(() => URL.revokeObjectURL(url), 10000);
+
+    // Copy QR code image to clipboard where supported
+    let copied = false;
+
+    try {
+      if (navigator.clipboard?.write && window.ClipboardItem) {
+        // Clipboard image writing uses PNG
+        let pngBlob = blob;
+
+        if (blob.type !== 'image/png') {
+          const bitmap = await createImageBitmap(blob);
+          const canvas = document.createElement('canvas');
+
+          canvas.width = bitmap.width;
+          canvas.height = bitmap.height;
+
+          canvas.getContext('2d').drawImage(bitmap, 0, 0);
+          bitmap.close();
+
+          pngBlob = await new Promise(resolve =>
+            canvas.toBlob(resolve, 'image/png')
+          );
+        }
+
+        if (pngBlob) {
+          await navigator.clipboard.write([
+            new ClipboardItem({
+              'image/png': pngBlob
+            })
+          ]);
+
+          copied = true;
+        }
+      }
+    } catch (clipboardError) {
+      console.warn('Clipboard copy unavailable:', clipboardError);
+    }
+
+    if (copied) {
+      showToast('QR Code download started and image copied!');
+    } else {
+      showToast('QR Code download started!');
+    }
+
+  } catch (error) {
+    console.error('QR Code download error:', error);
+    showToast('Unable to download QR Code. Please try again.');
+  }
+}
 
 
 // Initialize Page
