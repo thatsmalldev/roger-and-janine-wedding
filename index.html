@@ -814,9 +814,9 @@
       <!-- Modal Container -->
       <div role="dialog" aria-modal="true" aria-labelledby="giftModalTitle"
         class="relative glass-dark border border-white/20 rounded-3xl max-w-3xl w-full max-h-[90dvh] flex flex-col overflow-hidden text-center shadow-2xl modal-content">
-
+        <div class="overflow-y-auto overscroll-contain min-h-0 flex-1">
         <!-- Fixed Header -->
-        <div class="relative shrink-0 px-6 pt-7 pb-5 border-b border-white/10">
+        <div class="px-6 pb-6 pt-4 sm:px-8 sm:pb-8 sm:pt-5 space-y-4">
 
           <!-- Close Button -->
           <button type="button" onclick="closeGiftModal()" aria-label="Close gift modal"
@@ -841,7 +841,7 @@
         </div>
 
         <!-- Scrollable Content -->
-        <div class="min-h-0 flex-1 overflow-y-auto lg:overflow-y-hidden overscroll-contain p-6 sm:p-8">
+        <div class="p-6 sm:p-8">
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
 
@@ -857,7 +857,8 @@
                   class="w-full max-w-[300px] h-auto mx-auto object-contain">
               </div>
 
-              <button type="button" onclick="event.stopPropagation(); downloadQRCode('images/gcash-qr.png', 'Roger-Janine-GCash-QR.png')"
+              <button type="button"
+                onclick="event.stopPropagation(); downloadQRCode('images/gcash-qr.png', 'Roger-Janine-GCash-QR.png')"
                 class="inline-flex items-center justify-center gap-2 rounded-full bg-gold px-5 py-3 text-xs font-semibold uppercase tracking-wider text-noir-900 hover:bg-gold-light transition">
 
                 <i data-lucide="download" class="w-4 h-4"></i>
@@ -878,7 +879,8 @@
                   class="w-full max-w-[300px] h-auto mx-auto object-contain">
               </div>
 
-              <button type="button" onclick="event.stopPropagation(); downloadQRCode('images/bdo-qr.png', 'Roger-Janine-BDO-QR.png')"
+              <button type="button"
+                onclick="event.stopPropagation(); downloadQRCode('images/bdo-qr.png', 'Roger-Janine-BDO-QR.png')"
                 class="inline-flex items-center justify-center gap-2 rounded-full bg-gold px-5 py-3 text-xs font-semibold uppercase tracking-wider text-noir-900 hover:bg-gold-light transition">
 
                 <i data-lucide="download" class="w-4 h-4"></i>
@@ -893,6 +895,11 @@
 
       </div>
     </div>
+    </div>
+
+
+
+
 
 
     <!-- MODAL 3: Lightbox Image Viewer Modal -->
